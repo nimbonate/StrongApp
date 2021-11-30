@@ -61,6 +61,10 @@ const FactFinder = ({ navigation }) => {
     const [zip, setzip] = useState('')
 
     //Medical
+    const [hasadv, sethasadv] = useState(false)
+    const [advdduct, setadvdduct] = useState(0)
+    const [spousehasadv, setspousehasadv] = useState(false)
+
     const [hco1, sethco1] = useState('')
     const [hplan1, sethplan1] = useState('')
     const [hprem1, sethprem1] = useState('')
@@ -106,7 +110,6 @@ const FactFinder = ({ navigation }) => {
     const [dentalco2, setdentalco2] = useState('')
     const [dentalprem2, setdentalprem2] = useState('')
 
-    const [hasadv, sethasadv] = useState(false)
     const [hicopay1, sethicopay1] = useState('')
     const [hicopay2, sethicopay2] = useState('')
     const [hibind, sethibind] = useState(false)
@@ -262,7 +265,12 @@ const FactFinder = ({ navigation }) => {
         name:'Medical',
         component:<Medical 
             hasspouse={hasspouse}
-
+            hasadv={hasadv}
+            sethasadv={sethasadv}
+            spousehasadv={spousehasadv}
+            setspousehasadv={setspousehasadv}
+            advdduct={advdduct}
+            setadvdduct={setadvdduct}
             hco1={hco1}
             sethco1={sethco1}
             hplan1={hplan1}
@@ -358,7 +366,7 @@ const FactFinder = ({ navigation }) => {
             setdentalprem2={setdentalprem2}
 
             hasadv={hasadv}
-            sethasadv={sethasadv}
+            spousehasadv={spousehasadv}
             hicopay1={hicopay1}
             sethicopay1={sethicopay1}
             hicopay2={hicopay2}

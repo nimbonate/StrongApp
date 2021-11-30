@@ -4572,7 +4572,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.5.10", "prop-types@^15.6.0", "prop-types@^15.7.2":
+"prop-types@^15.6.0", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -4690,13 +4690,6 @@
   dependencies:
     "warn-once" "^0.1.0"
 
-"react-native-signature-capture@^0.4.12":
-  "integrity" "sha512-DtRqYABtrXxcKhMYJaRFcptAgugDjsn/09KCbcNtZHVtEFyUvdSriOx2i6OgtTRHlQbN/+YBWnezeikcXu7UnQ=="
-  "resolved" "https://registry.npmjs.org/react-native-signature-capture/-/react-native-signature-capture-0.4.12.tgz"
-  "version" "0.4.12"
-  dependencies:
-    "prop-types" "^15.5.10"
-
 "react-native-web@0.17.1":
   "integrity" "sha512-lUnn+2O8ynQ6/gJKylSxm7DLi2vHw6AujdDV1+LSa8Epe1bYFJNUcJTEhJf0jNYUFGOujzMtuG8Mkz3HdWTkag=="
   "resolved" "https://registry.npmjs.org/react-native-web/-/react-native-web-0.17.1.tgz"
@@ -4710,7 +4703,7 @@
     "normalize-css-color" "^1.0.2"
     "prop-types" "^15.6.0"
 
-"react-native@*", "react-native@>=0.47", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@0.64.3":
+"react-native@*", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@0.64.3":
   "integrity" "sha512-2OEU74U0Ek1/WeBzPbg6XDsCfjF/9fhrNX/5TFgEiBKd5mNc9LOZ/OlMmkb7iues/ZZ/oc51SbEfLRQdcW0fVw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.64.3.tgz"
   "version" "0.64.3"
@@ -5150,6 +5143,11 @@
   "integrity" "sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ=="
   "resolved" "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.6.tgz"
   "version" "3.0.6"
+
+"signature-canvas@^0.0.5":
+  "integrity" "sha512-DHStqDXwO5FpNe6TJ8tbPWe9WG5eTH+tmhLXGwlmAsopfcr9DKF/fHhyoxgopyPtJVBTuHAG2yAarhaMrx4oGA=="
+  "resolved" "https://registry.npmjs.org/signature-canvas/-/signature-canvas-0.0.5.tgz"
+  "version" "0.0.5"
 
 "simple-plist@^1.0.0", "simple-plist@^1.1.0":
   "integrity" "sha512-uYWpeGFtZtVt2NhG4AHgpwx323zxD85x42heMJBan1qAiqqozIlaGrwrEt6kRjXWRWIXsuV1VLCvVmZan2B5dg=="

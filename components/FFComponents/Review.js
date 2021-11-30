@@ -10,6 +10,7 @@ const Review = ({hasspouse,
             city, state, zip, 
             hco1, hplan1, hprem1, rxco1,
             hco2, hplan2, hprem2, rxco2,
+            advdduct1, advdduct2,
             concerns, changes,
             hasltc, ecareben1,ecareco1, ecareprem1,
             ecareben2, ecareco2, ecareprem2,
@@ -34,8 +35,8 @@ const Review = ({hasspouse,
             <Text style={styles.titleText}>Review</Text>
             <Text style={styles.headerText}>Basics</Text>
             { hasspouse ?<>
-            <Text style={styles.lableText}>Name: {fname1} {lname1}</Text>
-            <Text style={styles.lableText}>Spouse Name: {fname2} {lname2} live together at</Text>
+                <Text style={styles.lableText}>Name: {fname1} {lname1}</Text>
+                <Text style={styles.lableText}>Spouse Name: {fname2} {lname2} live together at</Text>
             </>
             : <Text style={styles.lableText}>Name: {fname1} {lname1}</Text>}
             <Text style={styles.lableText}>Address: {address}, {city} {state}</Text>
@@ -46,13 +47,25 @@ const Review = ({hasspouse,
             { cell2 ? <Text style={styles.lableText}>Spouse Cell Phone: {cell2} </Text> 
             : null }
             <Text style={styles.headerText}>Medical</Text>
-            { hplan1 ? <Text style={styles.lableText}>Health Plan: {hplan1} with {hco1} for {hprem1}/Month</Text>
-            : null}
-            { rxco1 ? <Text style={styles.lableText}>Rx Coverage: {rxco1}</Text>: null}
+            { hasadv ? <>
+                <Text style={styles.lableText}>Advantage Company: {hco1}</Text>
+                <Text style={styles.lableText}>Hospital Copay: {hicopay1}</Text>
+            </> 
+            :<>
+                { hplan1 ? <Text style={styles.lableText}>Health Plan: {hplan1} with {hco1} for {hprem1}/Month</Text>
+                : null}
+                { rxco1 ? <Text style={styles.lableText}>Rx Coverage: {rxco1}</Text>: null}
+            </>}
             { hasspouse ?<>
-                { hplan2 ? <Text style={styles.lableText}>Spouse Health Plan: {hplan2} with {hco2} for {hprem2}/Month</Text> 
-                    : null }
-                { rxco2 ? <Text style={styles.lableText}>Spouse Rx Coverage: {rxco2}</Text>: null}
+                { spousehasadv ?<>
+                    <Text style={styles.lableText}>Spouse Advantage Company: {hco2}</Text>
+                    <Text style={styles.lableText}>Spouse Hospital Copay: {hicopay2}</Text>
+                </>
+                :<>
+                    { hplan2 ? <Text style={styles.lableText}>Spouse Health Plan: {hplan2} with {hco2} for {hprem2}/Month</Text> 
+                        : null }
+                    { rxco2 ? <Text style={styles.lableText}>Spouse Rx Coverage: {rxco2}</Text>: null}
+                </>}
             </>: null}
             <Text style={styles.headerText}>Long Term Care</Text>
             { hasltc ? <Text style={styles.lableText}>Extended Care Company: {ecareco1} for {ecareprem1}</Text> 
@@ -64,8 +77,26 @@ const Review = ({hasspouse,
             <Text style={styles.headerText}>Auxilliary Insurance</Text>
             { hascanpol ? <Text style={styles.lableText}>Cancer Policy: {canpolco1} for {canpolprem1}/Month </Text> 
             : <Text style={styles.lableText}>Has No Cancer Policy.</Text>}
-
+            { hasdental ? <Text style={styles.lableText}>Dental Policy: {dentalco1} for {dentalprem1}/Month </Text> 
+            : <Text style={styles.lableText}>Has No Cancer Policy.</Text>}
+            { hasspouse ? <>
+                { hascanpol ? <Text style={styles.lableText}>Spouse Cancer Policy: {canpolco2} for {canpolprem2}/Month </Text> 
+                : null }
+                { hasdental ? <Text style={styles.lableText}>Spouse Dental Policy: {dentalco2} for {dentalprem2}/Month </Text> 
+                : null}
+            </> : null}
+            { haslife ? <>
+                <Text style={styles.lableText}></Text> 
+            </>
+            :<> 
+                <Text style={styles.lableText}>Has No Life Insurance</Text>
+            </> }
+            { hasspouse ? <>
+                
+            </> 
+            : null }
         </View>
+
     )
 }
 

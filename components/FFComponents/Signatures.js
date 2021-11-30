@@ -1,6 +1,7 @@
 import React, { createRef } from 'react'
 import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
-import SignatureCapture from 'react-native-signature-capture'
+
+
 
 const Signatures = ({hasspouse,
             }) => {

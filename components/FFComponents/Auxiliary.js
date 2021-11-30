@@ -15,7 +15,7 @@ const Auxiliary = ({hasspouse,
             dentalprem1, setdentalprem1,
             dentalco2, setdentalco2,
             dentalprem2, setdentalprem2,
-            hasadv, sethasadv,
+            hasadv, spousehasadv,
             hicopay1, sethicopay1,
             hicopay2, sethicopay2,
             hibind, sethibind,
@@ -23,7 +23,6 @@ const Auxiliary = ({hasspouse,
 
     const toggleCanSwitch = () => sethascanpol(previousState => !previousState);
     const toggleDentSwitch = () => sethasdental(previousState => !previousState);
-    const toggleAdvSwitch = () => sethasadv(previousState => !previousState);
     const toggleBindSwitch = () => sethibind(previousState => !previousState);
 
     return (
@@ -123,30 +122,26 @@ const Auxiliary = ({hasspouse,
                 </View>
                 </> : null}
             </>: null}
-            <Text style={styles.lableText}>Has Advantage?</Text>
-            <Switch 
-                trackColor={{ false:'#767577', true:'#81b0ff' }}
-                thumbColor={hasadv ? '#228B22' : '#f4f3f4'}
-                onValueChange={toggleAdvSwitch}
-                value={hasadv}
-                />
+            
             { hasadv ? <>
                 <Text style={styles.lableText}>Hospital Indemnity Copay</Text>
                 <TextInput style={styles.textInputStyle} value={hicopay1} onChangeText={(value) => sethicopay1(value)}/>
-                { hasspouse ? <>
+            </> : null}
+            { hasspouse ? <>
+                { spousehasadv ? <>
                     <Text style={styles.lableText}>Spouse Hospital Copay</Text>
                     <TextInput style={styles.textInputStyle} value={hicopay2} onChangeText={(value) => sethicopay2(value)}/>
-                </> : null}
-                <Text style={styles.lableText}>Would paying your copay put you in a bind?</Text>
-                <Switch 
-                    trackColor={{ false:'#767577', true:'#81b0ff' }}
-                    thumbColor={hibind ? '#228B22' : '#f4f3f4'}
-                    onValueChange={toggleBindSwitch}
-                    value={hibind}
-                />
-                <Text style={styles.lableText}>What are your plans for paying your copay?</Text>
-                <TextInput style={styles.responseInputStyle} value={hiplans} onChangeText={(value) => {sethiplans(value)}}/>
+                </> : null }
             </> : null}
+            <Text style={styles.lableText}>Would paying your copay put you in a bind?</Text>
+            <Switch 
+                trackColor={{ false:'#767577', true:'#81b0ff' }}
+                thumbColor={hibind ? '#228B22' : '#f4f3f4'}
+                onValueChange={toggleBindSwitch}
+                value={hibind}
+            />
+            <Text style={styles.lableText}>What are your plans for paying your copay?</Text>
+            <TextInput style={styles.responseInputStyle} value={hiplans} onChangeText={(value) => {sethiplans(value)}}/>
         </View>
     )
 }
