@@ -3,6 +3,7 @@ import { SegmentedControlIOSBase, StyleSheet, Switch, Text, TextInput, View } fr
 
 const FinalExpense = ({hasspouse,
         haslife, sethaslife,
+        spousehaslife, setspousehaslife,
         lifeco1, setlifeco1,
         lifeben1, setlifeben1,
         lifeface1, setlifeface1,
@@ -21,6 +22,7 @@ const FinalExpense = ({hasspouse,
         hascash, sethascash}) => {
     
     const toggleLifeSwitch = () => sethaslife(previousState => !previousState);
+    const toggleSpouseLifeSwitch = () => setspousehaslife(previousState => !previousState);
     const toggleWillSwitch = () => sethaswilltrust(previousState => !previousState);
     const togglePropSwitch = () => sethasprop(previousState => !previousState);
     const toggleMultiSwitch = () => sethasmulti(previousState => !previousState);
@@ -41,9 +43,9 @@ const FinalExpense = ({hasspouse,
             { haslife ? <>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Life Insurance Company</Text>
-                    <View style={{flex:1}}>
+                        <Text style={styles.lableText}>Company</Text>
                     </View>
+                    <View style={{flex:1}}>
                         <Text style={styles.lableText}>Beneficiary</Text>
                     </View>
                 </View>
@@ -58,8 +60,8 @@ const FinalExpense = ({hasspouse,
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
                         <Text style={styles.lableText}>Face Amount</Text>
-                    <View style={{flex:1}}>
                     </View>
+                    <View style={{flex:1}}>
                         <Text style={styles.lableText}>Premium</Text>
                     </View>
                 </View>
@@ -71,43 +73,58 @@ const FinalExpense = ({hasspouse,
                         <TextInput style={styles.textInputStyle} value={lifeprem1} onChangeText={(value) => {setlifeprem1(value)}}/>
                     </View>
                 </View>
-                { hasspouse ? <>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Spouse Life Insurance Company</Text>
-                    <View style={{flex:1}}>
+            </>: null}
+            { hasspouse ? <>
+                <Text style={styles.lableText}>Spouse Has Life Insurance?</Text>
+                <Switch 
+                trackColor={{ false:'#767577', true:'#81b0ff' }}
+                thumbColor={spousehaslife ? '#228B22' : '#f4f3f4'}
+                onValueChange={toggleSpouseLifeSwitch}
+                value={spousehaslife}
+                />
+                { spousehaslife ? <>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.lableText}>Spouse Company</Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.lableText}>Beneficiary</Text>
+                        </View>
                     </View>
-                        <Text style={styles.lableText}>Beneficiary</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput style={styles.textInputStyle} value={lifeco2} onChangeText={(value) => {setlifeco2(value)}}/>
+                        </View>
+                        <View style={{flex:1}}>
+                            <TextInput style={styles.textInputStyle} value={lifeben2} onChangeText={(value) => {setlifeben2(value)}}/>
+                        </View>
                     </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lifeco2} onChangeText={(value) => {setlifeco2(value)}}/>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.lableText}>Face Amount</Text>
+                        </View>
+                        <View style={{flex:.5}}>
+                            <Text style={styles.lableText}>Premium</Text>
+                        </View>
                     </View>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lifeben2} onChangeText={(value) => {setlifeben2(value)}}/>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Face Amount</Text>
-                    <View style={{flex:.5}}>
-                    </View>
-                        <Text style={styles.lableText}>Premium</Text>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lifeface2} onChangeText={(value) => {setlifeface2(value)}}/>
-                    </View>
-                    <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} value={lifeprem2} onChangeText={(value) => {setlifeprem2(value)}}/>
-                    </View>
-                </View> 
-                </> : null}
-            <Text style={styles.lableText}>What are your plans for life insurance?</Text>
-            <TextInput style={styles.responseInputStyle} value={lifeplans} onChangeText={(value) => {setlifeplans(value)}}/>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput style={styles.textInputStyle} value={lifeface2} onChangeText={(value) => {setlifeface2(value)}}/>
+                        </View>
+                        <View style={{flex:.5}}>
+                            <TextInput style={styles.textInputStyle} value={lifeprem2} onChangeText={(value) => {setlifeprem2(value)}}/>
+                        </View>
+                    </View> 
+                </>
+                : null }
             </> : null}
+            {haslife || spousehaslife ? <>
+                <Text style={styles.lableText}>What are your plans for your life insurance?</Text>
+                <TextInput style={styles.responseInputStyle} value={lifeplans} onChangeText={(value) => {setlifeplans(value)}}/>
+            </> : <>
+                <Text style={styles.lableText}>What are your plans for Final Expenses?</Text>
+                <TextInput style={styles.responseInputStyle} value={lifeplans} onChangeText={(value) => {setlifeplans(value)}}/>
+            </>}
             <Text style={styles.lableText}>Do you have a Will or Trust?</Text>
             <Switch 
                 trackColor={{ false:'#767577', true:'#81b0ff' }}
@@ -116,8 +133,8 @@ const FinalExpense = ({hasspouse,
                 value={haswilltrust}
             />
             { haswilltrust ? <>
-            <Text style={styles.lableText}>When was it last reviewed?</Text>
-            <TextInput style={styles.textInputStyle} value={trustrev} onChangeText={(value) => {settrustrev(value)}}/>
+                <Text style={styles.lableText}>When was it last reviewed?</Text>
+                <TextInput style={styles.textInputStyle} value={trustrev} onChangeText={(value) => {settrustrev(value)}}/>
             </> : null }
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>

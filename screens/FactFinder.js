@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, SafeAreaView, View, StyleSheet, ScrollView, Alert } from 'react-native'
+import { Button, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert } from 'react-native'
 import Auxiliary from '../components/FFComponents/Auxiliary'
 import Basics from '../components/FFComponents/Basics'
 import Medical from '../components/FFComponents/Medical'
@@ -11,7 +11,28 @@ import Signatures from '../components/FFComponents/Signatures'
 import Review from '../components/FFComponents/Review'
 
 
-const FactFinder = ({ navigation }) => {
+const FactFinder = ({ navigation, refname1 }) => {
+
+    //Alert telling Agents they have no Referrals (Needs State from Child Component?)
+    /*(const noRefAlert = () =>
+        Alert.alert(
+        "You don't have any Referrals",
+        "Are you sure you'd like to submit?",
+        [
+        {
+            text: "Cancel",
+            onPress: () => console.log("Went Back for Referrals"),
+            style: "cancel",
+        },
+        {
+            text: "Submit",
+            onPress: () => navigation.replace('Dashboard') + console.log("Form Not Actually Submitted"),
+        }
+        ],
+        {
+        cancelable: false,
+        }
+    ); */
 
     const submitAlert = () =>
         Alert.alert(
@@ -67,12 +88,12 @@ const FactFinder = ({ navigation }) => {
 
     const [hco1, sethco1] = useState('')
     const [hplan1, sethplan1] = useState('')
-    const [hprem1, sethprem1] = useState('')
+    const [hprem1, sethprem1] = useState(0)
     const [rxco1, setrxco1] = useState('')
     
     const [hco2, sethco2] = useState('')
     const [hplan2, sethplan2] = useState('')
-    const [hprem2, sethprem2] = useState('')
+    const [hprem2, sethprem2] = useState(0)
     const [rxco2, setrxco2] = useState('')
 
     const [concerns, setconcerns] = useState('')
@@ -83,10 +104,10 @@ const FactFinder = ({ navigation }) => {
     const [hasltc, sethasltc] = useState(false)
     const [ecareben1, setecareben1] = useState('')
     const [ecareco1, setecareco1] = useState('')
-    const [ecareprem1, setecareprem1] = useState('')
+    const [ecareprem1, setecareprem1] = useState(0)
     const [ecareben2, setecareben2] = useState('')
     const [ecareco2, setecareco2] = useState('')
-    const [ecareprem2, setecareprem2] = useState('')
+    const [ecareprem2, setecareprem2] = useState(0)
 
     const [know, setknow] = useState(false)
     const [nhaffect, setnhaffect] = useState('')
@@ -96,19 +117,19 @@ const FactFinder = ({ navigation }) => {
     //Auxiliary
     const [hascanpol, sethascanpol] = useState(false)
     const [canpolco1, setcanpolco1] = useState('')
-    const [canpolprem1, setcanpolprem1] = useState('')
+    const [canpolprem1, setcanpolprem1] = useState(0)
     const [canpolcash1, setcanpolcash1] = useState('')
     const [canpolco2, setcanpolco2] = useState('')
-    const [canpolprem2, setcanpolprem2] = useState('')
+    const [canpolprem2, setcanpolprem2] = useState(0)
     const [canpolcash2, setcanpolcash2] = useState('')
     
     const [cancosts, setcancosts] = useState('')
     
     const [hasdental, sethasdental] = useState(false)
     const [dentalco1, setdentalco1] = useState('')
-    const [dentalprem1, setdentalprem1] = useState('')
+    const [dentalprem1, setdentalprem1] = useState(0)
     const [dentalco2, setdentalco2] = useState('')
-    const [dentalprem2, setdentalprem2] = useState('')
+    const [dentalprem2, setdentalprem2] = useState(0)
 
     const [hicopay1, sethicopay1] = useState('')
     const [hicopay2, sethicopay2] = useState('')
@@ -118,16 +139,17 @@ const FactFinder = ({ navigation }) => {
     //Final Expense
     
     const [haslife, sethaslife] = useState(false) 
+    const [spousehaslife, setspousehaslife] = useState(false) 
 
     const [lifeco1, setlifeco1] = useState('')
     const [lifeben1, setlifeben1] = useState('')
     const [lifeface1, setlifeface1] = useState('')
-    const [lifeprem1, setlifeprem1] = useState('')
+    const [lifeprem1, setlifeprem1] = useState(0)
 
     const [lifeco2, setlifeco2] = useState('')
     const [lifeben2, setlifeben2] = useState('')
     const [lifeface2, setlifeface2] = useState('')
-    const [lifeprem2, setlifeprem2] = useState('')
+    const [lifeprem2, setlifeprem2] = useState(0)
     
     const [lifeplans, setlifeplans] = useState('')
 
@@ -386,7 +408,8 @@ const FactFinder = ({ navigation }) => {
 
             haslife={haslife}
             sethaslife={sethaslife}
-
+            spousehaslife={spousehaslife}
+            setspousehaslife={setspousehaslife}
             lifeco1={lifeco1}
             setlifeco1={setlifeco1}
             lifeben1={lifeben1}
@@ -629,6 +652,7 @@ const FactFinder = ({ navigation }) => {
             hibind={hibind}
             hiplans={hiplans}
             haslife={haslife}
+            spousehaslife={spousehaslife}
             lifeco1={lifeco1}
             lifeben1={lifeben1}
             lifeface1={lifeface1}
@@ -670,7 +694,7 @@ const FactFinder = ({ navigation }) => {
     ]
 
     return (
-        <SafeAreaView style={{maxHeight: '100%', minHeight: '100%', paddingBottom: 10}}>
+        <KeyboardAvoidingView style={{maxHeight: '100%', minHeight: '100%', paddingBottom: 10}}>
             <ScrollView style={styles.fullWidth}>
                 {
                     steps[page].component
@@ -693,7 +717,7 @@ const FactFinder = ({ navigation }) => {
                 }
                 </View>
             </View>
-        </SafeAreaView>
+        </KeyboardAvoidingView>
     )
 }
 

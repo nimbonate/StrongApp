@@ -133,15 +133,19 @@ const Auxiliary = ({hasspouse,
                     <TextInput style={styles.textInputStyle} value={hicopay2} onChangeText={(value) => sethicopay2(value)}/>
                 </> : null }
             </> : null}
-            <Text style={styles.lableText}>Would paying your copay put you in a bind?</Text>
-            <Switch 
-                trackColor={{ false:'#767577', true:'#81b0ff' }}
-                thumbColor={hibind ? '#228B22' : '#f4f3f4'}
-                onValueChange={toggleBindSwitch}
-                value={hibind}
-            />
-            <Text style={styles.lableText}>What are your plans for paying your copay?</Text>
-            <TextInput style={styles.responseInputStyle} value={hiplans} onChangeText={(value) => {sethiplans(value)}}/>
+            { hasadv || spousehasadv ? <>
+                <View/>
+                <Text style={styles.lableText}>Regarding Your Advantage Plan...</Text>
+                <Text style={styles.lableText}>Would paying your copay put you in a bind?</Text>
+                <Switch 
+                    trackColor={{ false:'#767577', true:'#81b0ff' }}
+                    thumbColor={hibind ? '#228B22' : '#f4f3f4'}
+                    onValueChange={toggleBindSwitch}
+                    value={hibind}
+                />
+                <Text style={styles.lableText}>What are your plans for paying your copay?</Text>
+                <TextInput style={styles.responseInputStyle} value={hiplans} onChangeText={(value) => {sethiplans(value)}}/>
+            </> : null }
         </View>
     )
 }

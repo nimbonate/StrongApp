@@ -19,8 +19,8 @@ const Review = ({hasspouse,
             canpolco2, canpolprem2, canpolcash2,
             cancosts, hasdental,
             dentalco1, dentalprem1, dentalco2, dentalprem2,
-            hasadv, hicopay1, hicopay2, hibind, hiplans,
-            haslife, lifeco1, lifeco2, lifeben1, lifeben2,
+            hasadv, spousehasadv, hicopay1, hicopay2, hibind, hiplans,
+            haslife, spousehaslife, lifeco1, lifeco2, lifeben1, lifeben2,
             lifeface1, lifeface2, lifeprem1, lifeprem2,
             lifeplans, haswilltrust, trustrev,
             hasprop, hasmulti, hasblended, hasautos, hascash,
@@ -92,7 +92,9 @@ const Review = ({hasspouse,
                 <Text style={styles.lableText}>Has No Life Insurance</Text>
             </> }
             { hasspouse ? <>
-                
+                {spousehaslife ? <>
+                </>
+                : null}
             </> 
             : null }
         </View>
