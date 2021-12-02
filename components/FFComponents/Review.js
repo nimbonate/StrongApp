@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 
-const Review = ({hasspouse,
+const Review = ({hasspouse, reffname1, refphone1,
             fname1, lname1,
             fname2, lname2,
             homephone, cell1,
@@ -97,6 +97,23 @@ const Review = ({hasspouse,
                 : null}
             </> 
             : null }
+            { !reffname1 || !refphone1 ? <>
+                <View style={{marginTop: 20}}>
+                    <View
+                    style={{
+                        borderBottomColor: 'red',
+                        borderBottomWidth: 1,
+                    }}
+                    />
+                    <Text style={{ textAlign: 'center', fontSize:30, color:'red'}}>You don't have any Referrals!</Text>
+                    <View
+                    style={{
+                        borderBottomColor: 'red',
+                        borderBottomWidth: 1,
+                    }}
+                    />
+                </View>
+            </> : null}
         </View>
 
     )

@@ -598,6 +598,8 @@ const FactFinder = ({ navigation, refname1 }) => {
     {
         name:'Review and Submit',
             component: <Review 
+            reffname1={reffname1}
+            refphone1={refphone1}
             fname1={fname1}
             lname1={lname1}
             hasspouse={hasspouse}
