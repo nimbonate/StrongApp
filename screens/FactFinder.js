@@ -242,7 +242,9 @@ const FactFinder = ({ navigation, refname1 }) => {
 
     //Signatures
 
-
+    const [clisig, setclisig] = useState('')
+    const [spousig, setspousig] = useState('')
+    const [agentsig, setagentsig] = useState('')
 
 
     //Matching all of the variables to the tabs that use them
@@ -592,6 +594,12 @@ const FactFinder = ({ navigation, refname1 }) => {
         name:'Signatures',
         component: <Signatures
             hasspouse={hasspouse}
+            clisig={clisig}
+            setclisig={setclisig}
+            spousig={spousig}
+            setspousig={setspousig}
+            agentsig={agentsig}
+            setagentsig={setagentsig}
             
         />
     },
@@ -706,7 +714,7 @@ const FactFinder = ({ navigation, refname1 }) => {
                 <View style={{flex:1}}>
                 {
                     page!== 0 ?
-                <Button style={styles.buttonStyle} title={'Back'} onPress={() =>{ setpage(page - 1) }} />
+                <Button title={'Back'} onPress={() =>{ setpage(page - 1) }} />
                 : null}
                 </View>
                 <View style={{flex:.05}}>
@@ -714,8 +722,8 @@ const FactFinder = ({ navigation, refname1 }) => {
                 <View style={{flex:1}}>
                 {
                 page== steps.length - 1
-                ? <Button style={styles.buttonStyle} title={'Submit Fact Finder'} onPress={() =>{ submitAlert() }} />
-                : <Button style={styles.buttonStyle} title={'Next'} onPress={() =>{ setpage(page + 1) }} />
+                ? <Button  title={'Submit Fact Finder'} onPress={() =>{ submitAlert() }} />
+                : <Button  title={'Next'} onPress={() =>{ setpage(page + 1) }} />
                 }
                 </View>
             </View>
@@ -726,9 +734,6 @@ const FactFinder = ({ navigation, refname1 }) => {
 export default FactFinder
 
 const styles = StyleSheet.create({
-    scrollViewStyle: {
-        marginBottom: 0
-    },
     fullWidth: {
         marginHorizontal: 15,
       }

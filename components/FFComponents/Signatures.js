@@ -1,21 +1,72 @@
-import React, { createRef } from 'react'
-import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
+import React, { useRef, useState} from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
+import SignatureScreen from 'react-native-signature-canvas'
+import * as FileSystem from "expo-file-system"
 
 
-
-const Signatures = ({hasspouse,
+const Signatures = ({hasspouse, fname1, lname1,
+                clisig, setclisig,
+                spousig, setspousig,
+                agentsig,
             }) => {
 
+    const ref = useRef();
+
+    const [clisigpad, setclisigpad] = useState(false)
+    
+    const showCliSigPad = () => setclisigpad(previousState => !previousState)
+    
+    const handleCliClear = () => {
+        ref.current.clearSignature();
+    };
+    
+    const handleCliConfirm = () => {
+        ref.current.readSignature();
+    };
+    
+    const handleCliOK = (signature) => {
+        const path = FileSystem.cacheDirectory + 'sign.png';
+        FileSystem.writeAsStringAsync(
+            path,
+            signature.replace("data:image/png;base64,", ""),
+            { encoding: FileSystem.EncodingType.Base64 }
+            )
+            .then(() => FileSystem.getInfoAsync(path))
+            .then(console.log)
+            .catch(console.error);
+            setclisigpad(previousState => !previousState)
+        };
+        
+    const [spousigpad, setspousigpad] = useState(false)
+    const [agentsigpad, setagentsigpad] = useState(false)
+        
     return (
-        <View style={styles.fullWidth, {flex: 1}}>
+        <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Signatures</Text>
             <Text style={styles.headerText}>Client Signature:</Text>
+            { !clisigpad ? <Button title="Client Sign" onPress={showCliSigPad}/>: null }
+            { clisigpad ? <>
+                <View style={{width: '95%', height: 200}}>
+                    <SignatureScreen ref={ref} onOK={handleCliOK} />
+                    <View style={{flexDirection:'row',}}>
+                        <View style={{flex:1}}>
+                            <Button title="Clear" onPress={handleCliClear} />
+                        </View>
+                        <View stlye={{flex:.05}}>
+                            <Text>       </Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Button title="Confirm" onPress={handleCliConfirm} />
+                        </View>
+                    </View>
+                </View>
+            </>
+            : null }
             { hasspouse ? <>
             <Text style={styles.headerText}>Spouse Signature:</Text>
 
             </>: null}
             <Text style={styles.headerText}>Agent Signature:</Text>
-    
         </View>
     )
 }

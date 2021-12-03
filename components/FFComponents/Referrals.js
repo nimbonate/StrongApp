@@ -78,7 +78,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone1} onChangeText={(value) => {setrefphone1(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone1} onChangeText={(value) => {setrefphone1(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy1} onChangeText={(value) => {setrefaddy1(value)}}/>
@@ -112,7 +112,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone2} onChangeText={(value) => {setrefphone2(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone2} onChangeText={(value) => {setrefphone2(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy2} onChangeText={(value) => {setrefaddy2(value)}}/>
@@ -147,7 +147,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone3} onChangeText={(value) => {setrefphone3(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone3} onChangeText={(value) => {setrefphone3(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy3} onChangeText={(value) => {setrefaddy3(value)}}/>
@@ -182,7 +182,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone4} onChangeText={(value) => {setrefphone4(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone4} onChangeText={(value) => {setrefphone4(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy4} onChangeText={(value) => {setrefaddy4(value)}}/>
@@ -217,7 +217,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone5} onChangeText={(value) => {setrefphone5(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone5} onChangeText={(value) => {setrefphone5(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy5} onChangeText={(value) => {setrefaddy5(value)}}/>
@@ -252,7 +252,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone6} onChangeText={(value) => {setrefphone6(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone6} onChangeText={(value) => {setrefphone6(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy6} onChangeText={(value) => {setrefaddy6(value)}}/>
@@ -287,7 +287,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone7} onChangeText={(value) => {setrefphone7(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone7} onChangeText={(value) => {setrefphone7(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy7} onChangeText={(value) => {setrefaddy7(value)}}/>
@@ -322,7 +322,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone8} onChangeText={(value) => {setrefphone8(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone8} onChangeText={(value) => {setrefphone8(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy8} onChangeText={(value) => {setrefaddy8(value)}}/>
@@ -357,7 +357,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone9} onChangeText={(value) => {setrefphone9(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone9} onChangeText={(value) => {setrefphone9(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy9} onChangeText={(value) => {setrefaddy9(value)}}/>
@@ -392,7 +392,7 @@ const Referrals = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refphone0} onChangeText={(value) => {setrefphone0(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone0} onChangeText={(value) => {setrefphone0(value)}}/>
                 </View>
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={refaddy0} onChangeText={(value) => {setrefaddy0(value)}}/>

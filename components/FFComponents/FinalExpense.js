@@ -67,10 +67,10 @@ const FinalExpense = ({hasspouse,
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lifeface1} onChangeText={(value) => {setlifeface1(value)}}/>
+                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeface1} onChangeText={(value) => {setlifeface1(value)}}/>
                     </View>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lifeprem1} onChangeText={(value) => {setlifeprem1(value)}}/>
+                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeprem1} onChangeText={(value) => {setlifeprem1(value)}}/>
                     </View>
                 </View>
             </>: null}
@@ -103,16 +103,16 @@ const FinalExpense = ({hasspouse,
                         <View style={{flex:1}}>
                             <Text style={styles.lableText}>Face Amount</Text>
                         </View>
-                        <View style={{flex:.5}}>
+                        <View style={{flex:1}}>
                             <Text style={styles.lableText}>Premium</Text>
                         </View>
                     </View>
                     <View style={{flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <TextInput style={styles.textInputStyle} value={lifeface2} onChangeText={(value) => {setlifeface2(value)}}/>
+                            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeface2} onChangeText={(value) => {setlifeface2(value)}}/>
                         </View>
-                        <View style={{flex:.5}}>
-                            <TextInput style={styles.textInputStyle} value={lifeprem2} onChangeText={(value) => {setlifeprem2(value)}}/>
+                        <View style={{flex:1}}>
+                            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeprem2} onChangeText={(value) => {setlifeprem2(value)}}/>
                         </View>
                     </View> 
                 </>

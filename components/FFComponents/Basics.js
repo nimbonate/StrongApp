@@ -60,9 +60,10 @@ const Basics = ({setfname1, fname1,
                 <View style={{flex:1}}>
                     <TextInput style={styles.textInputStyle} value={lname2} onChangeText={(value) => {setlname2(value)}}/> 
                 </View>
-            </View> : null}
-                <Text style={styles.lableText}>Home Phone</Text>
-                <TextInput style={styles.textInputStyle} value={homephone} onChangeText={(value) => {sethomephone(value)}}/>
+            </View> 
+            : null}
+            <Text style={styles.lableText}>Home Phone</Text>
+            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={homephone} onChangeText={(value) => {sethomephone(value)}}/>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
                     <Text style={styles.lableText}>Cell Phone</Text>
@@ -73,10 +74,10 @@ const Basics = ({setfname1, fname1,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={cell1} onChangeText={(value) => {setcell1(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={cell1} onChangeText={(value) => {setcell1(value)}}/>
                 </View>
                 { hasspouse ? <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={cell2} onChangeText={(value) => {setcell2(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={cell2} onChangeText={(value) => {setcell2(value)}}/>
                 </View> : null}
             </View>
             <View style={{flexDirection:'row'}}>
@@ -116,7 +117,7 @@ const Basics = ({setfname1, fname1,
                     <TextInput style={styles.textInputStyle} value={state} onChangeText={(value) => {setstate(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={zip} onChangeText={(value) => {setzip(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={zip} onChangeText={(value) => {setzip(value)}}/>
                 </View>
             </View>
         </View>
