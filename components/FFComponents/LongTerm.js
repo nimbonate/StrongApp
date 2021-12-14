@@ -44,7 +44,7 @@ const LongTerm = ({hasspouse,
                         <TextInput style={styles.textInputStyle} value={ecareco1} onChangeText={(value) => {setecareco1(value)}}/>
                     </View>
                     <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={ecareprem1} onChangeText={(value) => {setecareprem1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={ecareprem1.toString()} onChangeText={(value) => {setecareprem1(value)}}/>
                     </View>
                 </View>
                 {hasspouse ? <> 
@@ -63,7 +63,7 @@ const LongTerm = ({hasspouse,
                         <TextInput style={styles.textInputStyle} value={ecareco2} onChangeText={(value) => {setecareco2(value)}}/>
                     </View>
                     <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={ecareprem2} onChangeText={(value) => {setecareprem2(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={ecareprem2.toString()} onChangeText={(value) => {setecareprem2(value)}}/>
                     </View>
                 </View>
                 </>: null}

@@ -4,6 +4,7 @@ import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 const Medical = ({hasspouse, hasadv, sethasadv,
             advdduct, setadvdduct,
             spousehasadv, setspousehasadv,
+            spouseadvdduct, setspouseadvdduct,
             hco1, sethco1,
             hplan1, sethplan1,
             hprem1, sethprem1,
@@ -42,7 +43,7 @@ const Medical = ({hasspouse, hasadv, sethasadv,
                     <TextInput style={styles.textInputStyle} value={hco1} onChangeText={(value) => {sethco1(value)}}/>
                     </View>
                     <View style={{flex:0.6}}>
-                        <TextInput style={styles.textInputStyle} value={advdduct} onChangeText={(value) => {setadvdduct(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={advdduct.toString()} onChangeText={(value) => {setadvdduct(value)}}/>
                     </View>
                 </View>
             </> 
@@ -60,7 +61,7 @@ const Medical = ({hasspouse, hasadv, sethasadv,
                     <TextInput style={styles.textInputStyle} value={hplan1} onChangeText={(value) => {sethplan1(value)}}/>
                     </View>
                     <View style={{flex:0.6}}>
-                        <TextInput style={styles.textInputStyle} value={hprem1} onChangeText={(value) => {sethprem1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={hprem1.toString()} onChangeText={(value) => {sethprem1(value)}}/>
                     </View>
                 </View>
                 <Text style={styles.lableText}>Company</Text>
@@ -94,7 +95,7 @@ const Medical = ({hasspouse, hasadv, sethasadv,
                             <TextInput style={styles.textInputStyle} value={hplan2} onChangeText={(value) => {sethplan2(value)}}/>
                         </View>
                         <View style={{flex:0.6}}>
-                            <TextInput style={styles.textInputStyle} value={hprem2} onChangeText={(value) => {sethprem2(value)}}/>
+                            <TextInput keyboardType='numeric' style={styles.textInputStyle} value={spouseadvdduct.toString()} onChangeText={(value) => {setspouseadvdduct(value)}}/>
                         </View>
                     </View>  
                 </> 
@@ -112,7 +113,7 @@ const Medical = ({hasspouse, hasadv, sethasadv,
                     <TextInput style={styles.textInputStyle} value={hplan2} onChangeText={(value) => {sethplan2(value)}}/>
                     </View>
                     <View style={{flex:0.6}}>
-                        <TextInput style={styles.textInputStyle} value={hprem2} onChangeText={(value) => {sethprem2(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={hprem2.toString()} onChangeText={(value) => {sethprem2(value)}}/>
                     </View>
                 </View>
                     <Text style={styles.lableText}>Spouse Company</Text> 

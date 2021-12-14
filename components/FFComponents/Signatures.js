@@ -7,14 +7,11 @@ import * as FileSystem from "expo-file-system"
 const Signatures = ({hasspouse, fname1, lname1,
                 clisig, setclisig,
                 spousig, setspousig,
-                agentsig,
+                agentsig, setagentsig
             }) => {
 
     const ref = useRef();
 
-    const [clisigpad, setclisigpad] = useState(false)
-    
-    const showCliSigPad = () => setclisigpad(previousState => !previousState)
     
     const handleCliClear = () => {
         ref.current.clearSignature();
@@ -25,7 +22,7 @@ const Signatures = ({hasspouse, fname1, lname1,
     };
     
     const handleCliOK = (signature) => {
-        const path = FileSystem.cacheDirectory + 'sign.png';
+        const path = FileSystem.cacheDirectory +  'clisign.png'
         FileSystem.writeAsStringAsync(
             path,
             signature.replace("data:image/png;base64,", ""),
@@ -34,18 +31,13 @@ const Signatures = ({hasspouse, fname1, lname1,
             .then(() => FileSystem.getInfoAsync(path))
             .then(console.log)
             .catch(console.error);
-            setclisigpad(previousState => !previousState)
-        };
-        
-    const [spousigpad, setspousigpad] = useState(false)
-    const [agentsigpad, setagentsigpad] = useState(false)
+    };  
+
         
     return (
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Signatures</Text>
-            <Text style={styles.headerText}>Client Signature:</Text>
-            { !clisigpad ? <Button title="Client Sign" onPress={showCliSigPad}/>: null }
-            { clisigpad ? <>
+            <Text style={styles.headerText}>{fname1} Signature:</Text>
                 <View style={{width: '95%', height: 200}}>
                     <SignatureScreen ref={ref} onOK={handleCliOK} />
                     <View style={{flexDirection:'row',}}>
@@ -60,11 +52,8 @@ const Signatures = ({hasspouse, fname1, lname1,
                         </View>
                     </View>
                 </View>
-            </>
-            : null }
             { hasspouse ? <>
-            <Text style={styles.headerText}>Spouse Signature:</Text>
-
+                <Text style={styles.headerText}>Spouse Signature:</Text>
             </>: null}
             <Text style={styles.headerText}>Agent Signature:</Text>
         </View>

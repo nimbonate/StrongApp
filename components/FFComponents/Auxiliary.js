@@ -48,10 +48,10 @@ const Auxiliary = ({hasspouse,
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={canpolcash1} onChangeText={(value) => {setcanpolcash1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={canpolcash1.toString()} onChangeText={(value) => {setcanpolcash1(value)}}/>
                     </View>
                     <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={canpolprem1} onChangeText={(value) => {setcanpolprem1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={canpolprem1.toString()} onChangeText={(value) => {setcanpolprem1(value)}}/>
                     </View>
                 </View>
                 { hasspouse ?<>
@@ -67,10 +67,10 @@ const Auxiliary = ({hasspouse,
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={canpolcash2} onChangeText={(value) => {setcanpolcash2(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={canpolcash2.toString()} onChangeText={(value) => {setcanpolcash2(value)}}/>
                     </View>
                     <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={canpolprem2} onChangeText={(value) => {setcanpolprem2(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={canpolprem2.toString()} onChangeText={(value) => {setcanpolprem2(value)}}/>
                     </View>
                 </View>
                 </> : null }
@@ -100,7 +100,7 @@ const Auxiliary = ({hasspouse,
                         <TextInput style={styles.textInputStyle} value={dentalco1} onChangeText={(value) => {setdentalco1(value)}}/>
                     </View>
                     <View style={{flex:.5}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={dentalprem1} onChangeText={(value) => {setdentalprem1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={dentalprem1.toString()} onChangeText={(value) => {setdentalprem1(value)}}/>
                     </View>
                 </View>
                 { hasspouse ?<>
@@ -117,7 +117,7 @@ const Auxiliary = ({hasspouse,
                             <TextInput style={styles.textInputStyle} value={dentalco2} onChangeText={(value) => {setdentalco2(value)}}/>
                         </View>
                         <View style={{flex:.5}}>
-                            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={dentalprem2} onChangeText={(value) => {setdentalprem2(value)}}/>
+                            <TextInput keyboardType='numeric' style={styles.textInputStyle} value={dentalprem2.toString()} onChangeText={(value) => {setdentalprem2(value)}}/>
                         </View>
                     </View>
                 </> : null}
@@ -127,12 +127,12 @@ const Auxiliary = ({hasspouse,
                 <Text style={styles.lableText, {fontSize: 16, marginVertical: 10}}>Regarding Your Advantage Plan...</Text>
                 { hasadv ? <>
                     <Text style={styles.lableText}>Hospital Indemnity Copay</Text>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={hicopay1} onChangeText={(value) => sethicopay1(value)}/>
+                    <TextInput keyboardType='numeric' style={styles.textInputStyle} value={hicopay1.toString()} onChangeText={(value) => sethicopay1(value)}/>
                 </> : null}
                 { hasspouse ? <>
                     { spousehasadv ? <>
                         <Text style={styles.lableText}>Spouse Hospital Copay</Text>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={hicopay2} onChangeText={(value) => sethicopay2(value)}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={hicopay2.toString()} onChangeText={(value) => sethicopay2(value)}/>
                     </> : null }
                 </> : null}
                 <View/>

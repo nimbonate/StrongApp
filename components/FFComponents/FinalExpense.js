@@ -67,10 +67,10 @@ const FinalExpense = ({hasspouse,
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeface1} onChangeText={(value) => {setlifeface1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={lifeface1.toString()} onChangeText={(value) => {setlifeface1(value)}}/>
                     </View>
                     <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeprem1} onChangeText={(value) => {setlifeprem1(value)}}/>
+                        <TextInput keyboardType='numeric' style={styles.textInputStyle} value={lifeprem1.toString()} onChangeText={(value) => {setlifeprem1(value)}}/>
                     </View>
                 </View>
             </>: null}
@@ -109,10 +109,10 @@ const FinalExpense = ({hasspouse,
                     </View>
                     <View style={{flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeface2} onChangeText={(value) => {setlifeface2(value)}}/>
+                            <TextInput keyboardType='numeric' style={styles.textInputStyle} value={lifeface2.toString()} onChangeText={(value) => {setlifeface2(value)}}/>
                         </View>
                         <View style={{flex:1}}>
-                            <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={lifeprem2} onChangeText={(value) => {setlifeprem2(value)}}/>
+                            <TextInput keyboardType='numeric' style={styles.textInputStyle} value={lifeprem2.toString()} onChangeText={(value) => {setlifeprem2(value)}}/>
                         </View>
                     </View> 
                 </>

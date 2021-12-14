@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert } from 'react-native'
+import { TouchableOpacity, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert, Text } from 'react-native'
 import Auxiliary from '../components/FFComponents/Auxiliary'
 import Basics from '../components/FFComponents/Basics'
 import Medical from '../components/FFComponents/Medical'
@@ -11,7 +11,7 @@ import Signatures from '../components/FFComponents/Signatures'
 import Review from '../components/FFComponents/Review'
 
 
-const FactFinder = ({ navigation, refname1 }) => {
+const FactFinder = ({ navigation }) => {
 
     //Alert telling Agents they have no Referrals (Needs State from Child Component?)
     /*(const noRefAlert = () =>
@@ -83,17 +83,18 @@ const FactFinder = ({ navigation, refname1 }) => {
 
     //Medical
     const [hasadv, sethasadv] = useState(false)
-    const [advdduct, setadvdduct] = useState(0)
+    const [advdduct, setadvdduct] = useState('')
     const [spousehasadv, setspousehasadv] = useState(false)
+    const [spouseadvdduct, setspouseadvdduct] = useState('')
 
     const [hco1, sethco1] = useState('')
     const [hplan1, sethplan1] = useState('')
-    const [hprem1, sethprem1] = useState(0)
+    const [hprem1, sethprem1] = useState('')
     const [rxco1, setrxco1] = useState('')
     
     const [hco2, sethco2] = useState('')
     const [hplan2, sethplan2] = useState('')
-    const [hprem2, sethprem2] = useState(0)
+    const [hprem2, sethprem2] = useState('')
     const [rxco2, setrxco2] = useState('')
 
     const [concerns, setconcerns] = useState('')
@@ -104,10 +105,10 @@ const FactFinder = ({ navigation, refname1 }) => {
     const [hasltc, sethasltc] = useState(false)
     const [ecareben1, setecareben1] = useState('')
     const [ecareco1, setecareco1] = useState('')
-    const [ecareprem1, setecareprem1] = useState(0)
+    const [ecareprem1, setecareprem1] = useState('')
     const [ecareben2, setecareben2] = useState('')
     const [ecareco2, setecareco2] = useState('')
-    const [ecareprem2, setecareprem2] = useState(0)
+    const [ecareprem2, setecareprem2] = useState('')
 
     const [know, setknow] = useState(false)
     const [nhaffect, setnhaffect] = useState('')
@@ -117,19 +118,19 @@ const FactFinder = ({ navigation, refname1 }) => {
     //Auxiliary
     const [hascanpol, sethascanpol] = useState(false)
     const [canpolco1, setcanpolco1] = useState('')
-    const [canpolprem1, setcanpolprem1] = useState(0)
+    const [canpolprem1, setcanpolprem1] = useState('')
     const [canpolcash1, setcanpolcash1] = useState('')
     const [canpolco2, setcanpolco2] = useState('')
-    const [canpolprem2, setcanpolprem2] = useState(0)
+    const [canpolprem2, setcanpolprem2] = useState('')
     const [canpolcash2, setcanpolcash2] = useState('')
     
     const [cancosts, setcancosts] = useState('')
     
     const [hasdental, sethasdental] = useState(false)
     const [dentalco1, setdentalco1] = useState('')
-    const [dentalprem1, setdentalprem1] = useState(0)
+    const [dentalprem1, setdentalprem1] = useState('')
     const [dentalco2, setdentalco2] = useState('')
-    const [dentalprem2, setdentalprem2] = useState(0)
+    const [dentalprem2, setdentalprem2] = useState('')
 
     const [hicopay1, sethicopay1] = useState('')
     const [hicopay2, sethicopay2] = useState('')
@@ -144,12 +145,12 @@ const FactFinder = ({ navigation, refname1 }) => {
     const [lifeco1, setlifeco1] = useState('')
     const [lifeben1, setlifeben1] = useState('')
     const [lifeface1, setlifeface1] = useState('')
-    const [lifeprem1, setlifeprem1] = useState(0)
+    const [lifeprem1, setlifeprem1] = useState('')
 
     const [lifeco2, setlifeco2] = useState('')
     const [lifeben2, setlifeben2] = useState('')
     const [lifeface2, setlifeface2] = useState('')
-    const [lifeprem2, setlifeprem2] = useState(0)
+    const [lifeprem2, setlifeprem2] = useState('')
     
     const [lifeplans, setlifeplans] = useState('')
 
@@ -164,22 +165,22 @@ const FactFinder = ({ navigation, refname1 }) => {
     //Retirement
 
     const [ssfeel, setssfeel] = useState('')
-    const [monthlyss, setmonthlyss] = useState(0)
-    const [monthlypen, setmonthlypen] = useState(0)
-    const [monthlyexp, setmonthlyexp] = useState(0)
+    const [monthlyss, setmonthlyss] = useState('')
+    const [monthlypen, setmonthlypen] = useState('')
+    const [monthlyexp, setmonthlyexp] = useState('')
     const [cansave, setcansave] = useState(false)
-    const [savings, setsavings] = useState(0)
-    const [realestate, setrealestate] = useState(0)
-    const [mutuals, setmutuals] = useState(0)
-    const [licash, setlicash] = useState(0)
-    const [annuities, setannuities] = useState(0)
-    const [stocks, setstocks] = useState(0)
-    const [bonds, setbonds] = useState(0)
-    const [moneymkts, setmoneymkts] = useState(0)
-    const [cds, setcds] = useState(0)
-    const [iras, setiras] = useState(0)
-    const [forohwonk, setforohwonk] = useState(0)
-    const [other, setother] = useState(0)
+    const [savings, setsavings] = useState('')
+    const [realestate, setrealestate] = useState('')
+    const [mutuals, setmutuals] = useState('')
+    const [licash, setlicash] = useState('')
+    const [annuities, setannuities] = useState('')
+    const [stocks, setstocks] = useState('')
+    const [bonds, setbonds] = useState('')
+    const [moneymkts, setmoneymkts] = useState('')
+    const [cds, setcds] = useState('')
+    const [iras, setiras] = useState('')
+    const [forohwonk, setforohwonk] = useState('')
+    const [other, setother] = useState('')
     
     const [whythese, setwhythese] = useState('')
     const [goodreturns, setgoodreturns] = useState(false)
@@ -295,6 +296,8 @@ const FactFinder = ({ navigation, refname1 }) => {
             setspousehasadv={setspousehasadv}
             advdduct={advdduct}
             setadvdduct={setadvdduct}
+            spouseadvdduct={spouseadvdduct}
+            setspouseadvdduct={setspouseadvdduct}
             hco1={hco1}
             sethco1={sethco1}
             hplan1={hplan1}
@@ -591,21 +594,8 @@ const FactFinder = ({ navigation, refname1 }) => {
         />
     },
     {
-        name:'Signatures',
-        component: <Signatures
-            hasspouse={hasspouse}
-            clisig={clisig}
-            setclisig={setclisig}
-            spousig={spousig}
-            setspousig={setspousig}
-            agentsig={agentsig}
-            setagentsig={setagentsig}
-            
-        />
-    },
-    {
         name:'Review and Submit',
-            component: <Review 
+        component: <Review 
             reffname1={reffname1}
             refphone1={refphone1}
             fname1={fname1}
@@ -699,42 +689,82 @@ const FactFinder = ({ navigation, refname1 }) => {
             goodreturns={goodreturns}
             motivation={motivation}
             incomeconcerns={incomeconcerns}
+            />
+    },
+    {
+        name:'Signatures',
+        component: <Signatures
+            fname1={fname1}
+            fname2={fname2}
+            hasspouse={hasspouse}
+            clisig={clisig}
+            setclisig={setclisig}
+            spousig={spousig}
+            setspousig={setspousig}
+            agentsig={agentsig}
+            setagentsig={setagentsig}
+            
         />
     }
-    ]
+]
 
     return (
         <KeyboardAvoidingView style={{maxHeight: '100%', minHeight: '100%', paddingBottom: 10}}>
-            <ScrollView style={styles.fullWidth}>
-                {
-                    steps[page].component
-                }
-            </ScrollView>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                {
-                    page!== 0 ?
-                <Button title={'Back'} onPress={() =>{ setpage(page - 1) }} />
-                : null}
+                <ScrollView style={styles.fullWidth}>
+                    {
+                        steps[page].component
+                    }
+                </ScrollView>
+                <View style={styles.buttonContainer}>
+                    <View style={{flex:1}}>
+                        {
+                            page!== 0 ?
+                        <TouchableOpacity title={'Back'} style={styles.button} onPress={() =>{ setpage(page - 1) }}>
+                            <Text style={styles.buttonText}>Back</Text>
+                        </TouchableOpacity>
+                        : null}
+                    </View>
+                    <View style={{flex:.05}}></View>
+                    <View style={{flex:1}}>
+                        {
+                        page== steps.length - 1
+                        ? <TouchableOpacity  title={'Submit Fact Finder'} style={styles.button} onPress={() =>{ submitAlert() }}>
+                            <Text style={styles.buttonText}>Submit Fact Finder</Text>
+                        </TouchableOpacity>
+                        : <TouchableOpacity  title={'Next'} style={styles.button} onPress={() =>{ setpage(page + 1) }}>
+                            <Text style={styles.buttonText}>Next</Text>
+                        </TouchableOpacity>
+                        }
+                    </View>
                 </View>
-                <View style={{flex:.05}}>
-                </View>
-                <View style={{flex:1}}>
-                {
-                page== steps.length - 1
-                ? <Button  title={'Submit Fact Finder'} onPress={() =>{ submitAlert() }} />
-                : <Button  title={'Next'} onPress={() =>{ setpage(page + 1) }} />
-                }
-                </View>
-            </View>
-        </KeyboardAvoidingView>
-    )
-}
+            </KeyboardAvoidingView>
+        )
+    }
 
 export default FactFinder
 
 const styles = StyleSheet.create({
     fullWidth: {
         marginHorizontal: 15,
-      }
+      },
+    buttonContainer: {
+        color: 'rgba(0, 0, 255, 1)',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 55
+    },
+    button: {  
+        flex: 1,
+        backgroundColor: '#0782f9',
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 16,
+    },
 })

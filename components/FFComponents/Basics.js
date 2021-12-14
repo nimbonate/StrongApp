@@ -117,7 +117,7 @@ const Basics = ({setfname1, fname1,
                     <TextInput style={styles.textInputStyle} value={state} onChangeText={(value) => {setstate(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={zip} onChangeText={(value) => {setzip(value)}}/>
+                    <TextInput style={styles.textInputStyle} keyboardType='numeric' value={zip.toString()} onChangeText={(value) => {setzip(value)}}/>
                 </View>
             </View>
         </View>

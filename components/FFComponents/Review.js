@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 
-const Review = ({hasspouse, reffname1, refphone1,
+const Review = ({hasspouse, reffname1, refphone1, clisig,
             fname1, lname1,
             fname2, lname2,
             homephone, cell1,
@@ -33,14 +33,22 @@ const Review = ({hasspouse, reffname1, refphone1,
     return (
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Review</Text>
+
+
             <Text style={styles.headerText}>Basics</Text>
             { hasspouse ?<>
                 { fname1 ? <Text style={styles.lableText}>Name: {fname1} {lname1}</Text> 
                 : <Text style={styles.lableTextAlert}>Name: None Entered</Text>}
                 { fname2 ? <Text style={styles.lableText}>Spouse Name: {fname2} {lname2}</Text> 
                 : <Text style={styles.lableTextAlert}>Spouse Name: None Entered</Text>}
-            </>
-            : <Text style={styles.lableText}>Name: {fname1} {lname1}</Text>}
+                </>
+            : <> 
+                { fname1 ? <>
+                    <Text style={styles.lableText}>Name: {fname1} {lname1}</Text>
+                </> : <> 
+                    <Text style={styles.lableTextAlert}>Name: None Entered</Text>
+                </>}
+            </>}
             { address ? <>
                 <Text style={styles.lableText}>Address: {address}</Text>
                 <Text style={styles.lableText}>{city}, {state} {zip}</Text>
@@ -53,6 +61,8 @@ const Review = ({hasspouse, reffname1, refphone1,
             : null }
             {!homephone + !cell1 + !cell2 ? <Text style={styles.lableTextAlert}>No Phone Entered</Text>
             : null}
+
+
             <Text style={styles.headerText}>Medical</Text>
             { hasadv ? <>
                 <Text style={styles.lableText}>Advantage Company: {hco1}</Text>
@@ -76,6 +86,8 @@ const Review = ({hasspouse, reffname1, refphone1,
                     : <Text style={styles.lableTextAlert}>Rx Coverage: None Entered</Text>}
                 </>}
             </>: null}
+
+
             <Text style={styles.headerText}>Long Term Care</Text>
             { hasltc ? <>
                 { ecareco1 ? <Text style={styles.lableText}>Extended Care Company: {ecareco1} for {ecareprem1}</Text>
@@ -91,6 +103,8 @@ const Review = ({hasspouse, reffname1, refphone1,
                 </>    
                 : null}
             </> : null }
+
+
             <Text style={styles.headerText}>Auxilliary Insurance</Text>
             { hascanpol ? <> 
                 { canpolco1 ? <Text style={styles.lableText}>Cancer Policy: {canpolco1} for {canpolprem1}/Month </Text> 
@@ -114,6 +128,8 @@ const Review = ({hasspouse, reffname1, refphone1,
                 </>
                 : null}
             </> : null}
+
+
                 <Text style={styles.headerText}>Life Insurance</Text> 
             { haslife ? <>
                 { lifeco1 ? <Text style={styles.lableText}>Company: {lifeco1}</Text> 
@@ -124,7 +140,7 @@ const Review = ({hasspouse, reffname1, refphone1,
                 : <Text style={styles.lableText}>Premium: {lifeprem1}</Text> }
             </>
             :<> 
-                <Text style={styles.lableTextAlert}>Has No Life Insurance</Text>
+                <Text style={styles.lableTextAlert}>{fname1} Has No Life Insurance</Text>
             </> }
             { hasspouse ? <>
                 {spousehaslife ? <>        
@@ -136,10 +152,20 @@ const Review = ({hasspouse, reffname1, refphone1,
                     : <Text style={styles.lableText}>Spouse Premium: {lifeprem2}</Text> }
                 </>
                 : <>
-                    <Text style={styles.lableTextAlert}>Spouse Has No Life Insurance</Text>
+                    <Text style={styles.lableTextAlert}>{fname2} Has No Life Insurance</Text>
                 </>}
             </> 
             : null }
+
+            
+            <Text style={styles.headerText}>Retirement</Text> 
+            { haswilltrust ? <>
+            <Text style={styles.lableText}>{fname1} has a Trust</Text>
+            </>
+            :<>
+                <Text style={styles.lableTextAlert}>{fname1} does not have a Trust</Text>
+            </> }
+
             { !reffname1 || !refphone1 ? <>
                 <View style={{marginTop: 20}}>
                     <View
