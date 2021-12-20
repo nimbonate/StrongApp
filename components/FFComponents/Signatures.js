@@ -32,13 +32,52 @@ const Signatures = ({hasspouse, fname1, lname1,
             .then(console.log)
             .catch(console.error);
     };  
-
+    
+    const handleSpoClear = () => {
+        ref.current.clearSignature();
+    };
+    
+    const handleSpoConfirm = () => {
+        ref.current.readSignature();
+    };
+    
+    const handleSpoOK = (signature) => {
+        const path = FileSystem.cacheDirectory +  'sposign.png'
+        FileSystem.writeAsStringAsync(
+            path,
+            signature.replace("data:image/png;base64,", ""),
+            { encoding: FileSystem.EncodingType.Base64 }
+            )
+            .then(() => FileSystem.getInfoAsync(path))
+            .then(console.log)
+            .catch(console.error);
+    };  
+    
+    const handleAgeClear = () => {
+        ref.current.clearSignature();
+    };
+    
+    const handleAgeConfirm = () => {
+        ref.current.readSignature();
+    };
+    
+    const handleAgeOK = (signature) => {
+        const path = FileSystem.cacheDirectory +  'agesign.png'
+        FileSystem.writeAsStringAsync(
+            path,
+            signature.replace("data:image/png;base64,", ""),
+            { encoding: FileSystem.EncodingType.Base64 }
+            )
+            .then(() => FileSystem.getInfoAsync(path))
+            .then(console.log)
+            .catch(console.error);
+    };  
         
     return (
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Signatures</Text>
             <Text style={styles.headerText}>{fname1} Signature:</Text>
-                <View style={{width: '95%', height: 200}}>
+                <View style={{width: '95%', height: 130}}>
                     <SignatureScreen ref={ref} onOK={handleCliOK} />
                     <View style={{flexDirection:'row',}}>
                         <View style={{flex:1}}>
@@ -54,8 +93,36 @@ const Signatures = ({hasspouse, fname1, lname1,
                 </View>
             { hasspouse ? <>
                 <Text style={styles.headerText}>Spouse Signature:</Text>
+                <View style={{width: '95%', height: 130}}>
+                    <SignatureScreen ref={ref} onOK={handleSpoOK} />
+                    <View style={{flexDirection:'row',}}>
+                        <View style={{flex:1}}>
+                            <Button title="Clear" onPress={handleSpoClear} />
+                        </View>
+                        <View stlye={{flex:.05}}>
+                            <Text>       </Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Button title="Confirm" onPress={handleSpoConfirm} />
+                        </View>
+                    </View>
+                </View>
             </>: null}
             <Text style={styles.headerText}>Agent Signature:</Text>
+                <View style={{width: '95%', height: 130}}>
+                    <SignatureScreen ref={ref} onOK={handleAgeOK} />
+                    <View style={{flexDirection:'row',}}>
+                        <View style={{flex:1}}>
+                            <Button title="Clear" onPress={handleAgeClear} />
+                        </View>
+                        <View stlye={{flex:.05}}>
+                            <Text>       </Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Button title="Confirm" onPress={handleAgeConfirm} />
+                        </View>
+                    </View>
+                </View>
         </View>
     )
 }

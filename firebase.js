@@ -5,14 +5,13 @@ import * as firebase from "firebase";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDBHAAUMwHcPe4LEqEXCVYBjjAFaUyeY7A",
-  authDomain: "strongfamily-4406e.firebaseapp.com",
-  databaseURL: "https://strongfamily-4406e-default-rtdb.firebaseio.com",
-  projectId: "strongfamily-4406e",
-  storageBucket: "strongfamily-4406e.appspot.com",
-  messagingSenderId: "37244805849",
-  appId: "1:37244805849:web:a527a441ea7e013b5e14c8"
-};
+    apiKey: "AIzaSyDvfIxgmkONiF14TQeSmEv3jqFs4ajdRVw",
+    authDomain: "strongapp-6b2d2.firebaseapp.com",
+    projectId: "strongapp-6b2d2",
+    storageBucket: "strongapp-6b2d2.appspot.com",
+    messagingSenderId: "119587549371",
+    appId: "1:119587549371:web:b1d87a251d60b77069799e"
+  };
 
 // Initialize Firebase
 let app;
