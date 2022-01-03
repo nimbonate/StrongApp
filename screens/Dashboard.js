@@ -16,7 +16,7 @@ const Dashboard = ({ navigation }) => {
                 <TouchableOpacity
                 style={styles.button}
                 /*onPress={() =>
-                    navigation.replace('Fact Finder')
+                    navigation.replace('Submit Business')
                     }*/
                 >
                     <Text style={styles.buttonText}>Submit Business</Text>

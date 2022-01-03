@@ -34,9 +34,9 @@ const Login = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[styles.button, styles.buttonOutline]}
-                    /*onPress={() =>
-                    navigation.replace('Dashboard')
-                    }*/
+                    onPress={() =>
+                    navigation.replace('Admin Login')
+                    }
                 >
                     <Text style={styles.buttonOutlineText}>Admin Login</Text>
                 </TouchableOpacity>

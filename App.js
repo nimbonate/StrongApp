@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FactFinder from './screens/FactFinder';
 import Dashboard from './screens/Dashboard';
 import Login from './screens/Login';
+import AdminLogin from './screens/AdminLogin';
+import AdminDashboard from './screens/AdminDashboard';
 import {navigationRef} from './components/RootNavigation';
 
 
@@ -22,8 +24,18 @@ export default function App() {
                     options={{ headerShown: false }}
                     />
                 <Stack.Screen
+                    name="Admin Login"
+                    component={AdminLogin}
+                    options={{ headerShown: false }}
+                    />
+                <Stack.Screen
                     name="Dashboard"
                     component={Dashboard}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Admin Dashboard"
+                    component={AdminDashboard}
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
