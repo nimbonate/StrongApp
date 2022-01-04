@@ -35,7 +35,7 @@ const AdminLogin = ({ navigation }) => {
                 <TouchableOpacity
                     style={[styles.button, styles.buttonOutline]}
                     onPress={() =>
-                    navigation.replace('Login')
+                    navigation.replace('agent')
                     }
                 >
                     <Text style={styles.buttonOutlineText}>Agent Login</Text>

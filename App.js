@@ -8,47 +8,95 @@ import Dashboard from './screens/Dashboard';
 import Login from './screens/Login';
 import AdminLogin from './screens/AdminLogin';
 import AdminDashboard from './screens/AdminDashboard';
+import BusSubForm from './screens/BusSubForm';
 import {navigationRef} from './components/RootNavigation';
 
 
-const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
+
+//Screens and Navigation for Admin 
+const AdminStack = createNativeStackNavigator();
+const AdminStackScreen = () => (
+            <AdminStack.Navigator>
+                <AdminStack.Screen
+                    name="Admin Login"
+                    component={AdminLogin}
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}
+                    />
+                <AdminStack.Screen
+                    name="Admin Dashboard"
+                    component={AdminDashboard}
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}
+                />
+            </AdminStack.Navigator>
+)
+
+//Screens and Navigation for Agents
+const AgentStack = createNativeStackNavigator();
+const AgentStackScreen = () => (
+            <AgentStack.Navigator>
+                <AgentStack.Screen
+                    name="Login"
+                    component={Login}
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}
+                    />
+                <AgentStack.Screen
+                    name="Dashboard"
+                    component={Dashboard}
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}
+                />
+                <AgentStack.Screen
+                    name="Business Sub Form"
+                    component={BusSubForm}
+                    options={{
+                        headerRight: () => (
+                            <ExitButton /> 
+                            ),
+                            animationEnabled: false
+                        }}
+                    />
+                <AgentStack.Screen
+                    name="Fact Finder"
+                    component={FactFinder}
+                    options={{
+                        headerRight: () => (
+                            <ExitButton /> 
+                            ),
+                            animationEnabled: false
+                        }}
+                />
+            </AgentStack.Navigator>
+)
 
 export default function App() { 
 
   return (
     <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator>
-                <Stack.Screen
-                    name="Login"
-                    component={Login}
-                    options={{ headerShown: false }}
-                    />
-                <Stack.Screen
-                    name="Admin Login"
-                    component={AdminLogin}
-                    options={{ headerShown: false }}
-                    />
-                <Stack.Screen
-                    name="Dashboard"
-                    component={Dashboard}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Admin Dashboard"
-                    component={AdminDashboard}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Fact Finder"
-                    component={FactFinder}
-                    options={{
-                    headerRight: () => (
-                        <ExitButton /> 
-                    ),
-                    }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <RootStack.Navigator>
+            <RootStack.Screen name="agent" component={AgentStackScreen} 
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}/>
+            <RootStack.Screen name="admin" component={AdminStackScreen} 
+                    options={{ 
+                        headerShown: false,
+                        animationEnabled: false
+                    }}/>
+        </RootStack.Navigator>
+    </NavigationContainer>
   );
 }
 
