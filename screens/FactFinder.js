@@ -10,7 +10,6 @@ import Referrals from '../components/FFComponents/Referrals'
 import Signatures from '../components/FFComponents/Signatures'
 import Review from '../components/FFComponents/Review'
 
-
 const FactFinder = ({ navigation }) => {
 
     //Alert telling Agents they have no Referrals (Needs State from Child Component?)

@@ -6,15 +6,6 @@ import { auth } from '../firebase'
 const Login = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
-
-    const handleSignUp = () => {
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-            })
-            .catch(error => alert(error.message))
-    }
     
     return (
         <KeyboardAvoidingView 
@@ -45,13 +36,6 @@ const Login = ({ navigation }) => {
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity
-                    style={[styles.button, styles.buttonOutline]}
-                    onPress={handleSignUp}
-                >
-                    <Text style={styles.buttonOutlineText}>Register</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity
                     style={[styles.button, styles.buttonOutline]}
                     onPress={() =>

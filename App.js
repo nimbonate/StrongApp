@@ -81,7 +81,6 @@ const AgentStackScreen = () => (
 )
 
 export default function App() { 
-
   return (
     <NavigationContainer ref={navigationRef}>
         <RootStack.Navigator>
