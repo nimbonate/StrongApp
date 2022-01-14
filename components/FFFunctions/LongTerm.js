@@ -12,7 +12,7 @@ const LongTerm = ({hasspouse,
         know, setknow,
         nhaffect, setnhaffect,
         nhconcerns, setnhconcerns,
-        burdenconcerns, setburdenconcerns}) => {
+        burdenconcerns, setburdenconcerns, clientIndex}) => {
 
     const toggleLtcSwitch = () => sethasltc(previousState => !previousState);
     const toggleKnowSwitch = () => setknow(previousState => !previousState);
@@ -29,7 +29,8 @@ const LongTerm = ({hasspouse,
                 value={hasltc}
             />
             { hasltc ? <>
-                <Text style={styles.lableText}>Extended Care Beneftis</Text>
+                { clientIndex!=null ? <Text style={styles.titleText}>Long-Term Care Update</Text>
+            : <Text style={styles.titleText}>Long-Term Care</Text> }
                 <TextInput style={styles.textInputStyle} value={ecareben1} onChangeText={(value) => {setecareben1(value)}}/>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>

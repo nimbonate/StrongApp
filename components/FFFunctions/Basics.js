@@ -14,13 +14,15 @@ const Basics = ({setfname1, fname1,
             setaddress, address,
             setcity, city,
             setstate, state,
-            setzip, zip}) => {
+            setzip, zip,
+            clientIndex}) => {
 
     const toggleSwitch = () => sethasspouse(previousState => !previousState);
 
     return (
         <View style={styles.fullWidth}>
-            <Text style={styles.titleText}>Basics</Text>
+            { clientIndex!=null ? <Text style={styles.titleText}>Basics Update</Text>
+            : <Text style={styles.titleText}>Basics</Text> }
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
                     <Text style={styles.lableText}>First Name</Text>

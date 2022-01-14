@@ -14,14 +14,15 @@ const Medical = ({hasspouse, hasadv, sethasadv,
             hprem2, sethprem2,
             rxco2, setrxco2,
             concerns, setconcerns,
-            changes, setchanges}) => {
+            changes, setchanges, clientIndex}) => {
 
     const toggleAdvSwitch = () => sethasadv(previousState => !previousState);
     const toggleSpouseAdvSwitch = () => setspousehasadv(previousState => !previousState);
 
     return (
         <View style={styles.fullWidth}>
-            <Text style={styles.titleText}>Medical</Text>
+             { clientIndex!=null ? <Text style={styles.titleText}>Medical Update</Text>
+            : <Text style={styles.titleText}>Medical</Text> }
             <Text style={styles.lableText}>Has Advantage?</Text>
             <Switch 
                 trackColor={{ false:'#767577', true:'#81b0ff' }}

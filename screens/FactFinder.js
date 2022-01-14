@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { TouchableOpacity, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert, Text } from 'react-native'
-import Auxiliary from '../components/FFComponents/Auxiliary'
-import Basics from '../components/FFComponents/Basics'
-import Medical from '../components/FFComponents/Medical'
-import LongTerm from '../components/FFComponents/LongTerm'
-import FinalExpense from '../components/FFComponents/FinalExpense'
-import Retirement from '../components/FFComponents/Retirement'
-import Referrals from '../components/FFComponents/Referrals'
-import Signatures from '../components/FFComponents/Signatures'
-import Review from '../components/FFComponents/Review'
+import Auxiliary from '../components/FFFunctions/Auxiliary'
+import Autofill from '../components/FFFunctions/Autofill'
+import Basics from '../components/FFFunctions/Basics'
+import Medical from '../components/FFFunctions/Medical'
+import LongTerm from '../components/FFFunctions/LongTerm'
+import FinalExpense from '../components/FFFunctions/FinalExpense'
+import Retirement from '../components/FFFunctions/Retirement'
+import Referrals from '../components/FFFunctions/Referrals'
+import Signatures from '../components/FFFunctions/Signatures'
+import Review from '../components/FFFunctions/Review'
 
 const FactFinder = ({ navigation }) => {
 
@@ -56,17 +57,25 @@ const FactFinder = ({ navigation }) => {
 
     //Pages
     const [page, setpage] = useState(0)
+    
+    //Search
+    const [searchname, setSearchname] = useState('')
+
+    //If clientIndex is null, it is a new client. if clientIndex is not null, they are updating an existing client.
+    const [clientIndex, setClientIndex] = useState(null);
+    
 
     //Basics
     const [fname1, setfname1] = useState('')
     const [fname2, setfname2] = useState('')
   
-
     const [hasspouse, sethasspouse] = useState(false)
 
     const [lname1, setlname1] = useState('')
     const [lname2, setlname2] = useState('')
   
+    const [ssn1, setssn1] = useState(0)
+    const [ssn2, setssn2] = useState(0)
 
     const [homephone, sethomephone] = useState('')
     const [cell1, setcell1] = useState('')
@@ -246,10 +255,36 @@ const FactFinder = ({ navigation }) => {
     const [spousig, setspousig] = useState('')
     const [agentsig, setagentsig] = useState('')
 
-
-    //Matching all of the variables to the tabs that use them
+    //Creating an array with references to all of the pages and the state variables used on that page.
     const steps=[{
-        name:'Basics',
+        name:'Autofill Check',
+        component: <Autofill 
+            searchname={searchname}
+            setSearchname={setSearchname}
+            fname1={fname1}
+            setfname1={setfname1}
+            lname1={lname1}
+            setlname1={setlname1}
+            fname2={fname2}
+            lname2={lname2}
+            homephone={homephone}
+            sethomephone={sethomephone}
+            cell1={cell1}
+            setcell1={setcell1}
+            cell2={cell2}
+            address={address}
+            setaddress={setaddress}
+            city={city}
+            setcity={setcity}
+            state={state}
+            setstate={setstate}
+            zip={zip}
+            setzip={setzip}
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
+            />
+    },{
+        name: 'Basics',
         component: <Basics 
             setfname1={setfname1}
             fname1={fname1}
@@ -283,6 +318,9 @@ const FactFinder = ({ navigation }) => {
             state={state}
             setzip={setzip}
             zip={zip}
+
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
             />
     },
     {
@@ -322,6 +360,9 @@ const FactFinder = ({ navigation }) => {
             changes={changes}
             setchanges={setchanges}
 
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
+
         />
     },
     {
@@ -353,6 +394,9 @@ const FactFinder = ({ navigation }) => {
             setnhconcerns={setnhconcerns}
             burdenconcerns={burdenconcerns}
             setburdenconcerns={setburdenconcerns}
+
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
         />
     },
     {
@@ -402,7 +446,8 @@ const FactFinder = ({ navigation }) => {
             hiplans={hiplans}
             sethiplans={sethiplans}
 
-
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
         />
     },
     {
@@ -448,6 +493,9 @@ const FactFinder = ({ navigation }) => {
             sethasautos={sethasautos}
             hascash={hascash}
             sethascash={sethascash}
+
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
             />
     },
     {
@@ -501,6 +549,9 @@ const FactFinder = ({ navigation }) => {
             setmotivation={setmotivation}
             incomeconcerns={incomeconcerns}
             setincomeconcerns={setincomeconcerns}
+
+            clientIndex={clientIndex}
+            setClientIndex={setClientIndex}
 
         />
     },
@@ -751,7 +802,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 55
+        marginHorizontal: 10,
+        height: 80,
     },
     button: {  
         flex: 1,
@@ -759,6 +811,8 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 15,
         borderRadius: 10,
+        marginTop:10,
+        marginBottom:20,
         alignItems: 'center',
     },
     buttonText: {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect } from 'react'
 import { TouchableOpacity, KeyboardAvoidingView, StyleSheet, TextInput, Text, View } from 'react-native'
 import { auth } from '../firebase'
 
@@ -6,6 +6,16 @@ import { auth } from '../firebase'
 const Login = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+
+    //set initializing state while firebase starts
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
+
+    //handle user state change
+    function onAuthStateChange(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    }
     
     return (
         <KeyboardAvoidingView 

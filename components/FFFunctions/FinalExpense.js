@@ -19,7 +19,7 @@ const FinalExpense = ({hasspouse,
         hasmulti, sethasmulti,
         hasblended, sethasblended,
         hasautos, sethasautos,
-        hascash, sethascash}) => {
+        hascash, sethascash, clientIndex}) => {
     
     const toggleLifeSwitch = () => sethaslife(previousState => !previousState);
     const toggleSpouseLifeSwitch = () => setspousehaslife(previousState => !previousState);
@@ -32,7 +32,8 @@ const FinalExpense = ({hasspouse,
 
     return (
         <View style={styles.fullWidth}>
-            <Text style={styles.titleText}>Final Expense</Text>
+            { clientIndex!=null ? <Text style={styles.titleText}>Final Expense Update</Text>
+            : <Text style={styles.titleText}>Final Expense</Text> }
             <Text style={styles.lableText}>Has Life Insurance?</Text>
             <Switch 
                 trackColor={{ false:'#767577', true:'#81b0ff' }}

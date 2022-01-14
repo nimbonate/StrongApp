@@ -1,7 +1,6 @@
 import React, { useRef, useState} from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import SignatureScreen from 'react-native-signature-canvas'
-import * as FileSystem from "expo-file-system"
 
 
 const Signatures = ({hasspouse, fname1, lname1,

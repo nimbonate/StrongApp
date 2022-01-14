@@ -11,7 +11,7 @@ const ExitButton = () => {
     const exitAlert = () =>
         Alert.alert(
         "Are you sure?",
-        "Fact Finder will be deleted",
+        "Information will be deleted",
         [
             {
                 text: "Cancel",
