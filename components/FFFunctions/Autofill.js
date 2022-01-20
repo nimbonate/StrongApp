@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-import { withNavigation } from 'react-navigation';
+
+
+//This Page needs to be improved to additionally fill in policy data and 
+//other details. This requires a second API call, and due to the acyncronous
+//nature of the API call, I cannot get it to work quite yet. 
 
 const Autofill = ({
-    hasspouse,
+    hasspouse, individualID, setindividualID,
     fname1, setfname1,
     lname1, setlname1,
     fname2, lname2,
@@ -12,17 +16,38 @@ const Autofill = ({
     homephone, sethomephone, cell1, setcell1,
     cell2, address, setaddress,
     city, setcity, state, setstate, zip, setzip,
-    searchname, setSearchname,
-    clientIndex, setClientIndex,
+    searchname, setsearchname,
+    clientIndex, setClientIndex
 }) => {
-//
-    const [data, setData] = useState([]);
-    const [detail, setDetail] = useState([]);
 
-    
-    //Function to get list of clients from search parameters.
-    const getClients = () => {
-        return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
+    const [data, setData] = useState([]);
+
+    const clearData = () => {
+        setfname1('')
+        setlname1('')
+        sethomephone('')
+        setssn1('')
+        console.log('Data Reset')
+    }
+
+
+    //Function to fill in Fact Finder with current Client Data
+    const fillData = (data) => {
+        setfname1(data.firstName)
+        setlname1(data.lastName)
+        sethomephone(data.homePhone)
+        setssn1(data.ssn)
+        console.log(data.firstName + ' set as client') 
+    }
+
+    //useEffect runs this code on refresh so that the list is updated as the user types.
+    //This is required because a regular function uses a stale state and lags one letter behind
+    useEffect(() => {
+        if (searchname) {
+            //Calls AgencyBloc API for Client info
+            const delayDebounceFn = setTimeout(() => {
+            console.log(searchname)
+            return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
             method: 'POST',
             headers: new Headers({
             'Cache-Control': 'no-cache',
@@ -30,71 +55,22 @@ const Autofill = ({
             }),
             body:
                 `sid=ZXN6Z3P49T690CFX8WWE&key=77e5c5c6656c46ccf6d3254dc1c89db5b8ec82c8&lastName=${searchname}`
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            return setData(responseJson);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-    } 
-    
-    useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
-            console.log(searchname)
-                return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
-                method: 'POST',
-                headers: new Headers({
-                'Cache-Control': 'no-cache',
-                'Content-Type': 'application/x-www-form-urlencoded'
-                }),
-                body:
-                    `sid=ZXN6Z3P49T690CFX8WWE&key=77e5c5c6656c46ccf6d3254dc1c89db5b8ec82c8&lastName=${searchname}`
             })
             .then((response) => response.json())
             .then((responseJson) => {
-                return setData(responseJson);
+                return setData(responseJson.slice(0,50));
             })
             .catch((error) => {
                 console.error(error);
-            })
-        }, 10)
+            }) 
+            }, 10)
+            return () => clearTimeout(delayDebounceFn)
+        } else {
+            console.log('No Searchname')
+        }
+    }, [searchname])
+
     
-        return () => clearTimeout(delayDebounceFn)
-      }, [searchname])
-
-    const getDetails = (client) => {
-        //Getting Selected Client Details
-        return fetch('https://app.agencybloc.com/api/v1/individuals/detail', {
-            method: 'POST',
-            headers: new Headers({
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/x-www-form-urlencoded'
-            }),
-            body:
-                `sid=ZXN6Z3P49T690CFX8WWE&key=77e5c5c6656c46ccf6d3254dc1c89db5b8ec82c8&individualID=${client.individualID}`
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            return setDetail(responseJson), console.log(client), console.log(detail);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-    }
-
-    //Function to fill in Fact Finder with current Client Data
-    const fillData = (client) => {
-        //Fill Basic Info
-        setfname1(client.firstName)
-        setlname1(client.lastName)
-        sethomephone(client.homePhone)
-        setcell1(client.cellPhone)
-        getDetails(client)
-        getDetails(client)
-
-    }
 
     //On this first TextInput, I really need to find a way to make the onChangeText trigger the getClients function so
     //that the client list updates as the user type.
@@ -102,26 +78,21 @@ const Autofill = ({
         <View style={{ flex: 1, paddingTop: 10}}>
            <View style={{flexDirection:'row'}}>
                 <View style={styles.inputContainer, {flex:1}}>
-                    <TextInput style={styles.input} placeholder='Last Name' value={searchname} onChangeText={(value) => {
-                        setSearchname(value)
-                        //Resets the selected items style
-                        setClientIndex(null)
+                    <TextInput style={styles.input} 
+                        placeholder='Last Name' 
+                        value={searchname} 
+                        onChangeText={(value) => {
+                            setsearchname(value)//sets our API call search name without setting lname1
+                            setClientIndex(null)//resets the selection UI
+                            clearData()//Clears autofilled data so agents can start a new client fact finder
                         }}/>
                 </View>
             </View>
-                {/*<TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                    //calls the AgencyBloc API function created above
-                    getClients()
-                    //Resets the selected items style
-                    setClientIndex(null)}}
-                >
-                    <Text style={styles.buttonText}>Search Clients</Text>
-                </TouchableOpacity>*/}
+
             <View style={{height: 20}}/>
-            <Text style={{textAlign:'center'}}>Results</Text>
-                {data.map((client, index) => (
+
+            <Text style={{textAlign:'center'}}>Search Existing Clients</Text>
+            {data.map((client, index) => (
                 //^^Parses the Agency Bloc response then VV renders a TouchableOpacity for each client (Up to 10000 characters)
                 <TouchableOpacity
                     key={index}
@@ -129,14 +100,16 @@ const Autofill = ({
                     //the one rendered with that index
                     style={ clientIndex == index  ? styles.buttonOutline : styles.button}
                     onPress={() => {
-                        setClientIndex(index)
-                        fillData(client)
-                        getClients()
+                        setClientIndex(index)//Sets selected UI as target for style change
+                        setindividualID(client.individualID)
+                        fillData(client)//runs the function to fill states with client data
                     }}
-                >
+                    >
                     <Text style={ clientIndex == index ? styles.buttonOutlineText : styles.buttonText}>{client.firstName} {client.lastName}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> 
             ))}
+            { searchname ? <Text style={{textAlign:'center', paddingTop: 25, paddingBottom: 25}}>First 50 clients shown</Text>
+            : null }
         </View>
     )
 }

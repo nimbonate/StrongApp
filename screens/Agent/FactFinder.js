@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { TouchableOpacity, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert, Text } from 'react-native'
-import Auxiliary from '../components/FFFunctions/Auxiliary'
-import Autofill from '../components/FFFunctions/Autofill'
-import Basics from '../components/FFFunctions/Basics'
-import Medical from '../components/FFFunctions/Medical'
-import LongTerm from '../components/FFFunctions/LongTerm'
-import FinalExpense from '../components/FFFunctions/FinalExpense'
-import Retirement from '../components/FFFunctions/Retirement'
-import Referrals from '../components/FFFunctions/Referrals'
-import Signatures from '../components/FFFunctions/Signatures'
-import Review from '../components/FFFunctions/Review'
+import Auxiliary from '../../components/FFFunctions/Auxiliary'
+import Autofill from '../../components/FFFunctions/Autofill'
+import Basics from '../../components/FFFunctions/Basics'
+import Medical from '../../components/FFFunctions/Medical'
+import LongTerm from '../../components/FFFunctions/LongTerm'
+import FinalExpense from '../../components/FFFunctions/FinalExpense'
+import Retirement from '../../components/FFFunctions/Retirement'
+import Referrals from '../../components/FFFunctions/Referrals'
+import Review from '../../components/FFFunctions/Review'
 
 const FactFinder = ({ navigation }) => {
 
@@ -52,18 +51,21 @@ const FactFinder = ({ navigation }) => {
         {
         cancelable: false,
         }
-    );
-    //Declaring all of the useState variables.
+        );
+
+
+    //Declaring all of the useState hook variables.
 
     //Pages
     const [page, setpage] = useState(0)
     
     //Search
-    const [searchname, setSearchname] = useState('')
+    const [searchname, setsearchname] = useState('')//used to search through AgencyBloc without changing the other
+    const [individualID, setindividualID] = useState('') 
 
     //If clientIndex is null, it is a new client. if clientIndex is not null, they are updating an existing client.
-    const [clientIndex, setClientIndex] = useState(null);
-    
+    const [clientIndex, setClientIndex] = useState(null) //Used to change UI of selected Client
+
 
     //Basics
     const [fname1, setfname1] = useState('')
@@ -255,12 +257,16 @@ const FactFinder = ({ navigation }) => {
     const [spousig, setspousig] = useState('')
     const [agentsig, setagentsig] = useState('')
 
-    //Creating an array with references to all of the pages and the state variables used on that page.
+    //An array with references to all of the pages and the state variables used on that page.
     const steps=[{
         name:'Autofill Check',
         component: <Autofill 
             searchname={searchname}
-            setSearchname={setSearchname}
+            setsearchname={setsearchname}
+            ssn1={ssn1}
+            setssn1={setssn1}
+            individualID={individualID}
+            setindividualID={setindividualID}
             fname1={fname1}
             setfname1={setfname1}
             lname1={lname1}
@@ -286,6 +292,8 @@ const FactFinder = ({ navigation }) => {
     },{
         name: 'Basics',
         component: <Basics 
+            individualID={individualID}
+            setindividualID={setindividualID}
             setfname1={setfname1}
             fname1={fname1}
             setlname1={setlname1}
@@ -741,7 +749,7 @@ const FactFinder = ({ navigation }) => {
             incomeconcerns={incomeconcerns}
             />
     },
-    {
+    /*{
         name:'Signatures',
         component: <Signatures
             fname1={fname1}
@@ -755,7 +763,7 @@ const FactFinder = ({ navigation }) => {
             setagentsig={setagentsig}
             
         />
-    }
+    }*/
 ]
 
     return (

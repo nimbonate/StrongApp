@@ -1,21 +1,38 @@
 import React, {useState, useEffect } from 'react'
 import { TouchableOpacity, KeyboardAvoidingView, StyleSheet, TextInput, Text, View } from 'react-native'
-import { auth } from '../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { authentication } from '../../firebase'
+
+
 
 
 const Login = ({ navigation }) => {
+    
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
 
-    //set initializing state while firebase starts
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
+    const [user, setuser] = useState('')
 
-    //handle user state change
-    function onAuthStateChange(user) {
-        setUser(user);
-        if (initializing) setInitializing(false);
+    const signIn = () => {
+        signInWithEmailAndPassword(authentication, email, password)
+        .then((userCredential) => {
+            setuser(userCredential.user)
+            console.log(user)         
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + errorMessage)
+          });
     }
+
+    useEffect(() => {
+  
+            if (user) {
+                navigation.replace('Dashboard')
+            } else { console.log('no User') }
+    
+    }, [user])
     
     return (
         <KeyboardAvoidingView 
@@ -39,11 +56,9 @@ const Login = ({ navigation }) => {
              
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() =>
-                    navigation.replace('Dashboard')
-                    }
+                    onPress={() =>signIn()}
                 >
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity

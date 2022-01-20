@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
+import { signOut } from "firebase/auth";
+import { authentication } from '../../firebase';
 
 const Dashboard = ({ navigation }) => {
+
+    const [user, setuser] = useState('')
+    
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
+                <Text>{user}</Text>
                 <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
@@ -31,9 +37,13 @@ const Dashboard = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={[styles.button, styles.buttonOutline]}
-                onPress={() =>
-                    navigation.replace('Login')
-                    }
+                onPress={() => {
+                    signOut(authentication).then(() => {
+                        navigation.navigate('Login')
+                      }).catch((error) => {
+                        console.log(error)
+                      });
+                    }}
                 >
                     <Text style={styles.buttonOutlineText}>Log Out</Text>
                 </TouchableOpacity>

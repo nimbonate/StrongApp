@@ -2,7 +2,6 @@ import React, { useRef, useState} from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import SignatureScreen from 'react-native-signature-canvas'
 
-
 const Signatures = ({hasspouse, fname1, lname1,
                 clisig, setclisig,
                 spousig, setspousig,

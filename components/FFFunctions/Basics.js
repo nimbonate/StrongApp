@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
 
 const Basics = ({setfname1, fname1,  
@@ -15,7 +15,11 @@ const Basics = ({setfname1, fname1,
             setcity, city,
             setstate, state,
             setzip, zip,
-            clientIndex}) => {
+            clientIndex, individualID
+}) => {
+    
+    
+    const [detail, setdetail] = useState([])
 
     const toggleSwitch = () => sethasspouse(previousState => !previousState);
 

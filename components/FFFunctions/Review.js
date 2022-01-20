@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+
 
 const Review = ({hasspouse, reffname1, refphone1, clisig,
             fname1, lname1,
@@ -28,7 +29,7 @@ const Review = ({hasspouse, reffname1, refphone1, clisig,
             savings, realestate, mutuals, licash, annuities,
             stocks, bonds, moneymkts, cds, iras, forohwonk, other,
             whythese, goodreturns, motivation, incomeconcerns}) => {
-
+    
 
     return (
         <View style={styles.fullWidth}>

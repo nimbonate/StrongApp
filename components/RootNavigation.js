@@ -1,4 +1,5 @@
 
+//This file is necessary for communicating to the Exit button from within the navigator.
 import { createNavigationContainerRef, StackActions } from '@react-navigation/native';
 
 export const navigationRef = createNavigationContainerRef()

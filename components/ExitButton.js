@@ -3,7 +3,7 @@ import { StyleSheet, Button, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as RootNavigation from './RootNavigation'
 
-
+//This component gets us out of the fact finder screen, (or any other screen within the stack that needs an exit)
 const ExitButton = () => {
 
     const navigation = useNavigation();

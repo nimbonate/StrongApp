@@ -1,6 +1,9 @@
 import React from 'react'
 import { StyleSheet, Switch, Button, Text, TextInput, View } from 'react-native'
 
+//Need to add an anchor phrase. Something that the agent can tell the referrals to establish a
+//connection to the client.
+
 const Referrals = ({hasspouse,
                 reffname1, setreffname1,
                 reflname1, setreflname1,
