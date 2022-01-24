@@ -19,7 +19,8 @@ const FinalExpense = ({hasspouse,
         hasmulti, sethasmulti,
         hasblended, sethasblended,
         hasautos, sethasautos,
-        hascash, sethascash, clientIndex}) => {
+        hascash, sethascash, clientIndex,
+        isKeyboardVisible}) => {
     
     const toggleLifeSwitch = () => sethaslife(previousState => !previousState);
     const toggleSpouseLifeSwitch = () => setspousehaslife(previousState => !previousState);
@@ -184,6 +185,7 @@ const FinalExpense = ({hasspouse,
                 onValueChange={toggleCashSwitch}
                 value={hascash}
                 /> 
+                 {isKeyboardVisible ? <View style={{height:60}}/>:null}
         </View>
     )
 }

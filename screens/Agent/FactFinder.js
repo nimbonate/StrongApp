@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
-import { TouchableOpacity, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert, Text } from 'react-native'
-import Auxiliary from '../../components/FFFunctions/Auxiliary'
-import Autofill from '../../components/FFFunctions/Autofill'
-import Basics from '../../components/FFFunctions/Basics'
-import Medical from '../../components/FFFunctions/Medical'
-import LongTerm from '../../components/FFFunctions/LongTerm'
-import FinalExpense from '../../components/FFFunctions/FinalExpense'
-import Retirement from '../../components/FFFunctions/Retirement'
-import Referrals from '../../components/FFFunctions/Referrals'
-import Review from '../../components/FFFunctions/Review'
+import React, { useState, useEffect } from 'react'
+import { TouchableOpacity, Keyboard, KeyboardAvoidingView, View, StyleSheet, ScrollView, Alert, Text } from 'react-native'
+import Auxiliary from '../../components/FFComponents/Auxiliary'
+import Autofill from '../../components/FFComponents/Autofill'
+import Basics from '../../components/FFComponents/Basics'
+import Medical from '../../components/FFComponents/Medical'
+import LongTerm from '../../components/FFComponents/LongTerm'
+import FinalExpense from '../../components/FFComponents/FinalExpense'
+import Retirement from '../../components/FFComponents/Retirement'
+import Referrals from '../../components/FFComponents/Referrals'
+import Review from '../../components/FFComponents/Review'
+import { db } from '../../firebase'
+import { authentication } from '../../firebase'
+import { doc, setDoc } from "firebase/firestore"
+
 
 const FactFinder = ({ navigation }) => {
 
@@ -33,33 +37,16 @@ const FactFinder = ({ navigation }) => {
         }
     ); */
 
-    const submitAlert = () =>
-        Alert.alert(
-        "Are you sure?",
-        "Fact Finder will be submitted for Review",
-        [
-        {
-            text: "Cancel",
-            onPress: () => console.log("Form Not Submitted"),
-            style: "cancel",
-        },
-        {
-            text: "Submit",
-            onPress: () => navigation.replace('Dashboard') + console.log("Form Not Actually Submitted"),
-        }
-        ],
-        {
-        cancelable: false,
-        }
-        );
-
 
     //Declaring all of the useState hook variables.
 
-    //Pages
+    //For giving extra room at the bottom when the keyboard is up
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+    //Pages of the fact finder within this parent file.
     const [page, setpage] = useState(0)
     
-    //Search
+    //Search AgencyBloc (Autofill)
     const [searchname, setsearchname] = useState('')//used to search through AgencyBloc without changing the other
     const [individualID, setindividualID] = useState('') 
 
@@ -257,6 +244,85 @@ const FactFinder = ({ navigation }) => {
     const [spousig, setspousig] = useState('')
     const [agentsig, setagentsig] = useState('')
 
+
+    const submitAlert = () => {
+        Alert.alert(
+        "Are you sure?",
+        "Fact Finder will be submitted for Review",
+        [
+        {
+            text: "Cancel",
+            onPress: () => console.log("Form Not Submitted"),
+            style: "cancel",
+        },
+        {
+            text: "Submit",
+            onPress: () =>  console.log("Testing") + SubmitFF() + navigation.replace('Dashboard'),
+        }
+        ],
+            {
+            cancelable: false,
+            }
+        );
+
+    };
+    
+    const FactFinder = doc(db, `factFinders/${lname1}${fname1}FF`)//Sets up a document within the factFinders collection
+    //Submits data as a series of Key Value Pairs
+    const SubmitFF = () => {
+        const FFData = {
+            Agent: `${authentication.currentUser.email}`,
+            Basics: {
+                FirstName: `${fname1}`,
+                LastName: `${lname1}`,
+                SpouseFirstName: `${fname2}`,
+                SpouseLastName: `${lname2}`,
+                SSN: `${ssn1}`,
+                SpouseSSN: `${ssn2}`,
+                HomePhone: `${homephone}`,
+                Cellphon: `${cell1}`,
+                Occupation: `${occ1}`,
+                SpouseCell: `${cell2}`,
+                SpouseOccupation: `${occ2}`,
+                Address: `${address}`,
+                City: `${city}`,
+                State: `${state}`,
+                Zip: `${zip}`},
+            Medical: {
+                HeathcareCompany:`${hco1}`,
+                HealthcarePlan:`${hplan1}`,
+                HealthcarePremium:`${hprem1}`,
+                RxCompany:`${rxco1}`,
+                SpouseHealthcareCompany:`${hco2}`,
+                SpouseHealthcarePlan:`${hplan2}`,
+                SpouseHealthcarePremium:`${hprem2}`,
+                SpouseRxCompany:`${rxco2}`,
+                InPatientDeductible:`${advdduct}`,
+                SpouseInPatientDeductible:`${spouseadvdduct}`,
+                HealthcareConcerns:`${concerns}`,
+                HealthcareChanges:`${changes}`
+            },
+            LongTermCare: {
+                HaveLongTermCare:`${hasltc}`,
+                ExtendedCareBenefit:`${ecareben1}`,
+                ExtendedCareCompany:`${ecareco1}`,
+                ExtendedCarePremium:`${ecareprem1}`,
+                SpouseECBenefit:`${ecareben2}`,
+                SpouseECCompany:`${ecareco2}`,
+                SpouseECPremium:`${ecareprem2}`,
+                KnowAnyoneAtNH:`${know}`,
+                HowHasNHEffected:`${nhaffect}`,
+                NursingHomeConcerns:`${nhconcerns}`,
+                ChildrenBurdenConcerns:`${burdenconcerns}`,
+            },
+            Auxiliary: {
+
+            }
+
+        };
+        setDoc(FactFinder, FFData);//Sends the document and data to Firebase.
+    }
+
     //An array with references to all of the pages and the state variables used on that page.
     const steps=[{
         name:'Autofill Check',
@@ -292,6 +358,8 @@ const FactFinder = ({ navigation }) => {
     },{
         name: 'Basics',
         component: <Basics 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             individualID={individualID}
             setindividualID={setindividualID}
             setfname1={setfname1}
@@ -334,6 +402,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Medical',
         component:<Medical 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             hasspouse={hasspouse}
             hasadv={hasadv}
             sethasadv={sethasadv}
@@ -376,6 +446,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'LongTerm',
         component: <LongTerm 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             hasspouse={hasspouse}
 
             hasltc={hasltc}
@@ -410,6 +482,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Auxiliary',
         component: <Auxiliary 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             hasspouse={hasspouse}
 
             hascanpol={hascanpol}
@@ -461,6 +535,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Final Expense',
         component: <FinalExpense 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             hasspouse={hasspouse}
 
             haslife={haslife}
@@ -509,6 +585,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Retirement Income',
         component: <Retirement 
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}   
             hasspouse={hasspouse}
             
             ssfeel={ssfeel}
@@ -566,6 +644,8 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Referrals',
         component: <Referrals
+            isKeyboardVisible={isKeyboardVisible}
+            setKeyboardVisible={setKeyboardVisible}
             reffname1={reffname1}
             setreffname1={setreffname1}
             reflname1={reflname1}
@@ -764,7 +844,27 @@ const FactFinder = ({ navigation }) => {
             
         />
     }*/
-]
+    ]
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener(
+          'keyboardDidShow',
+          () => {
+            setKeyboardVisible(true); 
+          }
+        );
+        const keyboardDidHideListener = Keyboard.addListener(
+          'keyboardDidHide',
+          () => {
+            setKeyboardVisible(false);
+          }
+        );
+    
+        return () => {
+          keyboardDidHideListener.remove();
+          keyboardDidShowListener.remove();
+        };
+      }, []);
 
     return (
         <KeyboardAvoidingView style={{maxHeight: '100%', minHeight: '100%', paddingBottom: 10}}>

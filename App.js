@@ -6,11 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FactFinder from './screens/Agent/FactFinder';
 import Dashboard from './screens/Agent/Dashboard';
 import Appointments from './screens/Agent/Appointments';
-import NewAppt from './components/AppointmentFunctions/NewAppt';
+import NewAppt from './components/ApptComponents/NewAppt';
 import Login from './screens/Agent/Login';
 import AdminLogin from './screens/Admin/AdminLogin';
 import AdminDashboard from './screens/Admin/AdminDashboard';
 import BusSubForm from './screens/Agent/BusSubForm';
+import FFList from './screens/Admin/FFList';
 import {navigationRef} from './components/RootNavigation';
 
 
@@ -34,6 +35,13 @@ const AdminStackScreen = () => (
                     options={{ 
                         animationEnabled: false,
                         headerShown: false
+                    }}
+                    />
+                <AdminStack.Screen
+                    name="Fact Finder List"
+                    component={FFList}
+                    options={{ 
+                        animationEnabled: false
                     }}
                     />
             </AdminStack.Navigator>

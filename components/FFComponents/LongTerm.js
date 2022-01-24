@@ -12,14 +12,16 @@ const LongTerm = ({hasspouse,
         know, setknow,
         nhaffect, setnhaffect,
         nhconcerns, setnhconcerns,
-        burdenconcerns, setburdenconcerns, clientIndex}) => {
+        burdenconcerns, setburdenconcerns, clientIndex,
+        isKeyboardVisible}) => {
 
     const toggleLtcSwitch = () => sethasltc(previousState => !previousState);
     const toggleKnowSwitch = () => setknow(previousState => !previousState);
 
     return (
         <View style={styles.fullWidth}>
-            <Text style={styles.titleText}>Long-Term Care</Text>
+            { clientIndex !=null ? <Text style={styles.titleText}>Long-Term Care Update</Text>
+            : <Text style={styles.titleText}>Long-Term Care</Text> }
             { hasspouse ? <Text style={styles.lableText}>Do you have Extended Care Policies?</Text>
              : <Text style={styles.lableText}>Do you have an Extended Care Policy?</Text>}
             <Switch 
@@ -28,9 +30,9 @@ const LongTerm = ({hasspouse,
                 onValueChange={toggleLtcSwitch}
                 value={hasltc}
             />
+            <View style={{height:20}}/>
             { hasltc ? <>
-                { clientIndex!=null ? <Text style={styles.titleText}>Long-Term Care Update</Text>
-            : <Text style={styles.titleText}>Long-Term Care</Text> }
+                <Text style={styles.lableText} >Extended Care Benefits</Text>
                 <TextInput style={styles.textInputStyle} value={ecareben1} onChangeText={(value) => {setecareben1(value)}}/>
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1}}>
@@ -83,7 +85,8 @@ const LongTerm = ({hasspouse,
             <Text style={styles.lableText}>Nursing Home Concerns?</Text>
             <TextInput style={styles.responseInputStyle} value={nhconcerns} onChangeText={(value) => {setnhconcerns(value)}}/>
             <Text style={styles.lableText}>Burdening Children Concerns?</Text>
-            <TextInput style={styles.responseInputStyle} value={burdenconcerns} onChangeText={(value) => {setburdenconcerns(value)}}/>             
+            <TextInput style={styles.responseInputStyle} value={burdenconcerns} onChangeText={(value) => {setburdenconcerns(value)}}/>     
+            {isKeyboardVisible ? <View style={{height:260}}/>:null}        
         </View>
     )
 }

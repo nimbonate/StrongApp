@@ -15,7 +15,8 @@ const Basics = ({setfname1, fname1,
             setcity, city,
             setstate, state,
             setzip, zip,
-            clientIndex, individualID
+            clientIndex, individualID,
+            isKeyboardVisible
 }) => {
     
     
@@ -126,6 +127,7 @@ const Basics = ({setfname1, fname1,
                     <TextInput style={styles.textInputStyle} keyboardType='numeric' value={zip.toString()} onChangeText={(value) => {setzip(value)}}/>
                 </View>
             </View>
+            {isKeyboardVisible ? <View style={{height:260}}/>:null}
         </View>
     )
 }

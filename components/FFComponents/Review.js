@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const Review = ({hasspouse, reffname1, refphone1, clisig,
             fname1, lname1,
             fname2, lname2,
+            ssn1, ssn2,
             homephone, cell1,
             cell2, occ1,
             occ2, address,
@@ -88,7 +89,7 @@ const Review = ({hasspouse, reffname1, refphone1, clisig,
                 </>}
             </>: null}
 
-
+            
             <Text style={styles.headerText}>Long Term Care</Text>
             { hasltc ? <>
                 { ecareco1 ? <Text style={styles.lableText}>Extended Care Company: {ecareco1} for {ecareprem1}</Text>
@@ -153,7 +154,7 @@ const Review = ({hasspouse, reffname1, refphone1, clisig,
                     : <Text style={styles.lableText}>Spouse Premium: {lifeprem2}</Text> }
                 </>
                 : <>
-                    <Text style={styles.lableTextAlert}>{fname2} Has No Life Insurance</Text>
+                    <Text style={styles.lableTextAlert}>Spouse Has No Life Insurance</Text>
                 </>}
             </> 
             : null }

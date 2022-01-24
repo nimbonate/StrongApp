@@ -4,13 +4,12 @@ import { signOut } from "firebase/auth";
 import { authentication } from '../../firebase';
 
 const Dashboard = ({ navigation }) => {
+   
 
-    const [user, setuser] = useState('')
-    
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
-                <Text>{user}</Text>
+                <Text>{authentication.currentUser.email}</Text>
                 <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
@@ -38,7 +37,8 @@ const Dashboard = ({ navigation }) => {
                 <TouchableOpacity
                 style={[styles.button, styles.buttonOutline]}
                 onPress={() => {
-                    signOut(authentication).then(() => {
+                    signOut(authentication)
+                    .then(() => {
                         navigation.navigate('Login')
                       }).catch((error) => {
                         console.log(error)

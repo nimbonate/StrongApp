@@ -46,6 +46,7 @@ const Referrals = ({hasspouse,
                 refphone0, setrefphone0,
                 refaddy0, setrefaddy0,
                 refnumber, setrefnumber,
+                isKeyboardVisible
                 }) => {
     
     const refAdd = () => setrefnumber(previousState => previousState + 1)
@@ -418,6 +419,7 @@ const Referrals = ({hasspouse,
                     />  : null }
                 </View>
             </View>
+            {isKeyboardVisible ? <View style={{height:260}}/>:null}
         </View>
     )
 }

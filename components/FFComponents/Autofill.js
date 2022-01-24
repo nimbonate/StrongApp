@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
 
 
@@ -45,7 +45,7 @@ const Autofill = ({
     useEffect(() => {
         if (searchname) {
             //Calls AgencyBloc API for Client info
-            const delayDebounceFn = setTimeout(() => {
+            const delayDebounceFn = setTimeout(() => {//I forget what this is for, but it is necessary 
             console.log(searchname)
             return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
             method: 'POST',
@@ -64,7 +64,7 @@ const Autofill = ({
                 console.error(error);
             }) 
             }, 10)
-            return () => clearTimeout(delayDebounceFn)
+            return () => clearTimeout(delayDebounceFn)//This is a part of that top thing.
         } else {
             console.log('No Searchname')
         }

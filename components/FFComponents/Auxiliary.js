@@ -19,7 +19,8 @@ const Auxiliary = ({hasspouse,
             hicopay1, sethicopay1,
             hicopay2, sethicopay2,
             hibind, sethibind,
-            hiplans, sethiplans}) => {
+            hiplans, sethiplans,
+            isKeyboardVisible}) => {
 
     const toggleCanSwitch = () => sethascanpol(previousState => !previousState);
     const toggleDentSwitch = () => sethasdental(previousState => !previousState);
@@ -146,6 +147,7 @@ const Auxiliary = ({hasspouse,
                 <Text style={styles.lableText}>What are your plans for paying your copay?</Text>
                 <TextInput style={styles.responseInputStyle} value={hiplans} onChangeText={(value) => {sethiplans(value)}}/>
             </> : null }
+            {isKeyboardVisible ? <View style={{height:260}}/>:null}
         </View>
     )
 }

@@ -19,7 +19,7 @@ const ExitButton = () => {
                 style: "cancel",
             },
             {
-                text: "Quit",
+                text: "Exit",
                 onPress: () => RootNavigation.replace('Dashboard')
             }
         ],

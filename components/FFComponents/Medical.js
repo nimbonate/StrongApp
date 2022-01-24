@@ -14,7 +14,8 @@ const Medical = ({hasspouse, hasadv, sethasadv,
             hprem2, sethprem2,
             rxco2, setrxco2,
             concerns, setconcerns,
-            changes, setchanges, clientIndex}) => {
+            changes, setchanges, clientIndex,
+            isKeyboardVisible}) => {
 
     const toggleAdvSwitch = () => sethasadv(previousState => !previousState);
     const toggleSpouseAdvSwitch = () => setspousehasadv(previousState => !previousState);
@@ -127,6 +128,7 @@ const Medical = ({hasspouse, hasadv, sethasadv,
             <TextInput style={styles.responseInputStyle} value={concerns} onChangeText={(value) => {setconcerns(value)}}/>
             <Text style={styles.lableText}>What would you change about your health care?</Text>
             <TextInput style={styles.responseInputStyle} value={changes} onChangeText={(value) => {setchanges(value)}}/>
+            {isKeyboardVisible ? <View style={{height:260}}/>:null}
         </View>
     )
 }

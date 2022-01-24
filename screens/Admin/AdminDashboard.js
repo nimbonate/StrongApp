@@ -7,10 +7,10 @@ const AdminDashboard = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                 style={styles.button}
-                /*onPress={() =>
-                    navigation.replace('Fact Finder List')
+                onPress={() =>
+                    navigation.navigate('Fact Finder List')
                     
-                }*/
+                }
                 >
                     <Text style={styles.buttonText}>Review Fact Finders</Text>
                 </TouchableOpacity>

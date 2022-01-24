@@ -22,7 +22,8 @@ const Retirement = ({hasspouse,
                 whythese, setwhythese,
                 goodreturns, setgoodreturns,
                 motivation, setmotivation,
-                incomeconcerns, setincomeconcerns}) => {
+                incomeconcerns, setincomeconcerns,
+                isKeyboardVisible}) => {
 
     const toggleSaveSwitch = () => setcansave(previousState => !previousState);
 
@@ -150,6 +151,7 @@ const Retirement = ({hasspouse,
                     <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={other.toString()} onChangeText={(value) => {setother(value)}}/>
                 </View>
             </View>
+            {isKeyboardVisible ? <View style={{height:200}}/>:null}
         </View>
     )
 }

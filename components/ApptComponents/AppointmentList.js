@@ -3,6 +3,9 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 
 const AppointmentList = ({ navigation }) => {
 
+
+    //We should run the list through agency bloc and find any policies with current or vested agents. That'd be cool.
+
     //List of Available Appointments
     return (
         <View style={styles.container}>

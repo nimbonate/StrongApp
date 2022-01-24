@@ -16,8 +16,10 @@ const Login = ({ navigation }) => {
     const signIn = () => {
         signInWithEmailAndPassword(authentication, email, password)
         .then((userCredential) => {
-            setuser(userCredential.user)
-            console.log(user)         
+            setuser(userCredential.user)     
+          })
+          .then(() => {
+              console.log(user)
           })
           .catch((error) => {
             const errorCode = error.code;

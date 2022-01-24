@@ -1,10 +1,16 @@
 import React, {useState} from 'react'
 import { TouchableOpacity, KeyboardAvoidingView, StyleSheet, TextInput, Text, View } from 'react-native'
 
-
 const AdminLogin = ({ navigation }) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+    
+    const adminCheck = () => {
+        if (email.toLowerCase() == 'admin@stronglyfe.com' && password == 'admin') {
+            navigation.replace('Admin Dashboard')
+        } else { null }
+    };
+
     return (
         <KeyboardAvoidingView 
         style={styles.container}>
@@ -26,9 +32,8 @@ const AdminLogin = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() =>
-                    navigation.replace('Admin Dashboard')
-                    }
+                    onPress={() => //adminCheck()}
+                    navigation.replace('Admin Dashboard')} //Switch back for actual usage
                 >
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
