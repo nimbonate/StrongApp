@@ -11,7 +11,7 @@ import Referrals from '../../components/FFComponents/Referrals'
 import Review from '../../components/FFComponents/Review'
 import { db } from '../../firebase'
 import { authentication } from '../../firebase'
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc } from 'firebase/firestore'
 
 
 const FactFinder = ({ navigation }) => {
@@ -48,7 +48,7 @@ const FactFinder = ({ navigation }) => {
     
     //Search AgencyBloc (Autofill)
     const [searchname, setsearchname] = useState('')//used to search through AgencyBloc without changing the other
-    const [individualID, setindividualID] = useState('') 
+    const [individualID, setindividualID] = useState('') //used for Detail AgencyBloc Calls
 
     //If clientIndex is null, it is a new client. if clientIndex is not null, they are updating an existing client.
     const [clientIndex, setClientIndex] = useState(null) //Used to change UI of selected Client
@@ -257,7 +257,7 @@ const FactFinder = ({ navigation }) => {
         },
         {
             text: "Submit",
-            onPress: () =>  console.log("Testing") + SubmitFF() + navigation.replace('Dashboard'),
+            onPress: () =>  SubmitFF() + navigation.replace('Dashboard'),
         }
         ],
             {
