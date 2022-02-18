@@ -11,7 +11,7 @@ import Referrals from '../../components/FFComponents/Referrals'
 import Review from '../../components/FFComponents/Review'
 import { db } from '../../firebase'
 import { authentication } from '../../firebase'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore/lite'
 
 
 const FactFinder = ({ navigation }) => {
@@ -41,7 +41,7 @@ const FactFinder = ({ navigation }) => {
     //Declaring all of the useState hook variables.
 
     //For giving extra room at the bottom when the keyboard is up
-    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false)
 
     //Pages of the fact finder within this parent file.
     const [page, setpage] = useState(0)
@@ -53,6 +53,10 @@ const FactFinder = ({ navigation }) => {
     //If clientIndex is null, it is a new client. if clientIndex is not null, they are updating an existing client.
     const [clientIndex, setClientIndex] = useState(null) //Used to change UI of selected Client
 
+    //Marker for whether the Fact Finder needs to be reviewed by an Admin(true) or an Agent(false)
+    //Is switched to true when fact finder is submitted
+    //Is switched to false if returned to agent for review
+    const [readyForReview, setreadyForReview] = useState(false);
 
     //Basics
     const [fname1, setfname1] = useState('')
@@ -63,8 +67,8 @@ const FactFinder = ({ navigation }) => {
     const [lname1, setlname1] = useState('')
     const [lname2, setlname2] = useState('')
   
-    const [ssn1, setssn1] = useState(0)
-    const [ssn2, setssn2] = useState(0)
+    const [ssn1, setssn1] = useState('')
+    const [ssn2, setssn2] = useState('')
 
     const [homephone, sethomephone] = useState('')
     const [cell1, setcell1] = useState('')
@@ -267,14 +271,17 @@ const FactFinder = ({ navigation }) => {
 
     };
     
-    const FactFinder = doc(db, `factFinders/${lname1}${fname1}FF`)//Sets up a document within the factFinders collection
+    const FactFinder = doc(db, `factFinders/${lname1}_${fname1}_FF`)//Sets up a document within the factFinders collection
     //Submits data as a series of Key Value Pairs
     const SubmitFF = () => {
+        setreadyForReview(true);//Marks that the Fact Finder is ready to be reviewed by an Admin
         const FFData = {
+            ReviewReady: `${readyForReview}`,
             Agent: `${authentication.currentUser.email}`,
             Basics: {
                 FirstName: `${fname1}`,
                 LastName: `${lname1}`,
+                HasSpouse: `${hasspouse}`,
                 SpouseFirstName: `${fname2}`,
                 SpouseLastName: `${lname2}`,
                 SSN: `${ssn1}`,
@@ -316,7 +323,68 @@ const FactFinder = ({ navigation }) => {
                 ChildrenBurdenConcerns:`${burdenconcerns}`,
             },
             Auxiliary: {
-
+                HaveCancerPolicies:`${hascanpol}`,
+                CancerCompany:`${canpolco1}`,
+                CancerPremium:`${canpolprem1}`,
+                CancerCashPayout:`${canpolcash1}`,
+                SpouseCancerCompany:`${canpolco2}`,
+                SpouseCancerPremium:`${canpolprem2}`,
+                SpouseCancerCashPayout:`${canpolcash2}`,
+                CancerCosts:`${cancosts}`,
+                HaveDental:`${hasdental}`,
+                DentalCompany:`${dentalco1}`,
+                DentalPremium:`${dentalprem1}`,
+                SpouseDentalCompany:`${dentalco2}`,
+                SpouseDentalPremium:`${dentalprem2}`,
+                HasAdvantage:`${hasadv}`,
+                SpouseHasAdvantage:`${spousehasadv}`,
+                HospitalCopay:`${hicopay1}`,
+                SpouseHospitalCopay:`${hicopay2}`,
+                CopayBind:`${hibind}`,
+                CopayPlans:`${hiplans}`
+            },
+            FinalExpense: {
+                HasLife:`${haslife}`,
+                SpouseHasLife:`${spousehaslife}`,
+                LifeCompany:`${lifeco1}`,
+                SpouseLifeCompany:`${lifeco2}`,
+                LifeBenefit:`${lifeben1}`,
+                SpouseLifeBenefit:`${lifeben2}`,
+                LifeFaceValue:`${lifeface1}`,
+                SpouseLifeFaceValue:`${lifeface2}`,
+                LifePremium:`${lifeprem1}`,
+                SpouseLifePremium:`${lifeprem2}`,
+                LifeInsPlans:`${lifeplans}`
+            },
+            Retirement: {
+                HasWillTrust:`${haswilltrust}`,
+                LastReviewed:`${trustrev}`,
+                HasProperty:`${hasprop}`,
+                MultiplePropeties:`${hasmulti}`,
+                BlendedFamily:`${hasblended}`,
+                Cars:`${hasautos}`,
+                Cash:`${hascash}`,
+                SocialSecurityEnough:`${ssfeel}`,
+                MonthlySS:`${monthlyss}`,
+                MonthlyPension:`${monthlypen}`,
+                MonthlyExpenses:`${monthlyexp}`,
+                CanSaveMoney:`${cansave}`,
+                Savings:`${savings}`,
+                RealEstate:`${realestate}`,
+                MutualFunds:`${mutuals}`,
+                LifeInsuranceCash:`${licash}`,
+                Annuities:`${annuities}`,
+                Stocks:`${stocks}`,
+                Bonds:`${bonds}`,
+                MoneyMarkets:`${moneymkts}`,
+                CDs:`${cds}`,
+                IRAs:`${iras}`,
+                ForOhWonK:`${forohwonk}`,
+                OtherAssets:`${other}`,
+                WhyTheseInvestments:`${whythese}`,
+                GoodReturns:`${goodreturns}`,
+                InvestingMotivation:`${motivation}`,
+                IncomeConcerns:`${incomeconcerns}`
             }
 
         };
@@ -331,6 +399,7 @@ const FactFinder = ({ navigation }) => {
             setsearchname={setsearchname}
             ssn1={ssn1}
             setssn1={setssn1}
+
             individualID={individualID}
             setindividualID={setindividualID}
             fname1={fname1}
@@ -338,7 +407,9 @@ const FactFinder = ({ navigation }) => {
             lname1={lname1}
             setlname1={setlname1}
             fname2={fname2}
+            setfname2={setfname2}
             lname2={lname2}
+            setlname2={setlname2}
             homephone={homephone}
             sethomephone={sethomephone}
             cell1={cell1}

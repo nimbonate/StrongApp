@@ -10,7 +10,7 @@ const Autofill = ({
     hasspouse, individualID, setindividualID,
     fname1, setfname1,
     lname1, setlname1,
-    fname2, lname2,
+    fname2, lname2, setlname2, setfname2,
     ssn1, setssn1,
     ssn2, setssn2,
     homephone, sethomephone, cell1, setcell1,
@@ -25,6 +25,8 @@ const Autofill = ({
     const clearData = () => {
         setfname1('')
         setlname1('')
+        setfname2('')
+        setlname2('')
         sethomephone('')
         setssn1('')
         console.log('Data Reset')
@@ -45,7 +47,7 @@ const Autofill = ({
     useEffect(() => {
         if (searchname) {
             //Calls AgencyBloc API for Client info
-            const delayDebounceFn = setTimeout(() => {//I forget what this is for, but it is necessary 
+            const delayDebounceFn = setTimeout(() => {//creates a timer that reruns setEffect 
             console.log(searchname)
             return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
             method: 'POST',

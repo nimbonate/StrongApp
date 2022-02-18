@@ -21,7 +21,7 @@ const Dashboard = ({ navigation }) => {
                 <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigation.navigate('Appointments')
+                    navigation.navigate('AppointmentStack')
                     }
                 >
                     <Text style={styles.buttonText}>Appointments</Text>

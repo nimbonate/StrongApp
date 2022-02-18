@@ -39,5 +39,6 @@ const ExitButton = () => {
 
 export default ExitButton
 
+
 const styles = StyleSheet.create({
 })

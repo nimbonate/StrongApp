@@ -7,6 +7,9 @@ import FactFinder from './screens/Agent/FactFinder';
 import Dashboard from './screens/Agent/Dashboard';
 import Appointments from './screens/Agent/Appointments';
 import NewAppt from './components/ApptComponents/NewAppt';
+import AppointmentSweep from './components/ApptComponents/AppointmentSweep';
+import MyAppointments from './components/ApptComponents/MyAppointments'
+import AppointmentList from './components/ApptComponents/AppointmentList';
 import Login from './screens/Agent/Login';
 import AdminLogin from './screens/Admin/AdminLogin';
 import AdminDashboard from './screens/Admin/AdminDashboard';
@@ -38,6 +41,11 @@ const AdminStackScreen = () => (
                     }}
                     />
                 <AdminStack.Screen
+                    name="SweepList"
+                    component={AppointmentSweep}
+                    options = {{animationEnabled: false}}
+                    />
+                <AdminStack.Screen
                     name="Fact Finder List"
                     component={FFList}
                     options={{ 
@@ -46,7 +54,32 @@ const AdminStackScreen = () => (
                     />
             </AdminStack.Navigator>
 )
-
+//Nested Navigation for Appointments
+const AppointmentStack = createNativeStackNavigator();
+const AppointmentStackScreen = () => (
+    <AppointmentStack.Navigator screenOptions={{headerShown: true}}>
+        <AppointmentStack.Screen
+            name="Appointments"
+            component={Appointments}
+            options = {{animationEnabled: false}}
+            />
+        <AppointmentStack.Screen
+            name="New Appointment"
+            component={NewAppt}
+            options={{animationEnabled: false}}
+            />
+        <AppointmentStack.Screen
+            name="Appointment List"
+            component={AppointmentList}
+            options = {{animationEnabled: false}}
+            />
+        <AppointmentStack.Screen
+            name="My Appointments"
+            component={MyAppointments}
+            options = {{animationEnabled: false}}
+            />
+    </AppointmentStack.Navigator>
+)
 //Screens and Navigation for Agents
 const AgentStack = createNativeStackNavigator();
 const AgentStackScreen = () => (
@@ -68,24 +101,24 @@ const AgentStackScreen = () => (
                     }}
                     />
                 <AgentStack.Screen
-                    name="New Appointment"
-                    component={NewAppt}
-                    options = {{animationEnabled: false}}
-                    />
-                <AgentStack.Screen
                     name="Business Submission Form"
                     component={BusSubForm}
                     options = {{animationEnabled: false}}
                     />
                 <AgentStack.Screen
-                    name="Appointments"
-                    component={Appointments}
-                    options = {{animationEnabled: false}}
+                    name="AppointmentStack"
+                    component={AppointmentStackScreen}
+                    options = {{
+                        animationEnabled: false, 
+                        headerShown: false}}
                     />
                 <AgentStack.Screen
                     name="Fact Finder"
                     component={FactFinder}
                     options={{
+                        headerLeft: () => {
+                            return null;
+                          },
                         animationEnabled: false,
                         headerRight: () => (
                             <ExitButton /> 

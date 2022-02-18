@@ -19,8 +19,8 @@ const Basics = ({setfname1, fname1,
             isKeyboardVisible
 }) => {
     
-    
-    const [detail, setdetail] = useState([])
+
+
 
     const toggleSwitch = () => sethasspouse(previousState => !previousState);
 

@@ -11,7 +11,7 @@ const Appointments = ({ navigation }) => {
                 <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigation.replace('New Apptointment')
+                    navigation.navigate('New Appointment')
                     }
                 >
                     <Text style={styles.buttonText}>New Appointment</Text>
@@ -19,7 +19,7 @@ const Appointments = ({ navigation }) => {
                 <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigation.navigate('Available Apptointments')
+                    navigation.navigate('Appointment List')
                     }
                 >
                     <Text style={styles.buttonText}>Available Apointments</Text>
@@ -30,7 +30,15 @@ const Appointments = ({ navigation }) => {
                     navigation.navigate('My Appointments')
                     }
                 >
-                    <Text style={styles.buttonText}>Submit Business</Text>
+                    <Text style={styles.buttonText}>My Appointments</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                style={styles.buttonOutline}
+                onPress={() =>
+                    navigation.replace('Dashboard')
+                    }
+                >
+                    <Text style={styles.buttonOutlineText}>Dashboard</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -64,6 +72,11 @@ const styles = StyleSheet.create({
         marginTop: 5,
         borderColor: '#0782f9',
         borderWidth: 2,
+        width: '100%',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center'
+
     },
     buttonText: {
         color: 'white',
