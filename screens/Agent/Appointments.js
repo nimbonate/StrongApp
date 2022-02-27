@@ -1,5 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
+import { TouchableOpacity, Text, View } from 'react-native'
+import { styles } from '../../components/styles'
 
 const Appointments = ({ navigation }) => {
 
@@ -46,46 +47,3 @@ const Appointments = ({ navigation }) => {
 }
 
 export default Appointments
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonContainer: {
-        width: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40,
-    },
-    button: {  
-        backgroundColor: '#0782f9',
-        marginTop: 5,
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center',
-    },
-    buttonOutline: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#0782f9',
-        borderWidth: 2,
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center'
-
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    buttonOutlineText: {
-        color: '#0782f9',
-        fontWeight: '700',
-        fontSize: 16,
-    }
-})

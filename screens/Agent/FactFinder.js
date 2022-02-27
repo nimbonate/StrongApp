@@ -9,6 +9,9 @@ import FinalExpense from '../../components/FFComponents/FinalExpense'
 import Retirement from '../../components/FFComponents/Retirement'
 import Referrals from '../../components/FFComponents/Referrals'
 import Review from '../../components/FFComponents/Review'
+
+import { styles } from '../../components/styles'
+
 import { db } from '../../firebase'
 import { authentication } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore/lite'
@@ -944,11 +947,11 @@ const FactFinder = ({ navigation }) => {
                         steps[page].component
                     }
                 </ScrollView>
-                <View style={styles.buttonContainer}>
+                <View style={styles.FFbuttonContainer}>
                     <View style={{flex:1}}>
                         {
                             page!== 0 ?
-                        <TouchableOpacity title={'Back'} style={styles.button} onPress={() =>{ setpage(page - 1) }}>
+                        <TouchableOpacity title={'Back'} style={styles.FFbutton} onPress={() =>{ setpage(page - 1) }}>
                             <Text style={styles.buttonText}>Back</Text>
                         </TouchableOpacity>
                         : null}
@@ -957,10 +960,10 @@ const FactFinder = ({ navigation }) => {
                     <View style={{flex:1}}>
                         {
                         page== steps.length - 1
-                        ? <TouchableOpacity  title={'Submit Fact Finder'} style={styles.button} onPress={() =>{ submitAlert() }}>
+                        ? <TouchableOpacity  title={'Submit Fact Finder'} style={styles.FFbutton} onPress={() =>{ submitAlert() }}>
                             <Text style={styles.buttonText}>Submit Fact Finder</Text>
                         </TouchableOpacity>
-                        : <TouchableOpacity  title={'Next'} style={styles.button} onPress={() =>{ setpage(page + 1) }}>
+                        : <TouchableOpacity  title={'Next'} style={styles.FFbutton} onPress={() =>{ setpage(page + 1) }}>
                             <Text style={styles.buttonText}>Next</Text>
                         </TouchableOpacity>
                         }
@@ -972,31 +975,3 @@ const FactFinder = ({ navigation }) => {
 
 export default FactFinder
 
-const styles = StyleSheet.create({
-    fullWidth: {
-        marginHorizontal: 15,
-      },
-    buttonContainer: {
-        color: 'rgba(0, 0, 255, 1)',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        height: 80,
-    },
-    button: {  
-        flex: 1,
-        backgroundColor: '#0782f9',
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        marginTop:10,
-        marginBottom:20,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-})

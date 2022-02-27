@@ -7,7 +7,7 @@ import FactFinder from './screens/Agent/FactFinder';
 import Dashboard from './screens/Agent/Dashboard';
 import Appointments from './screens/Agent/Appointments';
 import NewAppt from './components/ApptComponents/NewAppt';
-import AppointmentSweep from './components/ApptComponents/AppointmentSweep';
+import AppointmentSweep from './screens/Admin/AppointmentSweep';
 import MyAppointments from './components/ApptComponents/MyAppointments'
 import AppointmentList from './components/ApptComponents/AppointmentList';
 import Login from './screens/Agent/Login';
@@ -15,6 +15,7 @@ import AdminLogin from './screens/Admin/AdminLogin';
 import AdminDashboard from './screens/Admin/AdminDashboard';
 import BusSubForm from './screens/Agent/BusSubForm';
 import FFList from './screens/Admin/FFList';
+import ApptOverview from './screens/Admin/ApptOverview';
 import {navigationRef} from './components/RootNavigation';
 
 
@@ -41,8 +42,13 @@ const AdminStackScreen = () => (
                     }}
                     />
                 <AdminStack.Screen
-                    name="SweepList"
+                    name="Sweep List"
                     component={AppointmentSweep}
+                    options = {{animationEnabled: false}}
+                    />
+                <AdminStack.Screen
+                    name="Appointment Overview"
+                    component={ApptOverview}
                     options = {{animationEnabled: false}}
                     />
                 <AdminStack.Screen

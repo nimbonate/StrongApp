@@ -5,8 +5,8 @@ import {
     KeyboardAvoidingView, 
     TouchableOpacity, 
     TextInput, 
-    StyleSheet, 
     Text, 
+    Alert,
     View, 
     Modal,
     ScrollView 
@@ -14,6 +14,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { db, authentication } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore/lite'
+import { styles } from '../styles'
 
 //Form for creating a new appointment
 const NewAppt = ({ navigation }) => {
@@ -164,6 +165,42 @@ const NewAppt = ({ navigation }) => {
     }
 
     const [isKeyboardVisible, setKeyboardVisible] = useState(false)
+
+    //Function that checks to make sure necessary information
+    //is filled in before submitting.
+    const checkWork = () => {
+        if (fname1  &&
+            lname1 &&
+            homephone  &&
+            address &&
+            city &&
+            state &&
+            zip &&
+            houseMarking &&
+            healthConcerns )
+            {
+                SubmitNewAppt() 
+                navigation.replace('AppointmentStack')
+            }
+        else {
+            Alert.alert(
+                `Missing Info`,
+                `Please fill in all required fields before submitting`,
+                [
+                    {
+                        text: "Dismiss",
+                        onPress: () => {},
+                        style: "cancel",
+                    }
+                ],
+                {
+                    cancelable: false,
+                }
+            )
+        }
+    }
+
+
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
@@ -351,10 +388,10 @@ const NewAppt = ({ navigation }) => {
                 />
                 {isKeyboardVisible ? <View style={{height:260}}/>:null}
             </ScrollView>
-            <View style={styles.buttonContainer}>
+            <View style={styles.fullWidth}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => {SubmitNewAppt()}}>
+                    onPress={() => {checkWork()}}>
                     <Text style={styles.buttonText}>Submit for Sweep</Text>
                 </TouchableOpacity>
             </View>
@@ -364,98 +401,3 @@ const NewAppt = ({ navigation }) => {
 }
 
 export default NewAppt
-
-const styles = StyleSheet.create({
-    container : {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    titleText: {
-        fontSize: 20,
-        paddingBottom: 20
-    },
-    lableText: {
-        marginTop: 3
-    },
-    fullWidth: {
-        minWidth: '80%',
-        marginBottom: 20,
-    },
-    button: {  
-        flex: 1,
-        backgroundColor: '#0782f9',
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        marginTop:10,
-        marginBottom:20,
-        alignItems: 'center',
-    },
-    buttonOutline: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#0782f9',
-        borderWidth: 2,
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center'
-
-    },
-    buttonOutlineText: {
-        color: '#0782f9',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    buttonContainer: {
-        color: 'rgba(0, 0, 255, 1)',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        height: 80,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    textInputStyle: {
-        width: '95%',
-        height: 48,
-        borderWidth: 2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    },
-    responseInputStyle: {
-        width: '95%',
-        height: 144,
-        borderWidth: 2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        textAlignVertical: 'top',
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    },
-    modalView: {
-        flex: 1,
-        margin: 20,
-        marginVertical: 50,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 25,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-      },
-})
