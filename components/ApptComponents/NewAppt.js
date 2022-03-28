@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { 
     Switch, 
     Keyboard, 
@@ -16,37 +16,69 @@ import { db, authentication } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore/lite'
 import { styles } from '../styles'
 
+import {Formik} from 'formik'
+import { newApptSchema } from '../FormValidation'
+
+
 //Form for creating a new appointment
 const NewAppt = ({ navigation }) => {
 
-    const [fname1, setfname1] = useState('')
-    const [fname2, setfname2] = useState('')
-  
-    const [hasspouse, sethasspouse] = useState(false)
+    
+    //These are the values that formik and yup will check
+    const apptForm = {
+        
+        hasSpouse: false,
 
-    const [lname1, setlname1] = useState('')
-    const [lname2, setlname2] = useState('')
-
-    const [homephone, sethomephone] = useState('')
-    const [cell1, setcell1] = useState('')
-    const [cell2, setcell2] = useState('')
-
-    const [address, setaddress] = useState('')
-    const [city, setcity] = useState('')
-    const [state, setstate] = useState('')
-    const [zip, setzip] = useState('')
-
-    const [houseMarking, setHouseMarking] = useState('');//typical how to find the house answer
-
-    const [healthConcerns, setHealthConcerns] = useState('');//Recent health issues.
-
-    const [swept, setSwept] = useState(false);//This remains false until the appointment is swept and marked by an Admin
-
-    const [queue, setQueue] = useState(false);//Set to True if this appointment is available for split
-
-    const [settingAgent, setSettingAgent] = useState(`${authentication.currentUser.email}`);
-
-
+        firstName: '',
+        lastName: '',
+        
+        spouseFirstName: '',
+        spouseLastName: '',
+        
+        Phone1: '',
+        Phone2: '',
+        
+        Address: '',
+        City: '',
+        State: '',
+        Zip: '',
+        
+        houseMarking: '',
+        healthConcerns: ''
+    }
+    
+    const formRef = useRef();
+    
+    //This is where the Firebase doc is created after formik and yup have validated the inputs
+    const SubmitNewAppt = () => {
+        const NewAppointment = doc(db, `Appointments/${formRef.current.values.firstName} ${formRef.current.values.lastName}`)
+        const ApptData = {
+            SchedulingAgent: authentication.currentUser.email,
+            RunningAgent: '',
+            FirstName:`${formRef.current.values.firstName}`,
+            LastName:`${formRef.current.values.lastName}`,
+            hasSpouse: formRef.current.values.hasSpouse,
+            SpouseFirstName:`${formRef.current.values.spouseFirstName}`,
+            SpouseLastName:`${formRef.current.values.spouseLastName}`,
+            Phone1:`${formRef.current.values.Phone1}`,
+            Phone2:`${formRef.current.values.Phone2}`,
+            Address:`${formRef.current.values.Address}`,
+            City:`${formRef.current.values.City}`,
+            State:`${formRef.current.values.State}`,
+            Zip:`${formRef.current.values.Zip}`,
+            HouseMarking:`${formRef.current.values.houseMarking}`,
+            HealthConcerns:`${formRef.current.values.healthConcerns}`,
+            DateTime:`${formatDate()}`,
+            Swept: false,
+            SweepNotes: '',
+            Split: Split
+        }
+        setDoc(NewAppointment, ApptData);
+        return ApptData
+    }
+    
+    const [Split, setSplit] = useState(false);
+    
     //Date Time Picker Stuff
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
@@ -130,78 +162,17 @@ const NewAppt = ({ navigation }) => {
     }
     //End Date Time picker Stuff
 
-
+   
     //Changing the State of toggled values
-    const toggleSwitch = () => {sethasspouse(previousState => !previousState), setShow(false)};
-    const toggleSplit = () => {setQueue(previousState => !previousState), setShow(false)};
+    const toggleSplit = () => {setSplit(previousState => !previousState), setShow(false)};
 
 
 
-    //This is where the Firebase database is updated... well ideally
-    const NewAppointment = doc(db, `Appointments/${fname1}_${lname1}_Appt`)
-    const SubmitNewAppt = () => {
-        setSettingAgent(authentication.currentUser.email)
-        const ApptData = {
-            SchedulingAgent: `${settingAgent}`,
-            FirstName:`${fname1}`,
-            LastName:`${lname1}`,
-            HasSpouse:`${hasspouse}`,
-            SpouseFirstName:`${fname2}`,
-            SpouseLastName:`${lname2}`,
-            HomePhone:`${homephone}`,
-            CellPhone:`${cell1}`,
-            SpouseCellPhone:`${cell2}`,
-            Address:`${address}`,
-            City:`${city}`,
-            State:`${state}`,
-            Zip:`${zip}`,
-            HouseMarking:`${houseMarking}`,
-            HealthConcerns:`${healthConcerns}`,
-            DateTime:`${formatDate()}`,
-            Swept:`${swept}`,
-            Queue:`${queue}`
-        }
-        setDoc(NewAppointment, ApptData);
-    }
-
+    //Adds space for the keyboard when it's up
     const [isKeyboardVisible, setKeyboardVisible] = useState(false)
 
-    //Function that checks to make sure necessary information
-    //is filled in before submitting.
-    const checkWork = () => {
-        if (fname1  &&
-            lname1 &&
-            homephone  &&
-            address &&
-            city &&
-            state &&
-            zip &&
-            houseMarking &&
-            healthConcerns )
-            {
-                SubmitNewAppt() 
-                navigation.replace('AppointmentStack')
-            }
-        else {
-            Alert.alert(
-                `Missing Info`,
-                `Please fill in all required fields before submitting`,
-                [
-                    {
-                        text: "Dismiss",
-                        onPress: () => {},
-                        style: "cancel",
-                    }
-                ],
-                {
-                    cancelable: false,
-                }
-            )
-        }
-    }
 
-
-
+    //Using useEffect to Check when keyboard is up
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
           'keyboardDidShow',
@@ -225,177 +196,276 @@ const NewAppt = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView style={styles.fullWidth}>
+            <Formik
+                //Prevents a dumb glitch
+                enableReinitialize
+                //validates based on the Form Validation Schema
+                validationSchema={newApptSchema}
+                initialValues={apptForm}
+                //Prevents Errors from popping up as they type
+                validateOnChange={false}
+                //Used to reference values outside of Formik form
+                innerRef={formRef}
+                onSubmit={(values, actions)=>(
+                    console.log(SubmitNewAppt()),
+                    SubmitNewAppt(values),
+                    navigation.navigate('Appointments')
+                )}
+            >
+            {(props)=> (
+            <>
             <ScrollView style={{marginHorizontal:5, height:'90%'}}>
                 <Text style={styles.titleText}>New Appointment</Text> 
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>First Name</Text>
-                    </View>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Last Name</Text>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={fname1} onChangeText={(value) => {setfname1(value)}}/>
-                    </View>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lname1} onChangeText={(value) => {setlname1(value)}}/>
-                    </View>
-                </View>
-                
-                <Text style={styles.lableText}>Do you have a Spouse?</Text>
-                <Switch 
-                    trackColor={{ false:'#767577', true:'#81b0ff' }}
-                    thumbColor={hasspouse ? '#228B22' : '#f4f3f4'}
-                    onValueChange={toggleSwitch}
-                    value={hasspouse}
-                />
-                { hasspouse ? <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Spouse First Name</Text> 
-                    </View>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Spouse Last Name</Text>
-                    </View> 
-                </View> : null}
-                { hasspouse ? <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={fname2} onChangeText={(value) => {setfname2(value)}}/> 
-                    </View>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={lname2} onChangeText={(value) => {setlname2(value)}}/> 
-                    </View>
-                </View> 
-                : null}
-                <Text style={styles.lableText}>Home Phone</Text>
-                <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={homephone} onChangeText={(value) => {sethomephone(value)}}/>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Cell Phone</Text>
-                    </View>
-                    { hasspouse ? <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Spouse Cell Phone</Text>
-                    </View> : null}
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={cell1} onChangeText={(value) => {setcell1(value)}}/>
-                    </View>
-                    { hasspouse ? <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={cell2} onChangeText={(value) => {setcell2(value)}}/>
-                    </View> : null}
-                </View>
-                <Text>Address</Text>
-                <TextInput style={styles.textInputStyle} value={address} onChangeText={(value) => {setaddress(value)}}/>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>City</Text>
-                    </View>
-                    <View style={{flex:0.5}}>
-                        <Text>State</Text>
-                    </View>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Zip</Text>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} value={city} onChangeText={(value) => {setcity(value)}}/>
-                    </View>
-                    <View style={{flex:0.5}}>
-                        <TextInput style={styles.textInputStyle} value={state} onChangeText={(value) => {setstate(value)}}/>
-                    </View>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.textInputStyle} keyboardType='numeric' value={zip.toString()} onChangeText={(value) => {setzip(value)}}/>
-                    </View>
-                </View>
-                
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TouchableOpacity style={styles.button} onPress={showDatepicker}>
-                            <Text style={styles.buttonText}>Choose Date</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{flex:.05}}/>
-                    <View style={{flex:1}}>
-                        <TouchableOpacity style={styles.button} onPress={showTimepicker}>
-                            <Text style={styles.buttonText}>Choose Time</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={styles.buttonContainer, {flex:1}}>
-                        <TouchableOpacity style={styles.buttonOutline}>
-                            <Text style={styles.buttonOutlineText}>{formatDate()}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <Modal 
-                    visible={show}
-                    style={{height:800}}
-                    transparent='true'>
-                    <View style={styles.modalView}>
-                        <View style={{width:'100%'}}>
-                            <DateTimePicker
-                            textColor='black'
-                            testID="dateTimePicker"
-                            value={date}
-                            mode={mode}
-                            is24Hour={true}
-                            minuteInterval={30}
-                            maximumDate={twoWeeksFromNow}
-                            minimumDate={today}
-                            display="spinner"
-                            onChange={onChange}
-                            />
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                                style={styles.textInputStyle} 
+                                error='Invalid name' 
+                                value={props.values.firstName} 
+                                placeholder='First Name'
+                                onChangeText={props.handleChange('firstName')}
+                                maxLength={12}/>
                         </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => {setShow(false)}}>
-                                <Text style={styles.buttonText}>Close</Text>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                                style={styles.textInputStyle} 
+                                value={props.values.lastName} 
+                                placeholder= 'Last Name'
+                                onChangeText={props.handleChange('lastName')}
+                                maxLength={12}/>
+                        </View>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.firstName }</Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.lastName }</Text>
+                        </View>
+                    </View>
+                    <Text style={styles.lableText}>Do you have a Spouse?</Text>
+                    <Switch 
+                    style={{marginBottom:5}}
+                    trackColor={{ false:'#767577', true:'#81b0ff' }}
+                    thumbColor={props.values.hasSpouse ? '#228B22' : '#f4f3f4'}
+                    onValueChange={(value) => {
+                        props.setFieldValue("hasSpouse", value);
+                      }}
+                      value={props.values.hasSpouse}
+                    />
+                    { props.values.hasSpouse ? <>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                            style={styles.textInputStyle} 
+                            value={props.values.spouseFirstName}
+                            placeholder='Spouse First Name'
+                            onChangeText={props.handleChange('spouseFirstName')}
+                            maxLength={12}/> 
+                        </View>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                            style={styles.textInputStyle} 
+                            value={props.values.spouseLastName} 
+                            placeholder='Spouse Last Name'
+                            onChangeText={props.handleChange('spouseLastName')}
+                            maxLength={12}/> 
+                        </View>
+                    </View>
+                    { props.errors.spouseFirstName || props.errors.spouseLastName ? <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>Test</Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.spouseLastName }</Text>
+                        </View>
+                    </View> : null }
+                    </>: null}
+                    <TextInput 
+                    style={styles.textInputStyle} 
+                    keyboardType={'phone-pad'} 
+                    value={props.values.Phone1} 
+                    placeholder='Phone Number'
+                    onChangeText={props.handleChange('Phone1')}
+                    maxLength={11}/>
+                    { props.errors.Phone1 ? <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.Phone1 }</Text>
+                        </View>
+                    </View> : null }
+                    <View style={{flexDirection:'row'}}>
+                       
+                        { props.values.hasSpouse ? <View style={{flex:1}}>
+                            <TextInput 
+                                style={styles.textInputStyle} 
+                                keyboardType={'phone-pad'} 
+                                value={props.values.Phone2} 
+                                placeholder='Spouse Phone (Optional)'
+                                onChangeText={props.handleChange('Phone2')}
+                                maxLength={11}/>
+                        </View> : null}
+                        { props.errors.Phone2 ? <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.Phone2 }</Text>
+                        </View> : null }
+                    </View>
+                    <TextInput 
+                    style={styles.textInputStyle} 
+                    value={props.values.Address} 
+                    placeholder='Street Address'
+                    onChangeText={props.handleChange('Address')}
+                    maxLength={45}/>
+                    { props.errors.Address ? <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.Address }</Text>
+                        </View>
+                    </View> : null }
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                            style={styles.textInputStyle} 
+                            value={props.values.City} 
+                            placeholder='City'
+                            onChangeText={props.handleChange('City')}
+                            maxLength={20}/>
+                        </View>
+                        <View style={{flex:0.5}}>
+                            <TextInput 
+                            style={styles.textInputStyle} 
+                            value={props.values.State} 
+                            placeholder='State'
+                            onChangeText={props.handleChange('State')}
+                            maxLength={15}/>
+                        </View>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                            style={styles.textInputStyle} 
+                            keyboardType='numeric' 
+                            value={props.values.Zip} 
+                            placeholder='Zip'
+                            onChangeText={props.handleChange('Zip')}
+                            maxLength={5}/>
+                        </View>
+                    </View>
+                    { props.errors.City || props.errors.State || props.errors.Zip ? 
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.City }</Text>
+                        </View>
+                        <View style={{flex:.5}}>
+                            <Text style={styles.errorText}>{ props.errors.State }</Text>
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.Zip }</Text>
+                        </View>
+                    </View> : null }
+                    
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TouchableOpacity style={styles.button} onPress={showDatepicker}>
+                                <Text style={styles.buttonText}>Choose Date</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{flex:.05}}/>
+                        <View style={{flex:1}}>
+                            <TouchableOpacity style={styles.button} onPress={showTimepicker}>
+                                <Text style={styles.buttonText}>Choose Time</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                </Modal>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>House Identifier</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TouchableOpacity style={styles.buttonOutline}>
+                                <Text style={styles.buttonOutlineText}>{formatDate()}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.responseInputStyle} value={houseMarking} onChangeText={(value) => {setHouseMarking(value)}}/>
+                    <Modal 
+                    visible={show}
+                    style={{height:800}}
+                    transparent='true'>
+                        <View style={styles.modalView}>
+                            <View style={{width:'100%'}}>
+                                <DateTimePicker
+                                textColor='black'
+                                testID="dateTimePicker"
+                                value={date}
+                                mode={mode}
+                                is24Hour={true}
+                                minuteInterval={30}
+                                maximumDate={twoWeeksFromNow}
+                                minimumDate={today}
+                                display="spinner"
+                                onChange={onChange}
+                                />
+                            </View>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity
+                                style={styles.button}
+                                onPress={() => {setShow(false)}}>
+                                    <Text style={styles.buttonText}>Close</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.lableText}>House Identifier</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <Text style={styles.lableText}>Health Concerns</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                                multiline
+                                style={styles.responseInputStyle} 
+                                value={props.values.houseMarking} 
+                                onChangeText={props.handleChange('houseMarking')}/>
+                        </View>
                     </View>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <View style={{flex:1}}>
-                        <TextInput style={styles.responseInputStyle} value={healthConcerns} onChangeText={(value) => {setHealthConcerns(value)}}/>
+                    { props.errors.houseMarking ? <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.houseMarking }</Text>
+                        </View>
+                    </View> : null }
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.lableText}>Health Concerns</Text>
+                        </View>
                     </View>
-                </View>
-                <Text style={styles.lableText}>Available for Split?</Text>
-                <Switch 
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <TextInput 
+                                multiline
+                                style={styles.responseInputStyle} 
+                                value={props.values.healthConcerns} 
+                                onChangeText={props.handleChange('healthConcerns')}/>
+                        </View>
+                    </View>
+                    { props.errors.healthConcerns ? <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Text style={styles.errorText}>{ props.errors.healthConcerns }</Text>
+                        </View>
+                    </View> : null }
+                    <Text style={styles.lableText}>Available for Split?</Text>
+                    <Switch 
+                    style={{marginBottom:5}}
                     trackColor={{ false:'#767577', true:'#81b0ff' }}
-                    thumbColor={ queue ? '#228B22' : '#f4f3f4'}
+                    thumbColor={ Split ? '#228B22' : '#f4f3f4'}
                     onValueChange={toggleSplit}
-                    value={queue}
-                />
+                    value={Split}
+                    />
                 {isKeyboardVisible ? <View style={{height:260}}/>:null}
             </ScrollView>
             <View style={styles.fullWidth}>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => {checkWork()}}>
+                    onPress={(
+                        props.handleSubmit)}>
                     <Text style={styles.buttonText}>Submit for Sweep</Text>
                 </TouchableOpacity>
             </View>
-
+            </>
+            )}
+            </Formik>
         </KeyboardAvoidingView>
     )
 }

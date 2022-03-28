@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-
+import { styles } from '../styles'
+import { basicsForm } from '../../screens/Agent/FactFinder'
 
 //This Page needs to be improved to additionally fill in policy data and 
 //other details. This requires a second API call, and due to the acyncronous
 //nature of the API call, I cannot get it to work quite yet. 
 
 const Autofill = ({
-    hasspouse, individualID, setindividualID,
-    fname1, setfname1,
-    lname1, setlname1,
-    fname2, lname2, setlname2, setfname2,
+    hasSpouse, individualID, setindividualID,
+    firstName, setfirstName,
+    lastName, setlasName,
+    spouseFirstName, spouseLastName, setspouseLastName, setspouseFirstName,
     ssn1, setssn1,
     ssn2, setssn2,
-    homephone, sethomephone, cell1, setcell1,
-    cell2, address, setaddress,
+    Phone1, setPhone1, Phone2, setPhone2,
+    Phone3, address, setaddress,
     city, setcity, state, setstate, zip, setzip,
     searchname, setsearchname,
     clientIndex, setClientIndex
@@ -23,22 +24,20 @@ const Autofill = ({
     const [data, setData] = useState([]);
 
     const clearData = () => {
-        setfname1('')
-        setlname1('')
-        setfname2('')
-        setlname2('')
-        sethomephone('')
-        setssn1('')
+        setfirstName('')
+        setlasName('')
+        setspouseFirstName('')
+        setspouseLastName('')
+        setPhone1('')
         console.log('Data Reset')
     }
 
 
     //Function to fill in Fact Finder with current Client Data
     const fillData = (data) => {
-        setfname1(data.firstName)
-        setlname1(data.lastName)
-        sethomephone(data.homePhone)
-        setssn1(data.ssn)
+        setfirstName(data.firstName)
+        setlasName(data.lastName)
+        setPhone1(data.homePhone)
         console.log(data.firstName + ' set as client') 
     }
 
@@ -77,20 +76,18 @@ const Autofill = ({
     //On this first TextInput, I really need to find a way to make the onChangeText trigger the getClients function so
     //that the client list updates as the user type.
     return(
-        <View style={{ flex: 1, paddingTop: 10}}>
-           <View style={{flexDirection:'row'}}>
-                <View style={styles.inputContainer, {flex:1}}>
-                    <TextInput style={styles.input} 
-                        placeholder='Last Name' 
-                        value={searchname} 
-                        onChangeText={(value) => {
-                            setsearchname(value)//sets our API call search name without setting lname1
-                            setClientIndex(null)//resets the selection UI
-                            clearData()//Clears autofilled data so agents can start a new client fact finder
-                        }}/>
-                </View>
+        <View style={styles.container}>
+            <View style={{height:10}}/>
+            <View style={styles.inputContainer}>
+                <TextInput style={styles.input} 
+                    placeholder='Last Name' 
+                    value={searchname} 
+                    onChangeText={(value) => {
+                        setsearchname(value)//sets our API call search name without setting lastName
+                        setClientIndex(null)//resets the selection UI
+                        clearData()//Clears autofilled data so agents can start a new client fact finder
+                    }}/>
             </View>
-
             <View style={{height: 20}}/>
 
             <Text style={{textAlign:'center'}}>Search Existing Clients</Text>
@@ -117,46 +114,3 @@ const Autofill = ({
 }
 
 export default Autofill
-
-const styles = StyleSheet.create({
-    button: {  
-        backgroundColor: '#0782f9',
-        width: '100%',
-        padding: 15,
-        marginTop: 10,
-        borderRadius: 10,
-        alignItems: 'center',
-        borderColor: '#0782f9',
-        borderWidth: 2,
-    },
-    buttonOutline: {
-        width: '100%',
-        padding: 15,
-        backgroundColor: 'white',
-        marginTop: 10,
-        borderColor: '#0782f9',
-        borderRadius: 10,
-        alignItems: 'center',
-        borderWidth: 2,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    buttonOutlineText: {
-        color: '#0782f9',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-    inputContainer: {
-        width: '80%'
-    },
-    input: {
-        backgroundColor: 'white',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 10,
-        marginTop: 5,
-    }
-})

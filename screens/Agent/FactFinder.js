@@ -56,26 +56,22 @@ const FactFinder = ({ navigation }) => {
     //If clientIndex is null, it is a new client. if clientIndex is not null, they are updating an existing client.
     const [clientIndex, setClientIndex] = useState(null) //Used to change UI of selected Client
 
-    //Marker for whether the Fact Finder needs to be reviewed by an Admin(true) or an Agent(false)
-    //Is switched to true when fact finder is submitted
-    //Is switched to false if returned to agent for review
-    const [readyForReview, setreadyForReview] = useState(false);
 
     //Basics
-    const [fname1, setfname1] = useState('')
-    const [fname2, setfname2] = useState('')
+    const [firstName, setfirstName] = useState('')
+    const [spouseFirstName, setspouseFirstName] = useState('')
   
-    const [hasspouse, sethasspouse] = useState(false)
+    const [hasSpouse, sethasSpouse] = useState(false)
 
-    const [lname1, setlname1] = useState('')
-    const [lname2, setlname2] = useState('')
+    const [lastName, setlasName] = useState('')
+    const [spouseLastName, setspouseLastName] = useState('')
   
     const [ssn1, setssn1] = useState('')
     const [ssn2, setssn2] = useState('')
 
-    const [homephone, sethomephone] = useState('')
-    const [cell1, setcell1] = useState('')
-    const [cell2, setcell2] = useState('')
+    const [Phone1, setPhone1] = useState('')
+    const [Phone2, setPhone2] = useState('')
+    const [Phone3, setPhone3] = useState('')
 
     const [occ1, setocc1] = useState('')
     const [occ2, setocc2] = useState('')
@@ -193,8 +189,8 @@ const FactFinder = ({ navigation }) => {
 
     //Referrals
 
-    const [reffname1, setreffname1] = useState('')
-    const [reflname1, setreflname1] = useState('')
+    const [reffirstName, setreffirstName] = useState('')
+    const [reflastName, setreflastName] = useState('')
     const [refphone1, setrefphone1] = useState('')
     const [refaddy1, setrefaddy1] = useState('')
     
@@ -274,120 +270,120 @@ const FactFinder = ({ navigation }) => {
 
     };
     
-    const FactFinder = doc(db, `factFinders/${lname1}_${fname1}_FF`)//Sets up a document within the factFinders collection
+    const FactFinder = doc(db, `factFinders/${lastName} ${firstName}`)//Sets up a document within the factFinders collection
     //Submits data as a series of Key Value Pairs
     const SubmitFF = () => {
-        setreadyForReview(true);//Marks that the Fact Finder is ready to be reviewed by an Admin
         const FFData = {
-            ReviewReady: `${readyForReview}`,
-            Agent: `${authentication.currentUser.email}`,
+            reviewed: false,
+            Agent: authentication.currentUser.email,
             Basics: {
-                FirstName: `${fname1}`,
-                LastName: `${lname1}`,
-                HasSpouse: `${hasspouse}`,
-                SpouseFirstName: `${fname2}`,
-                SpouseLastName: `${lname2}`,
-                SSN: `${ssn1}`,
-                SpouseSSN: `${ssn2}`,
-                HomePhone: `${homephone}`,
-                Cellphon: `${cell1}`,
-                Occupation: `${occ1}`,
-                SpouseCell: `${cell2}`,
-                SpouseOccupation: `${occ2}`,
-                Address: `${address}`,
-                City: `${city}`,
-                State: `${state}`,
-                Zip: `${zip}`},
+                FirstName: firstName,
+                LastName: lastName,
+                hasSpouse: hasSpouse,
+                SpouseFirstName: spouseFirstName,
+                SpouseLastName: spouseLastName,
+                ssn1: ssn1,
+                ssn2: ssn2,
+                Phone1: Phone1,
+                Phone2: Phone2,
+                Phone3: Phone3,
+                occ1: occ1,
+                occ2: occ2,
+                Address: address,
+                City: city,
+                State: state,
+                Zip: zip
+            },
             Medical: {
-                HeathcareCompany:`${hco1}`,
-                HealthcarePlan:`${hplan1}`,
-                HealthcarePremium:`${hprem1}`,
-                RxCompany:`${rxco1}`,
-                SpouseHealthcareCompany:`${hco2}`,
-                SpouseHealthcarePlan:`${hplan2}`,
-                SpouseHealthcarePremium:`${hprem2}`,
-                SpouseRxCompany:`${rxco2}`,
-                InPatientDeductible:`${advdduct}`,
-                SpouseInPatientDeductible:`${spouseadvdduct}`,
-                HealthcareConcerns:`${concerns}`,
-                HealthcareChanges:`${changes}`
+                hco1: hco1,
+                hplan1: hplan1,
+                hprem1: hprem1,
+                rxco1: rxco1,
+                hco2: hco2,
+                hplan2: hplan2,
+                hprem2: hprem2,
+                rxco2: rxco2,
+                advdduct: advdduct,
+                spouseadvdduct: spouseadvdduct,
+                concerns: concerns,
+                changes: changes
             },
             LongTermCare: {
-                HaveLongTermCare:`${hasltc}`,
-                ExtendedCareBenefit:`${ecareben1}`,
-                ExtendedCareCompany:`${ecareco1}`,
-                ExtendedCarePremium:`${ecareprem1}`,
-                SpouseECBenefit:`${ecareben2}`,
-                SpouseECCompany:`${ecareco2}`,
-                SpouseECPremium:`${ecareprem2}`,
-                KnowAnyoneAtNH:`${know}`,
-                HowHasNHEffected:`${nhaffect}`,
-                NursingHomeConcerns:`${nhconcerns}`,
-                ChildrenBurdenConcerns:`${burdenconcerns}`,
+                hasltc: hasltc,
+                ecareben1: ecareben1,
+                ecareco1: ecareco1,
+                ecareprem1: ecareprem1,
+                ecareben2: ecareben2,
+                ecareco2: ecareco2,
+                ecareprem2: ecareprem2,
+                know: know,
+                nhaffect: nhaffect,
+                nhconcerns: nhconcerns,
+                burdenconcerns: burdenconcerns,
             },
             Auxiliary: {
-                HaveCancerPolicies:`${hascanpol}`,
-                CancerCompany:`${canpolco1}`,
-                CancerPremium:`${canpolprem1}`,
-                CancerCashPayout:`${canpolcash1}`,
-                SpouseCancerCompany:`${canpolco2}`,
-                SpouseCancerPremium:`${canpolprem2}`,
-                SpouseCancerCashPayout:`${canpolcash2}`,
-                CancerCosts:`${cancosts}`,
-                HaveDental:`${hasdental}`,
-                DentalCompany:`${dentalco1}`,
-                DentalPremium:`${dentalprem1}`,
-                SpouseDentalCompany:`${dentalco2}`,
-                SpouseDentalPremium:`${dentalprem2}`,
-                HasAdvantage:`${hasadv}`,
-                SpouseHasAdvantage:`${spousehasadv}`,
-                HospitalCopay:`${hicopay1}`,
-                SpouseHospitalCopay:`${hicopay2}`,
-                CopayBind:`${hibind}`,
-                CopayPlans:`${hiplans}`
+                hascanpol: hascanpol,
+                canpolco1: canpolco1,
+                canpolprem1: canpolprem1,
+                canpolcash1: canpolcash1,
+                canpolco2: canpolco2,
+                canpolprem2: canpolprem2,
+                canpolcash2: canpolcash2,
+                CanCosts: cancosts,
+                hasdental: hasdental,
+                dentalco1: dentalco1,
+                dentalprem1: dentalprem1,
+                dentalco2: dentalco2,
+                dentalprem2: dentalprem2,
+                hasadv: hasadv,
+                spousehasadv: spousehasadv,
+                hicopay1: hicopay1,
+                hicopay2: hicopay2,
+                hibind: hibind,
+                hiplans: hiplans
             },
             FinalExpense: {
-                HasLife:`${haslife}`,
-                SpouseHasLife:`${spousehaslife}`,
-                LifeCompany:`${lifeco1}`,
-                SpouseLifeCompany:`${lifeco2}`,
-                LifeBenefit:`${lifeben1}`,
-                SpouseLifeBenefit:`${lifeben2}`,
-                LifeFaceValue:`${lifeface1}`,
-                SpouseLifeFaceValue:`${lifeface2}`,
-                LifePremium:`${lifeprem1}`,
-                SpouseLifePremium:`${lifeprem2}`,
-                LifeInsPlans:`${lifeplans}`
+                haslife: haslife,
+                spousehaslife: spousehaslife,
+                lifeco1: lifeco1,
+                lifeco2: lifeco2,
+                lifeben1: lifeben1,
+                lifeben2: lifeben2,
+                lifeface1: lifeface1,
+                lifeface2: lifeface2,
+                lifeprem1: lifeprem1,
+                lifeprem2: lifeprem2,
+                lifeplans: lifeplans
             },
             Retirement: {
-                HasWillTrust:`${haswilltrust}`,
-                LastReviewed:`${trustrev}`,
-                HasProperty:`${hasprop}`,
-                MultiplePropeties:`${hasmulti}`,
-                BlendedFamily:`${hasblended}`,
-                Cars:`${hasautos}`,
-                Cash:`${hascash}`,
-                SocialSecurityEnough:`${ssfeel}`,
-                MonthlySS:`${monthlyss}`,
-                MonthlyPension:`${monthlypen}`,
-                MonthlyExpenses:`${monthlyexp}`,
-                CanSaveMoney:`${cansave}`,
-                Savings:`${savings}`,
-                RealEstate:`${realestate}`,
-                MutualFunds:`${mutuals}`,
-                LifeInsuranceCash:`${licash}`,
-                Annuities:`${annuities}`,
-                Stocks:`${stocks}`,
-                Bonds:`${bonds}`,
-                MoneyMarkets:`${moneymkts}`,
-                CDs:`${cds}`,
-                IRAs:`${iras}`,
-                ForOhWonK:`${forohwonk}`,
-                OtherAssets:`${other}`,
-                WhyTheseInvestments:`${whythese}`,
-                GoodReturns:`${goodreturns}`,
-                InvestingMotivation:`${motivation}`,
-                IncomeConcerns:`${incomeconcerns}`
+                haswilltrust: haswilltrust,
+                trustrev: trustrev,
+                hasprop: hasprop,
+                hasmulti: hasmulti,
+                hasblended: hasblended,
+                hasautos: hasautos,
+                hascash: hascash,
+                ssfeel: ssfeel,
+                monthlyss: monthlyss,
+                monthlypen: monthlypen,
+                monthlyexp: monthlyexp,
+                cansave: cansave,
+                savings: savings,
+                realestate: realestate,
+                mutuals: mutuals,
+                licash: licash,
+                annuities: annuities,
+                stocks: stocks,
+                bonds: bonds,
+                moneymkts: moneymkts,
+                cds: cds,
+                iras: iras,
+                forohwonk: forohwonk,
+                other: other,
+                whythese: whythese,
+                goodreturns: goodreturns,
+                motivation: motivation,
+                incomeconcerns: incomeconcerns
             }
 
         };
@@ -396,7 +392,7 @@ const FactFinder = ({ navigation }) => {
 
     //An array with references to all of the pages and the state variables used on that page.
     const steps=[{
-        name:'Autofill Check',
+        name: 'Autofill Check',
         component: <Autofill 
             searchname={searchname}
             setsearchname={setsearchname}
@@ -405,19 +401,19 @@ const FactFinder = ({ navigation }) => {
 
             individualID={individualID}
             setindividualID={setindividualID}
-            fname1={fname1}
-            setfname1={setfname1}
-            lname1={lname1}
-            setlname1={setlname1}
-            fname2={fname2}
-            setfname2={setfname2}
-            lname2={lname2}
-            setlname2={setlname2}
-            homephone={homephone}
-            sethomephone={sethomephone}
-            cell1={cell1}
-            setcell1={setcell1}
-            cell2={cell2}
+            firstName={firstName}
+            setfirstName={setfirstName}
+            lastName={lastName}
+            setlasName={setlasName}
+            spouseFirstName={spouseFirstName}
+            setspouseFirstName={setspouseFirstName}
+            spouseLastName={spouseLastName}
+            setspouseLastName={setspouseLastName}
+            Phone1={Phone1}
+            setPhone1={setPhone1}
+            Phone2={Phone2}
+            setPhone2={setPhone2}
+            Phone3={Phone3}
             address={address}
             setaddress={setaddress}
             city={city}
@@ -436,24 +432,24 @@ const FactFinder = ({ navigation }) => {
             setKeyboardVisible={setKeyboardVisible}
             individualID={individualID}
             setindividualID={setindividualID}
-            setfname1={setfname1}
-            fname1={fname1}
-            setlname1={setlname1}
-            lname1={lname1}
-            sethasspouse={sethasspouse}
-            hasspouse={hasspouse}
+            setfirstName={setfirstName}
+            firstName={firstName}
+            setlasName={setlasName}
+            lastName={lastName}
+            sethasSpouse={sethasSpouse}
+            hasSpouse={hasSpouse}
 
-            setfname2={setfname2}
-            fname2={fname2}
-            setlname2={setlname2}
-            lname2={lname2}
+            setspouseFirstName={setspouseFirstName}
+            spouseFirstName={spouseFirstName}
+            setspouseLastName={setspouseLastName}
+            spouseLastName={spouseLastName}
 
-            homephone={homephone}
-            sethomephone={sethomephone}
-            cell1={cell1}
-            setcell1={setcell1}
-            cell2={cell2}
-            setcell2={setcell2}
+            Phone1={Phone1}
+            setPhone1={setPhone1}
+            Phone2={Phone2}
+            setPhone2={setPhone2}
+            Phone3={Phone3}
+            setPhone3={setPhone3}
 
             setocc1={setocc1}
             occ1={occ1}
@@ -474,11 +470,11 @@ const FactFinder = ({ navigation }) => {
             />
     },
     {
-        name:'Medical',
-        component:<Medical 
+        name: 'Medical',
+        component: <Medical 
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}
-            hasspouse={hasspouse}
+            hasSpouse={hasSpouse}
             hasadv={hasadv}
             sethasadv={sethasadv}
             spousehasadv={spousehasadv}
@@ -518,11 +514,11 @@ const FactFinder = ({ navigation }) => {
         />
     },
     {
-        name:'LongTerm',
+        name: 'LongTerm',
         component: <LongTerm 
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}
-            hasspouse={hasspouse}
+            hasSpouse={hasSpouse}
 
             hasltc={hasltc}
             sethasltc={sethasltc}
@@ -558,7 +554,7 @@ const FactFinder = ({ navigation }) => {
         component: <Auxiliary 
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}
-            hasspouse={hasspouse}
+            hasSpouse={hasSpouse}
 
             hascanpol={hascanpol}
             sethascanpol={sethascanpol}
@@ -611,7 +607,7 @@ const FactFinder = ({ navigation }) => {
         component: <FinalExpense 
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}
-            hasspouse={hasspouse}
+            hasSpouse={hasSpouse}
 
             haslife={haslife}
             sethaslife={sethaslife}
@@ -661,7 +657,7 @@ const FactFinder = ({ navigation }) => {
         component: <Retirement 
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}   
-            hasspouse={hasspouse}
+            hasSpouse={hasSpouse}
             
             ssfeel={ssfeel}
             setssfeel={setssfeel}
@@ -720,10 +716,10 @@ const FactFinder = ({ navigation }) => {
         component: <Referrals
             isKeyboardVisible={isKeyboardVisible}
             setKeyboardVisible={setKeyboardVisible}
-            reffname1={reffname1}
-            setreffname1={setreffname1}
-            reflname1={reflname1}
-            setreflname1={setreflname1}
+            reffirstName={reffirstName}
+            setreffirstName={setreffirstName}
+            reflastName={reflastName}
+            setreflastName={setreflastName}
             refphone1={refphone1}
             setrefphone1={setrefphone1}
             refaddy1={refaddy1}
@@ -808,16 +804,16 @@ const FactFinder = ({ navigation }) => {
     {
         name:'Review and Submit',
         component: <Review 
-            reffname1={reffname1}
+            reffirstName={reffirstName}
             refphone1={refphone1}
-            fname1={fname1}
-            lname1={lname1}
-            hasspouse={hasspouse}
-            fname2={fname2}
-            lname2={lname2}
-            homephone={homephone}
-            cell1={cell1}
-            cell2={cell2}
+            firstName={firstName}
+            lastName={lastName}
+            hasSpouse={hasSpouse}
+            spouseFirstName={spouseFirstName}
+            spouseLastName={spouseLastName}
+            Phone1={Phone1}
+            Phone2={Phone2}
+            Phone3={Phone3}
             occ1={occ1}
             occ2={occ2}
             address={address}
@@ -906,9 +902,9 @@ const FactFinder = ({ navigation }) => {
     /*{
         name:'Signatures',
         component: <Signatures
-            fname1={fname1}
-            fname2={fname2}
-            hasspouse={hasspouse}
+            firstName={firstName}
+            spouseFirstName={spouseFirstName}
+            hasSpouse={hasSpouse}
             clisig={clisig}
             setclisig={setclisig}
             spousig={spousig}
@@ -942,7 +938,7 @@ const FactFinder = ({ navigation }) => {
 
     return (
         <KeyboardAvoidingView style={{maxHeight: '100%', minHeight: '100%', paddingBottom: 10}}>
-                <ScrollView style={styles.fullWidth}>
+                <ScrollView style={{marginHorizontal:5}}>
                     {
                         steps[page].component
                     }
@@ -961,7 +957,7 @@ const FactFinder = ({ navigation }) => {
                         {
                         page== steps.length - 1
                         ? <TouchableOpacity  title={'Submit Fact Finder'} style={styles.FFbutton} onPress={() =>{ submitAlert() }}>
-                            <Text style={styles.buttonText}>Submit Fact Finder</Text>
+                            <Text style={styles.buttonText}>Submit</Text>
                         </TouchableOpacity>
                         : <TouchableOpacity  title={'Next'} style={styles.FFbutton} onPress={() =>{ setpage(page + 1) }}>
                             <Text style={styles.buttonText}>Next</Text>

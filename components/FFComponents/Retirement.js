@@ -1,7 +1,9 @@
 import React from 'react'
-import { StyleSheet, Switch, Text, TextInput, View } from 'react-native'
+import { Switch, Text, TextInput, View } from 'react-native'
 
-const Retirement = ({hasspouse,
+import { styles } from '../styles'
+
+const Retirement = ({hasSpouse,
                 ssfeel, setssfeel,
                 monthlyss, setmonthlyss,
                 monthlypen, setmonthlypen,
@@ -31,21 +33,29 @@ const Retirement = ({hasspouse,
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Retirement</Text>
             <Text style={styles.lableText}>How do you feel about your SS payment?</Text>
-            <TextInput style={styles.responseInputStyle} value={ssfeel} onChangeText={(value) => {setssfeel(value)}}/>
+            <TextInput 
+                multiline
+                style={styles.responseInputStyle} 
+                value={ssfeel} 
+                onChangeText={(value) => {setssfeel(value)}}/>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                <Text style={styles.lableText}>SS Montyhly Income</Text>
+                    <TextInput 
+                        placeholder='SS Monthly Income'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={monthlyss.toString()} 
+                        onChangeText={(value) => {setmonthlyss(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                <Text style={styles.lableText}>Monthly Expenses</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={monthlyss.toString()} onChangeText={(value) => {setmonthlyss(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={monthlyexp.toString()} onChangeText={(value) => {setmonthlyexp(value)}}/>
+                    <TextInput 
+                        placeholder='Monthly Expenses'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={monthlyexp.toString()} 
+                        onChangeText={(value) => {setmonthlyexp(value)}}/>
                 </View>
             </View>
             <Text style={styles.lableText}>Are you able to save money with your SS income?</Text>
@@ -55,6 +65,7 @@ const Retirement = ({hasspouse,
                 onValueChange={toggleSaveSwitch}
                 value={cansave}
             />
+            <Text style={styles.headingText}>Regarding Your Assetts...</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
                     <Text style={styles.lableText}>Savings</Text>
@@ -65,10 +76,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={savings.toString()} onChangeText={(value) => {setsavings(value)}}/>
+                    <TextInput 
+                        placeholder='Savings'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={savings.toString()} 
+                        onChangeText={(value) => {setsavings(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={realestate.toString()} onChangeText={(value) => {setrealestate(value)}}/>
+                    <TextInput 
+                        placeholder='Real Estate'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={realestate.toString()} 
+                        onChangeText={(value) => {setrealestate(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
@@ -81,10 +104,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={mutuals.toString()} onChangeText={(value) => {setmutuals(value)}}/>
+                    <TextInput 
+                        placeholder='Mutual Funds'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={mutuals.toString()} 
+                        onChangeText={(value) => {setmutuals(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={licash.toString()} onChangeText={(value) => {setlicash(value)}}/>
+                    <TextInput 
+                        placeholder='Life Insurance Cash'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={licash.toString()} 
+                        onChangeText={(value) => {setlicash(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
@@ -97,10 +132,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={annuities.toString()} onChangeText={(value) => {setannuities(value)}}/>
+                    <TextInput 
+                        placeholder='Annuities'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={annuities.toString()} 
+                        onChangeText={(value) => {setannuities(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={stocks.toString()} onChangeText={(value) => {setstocks(value)}}/>
+                    <TextInput 
+                        placeholder='Stocks'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={stocks.toString()} 
+                        onChangeText={(value) => {setstocks(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
@@ -113,10 +160,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={bonds.toString()} onChangeText={(value) => {setbonds(value)}}/>
+                    <TextInput 
+                        placeholder='Bonds'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={bonds.toString()} 
+                        onChangeText={(value) => {setbonds(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={moneymkts.toString()} onChangeText={(value) => {setmoneymkts(value)}}/>
+                    <TextInput 
+                        placeholder='Money Markets'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={moneymkts.toString()} 
+                        onChangeText={(value) => {setmoneymkts(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
@@ -129,10 +188,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={cds.toString()} onChangeText={(value) => {setcds(value)}}/>
+                    <TextInput 
+                        placeholder='CDs'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={cds.toString()} 
+                        onChangeText={(value) => {setcds(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={iras.toString()} onChangeText={(value) => {setiras(value)}}/>
+                    <TextInput 
+                        placeholder='IRAs'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={iras.toString()} 
+                        onChangeText={(value) => {setiras(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
@@ -145,10 +216,22 @@ const Retirement = ({hasspouse,
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={forohwonk.toString()} onChangeText={(value) => {setforohwonk(value)}}/>
+                    <TextInput 
+                        placeholder='401k'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={forohwonk.toString()} 
+                        onChangeText={(value) => {setforohwonk(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput keyboardType='numeric' maxLength={10} style={styles.textInputStyle} value={other.toString()} onChangeText={(value) => {setother(value)}}/>
+                    <TextInput 
+                        placeholder='Other'
+                        keyboardType='numeric' 
+                        maxLength={10} 
+                        style={styles.textInputStyle} 
+                        value={other.toString()} 
+                        onChangeText={(value) => {setother(value)}}/>
                 </View>
             </View>
             {isKeyboardVisible ? <View style={{height:200}}/>:null}
@@ -157,36 +240,3 @@ const Retirement = ({hasspouse,
 }
 
 export default Retirement
-
-const styles = StyleSheet.create({
-    titleText: {
-        fontSize: 20,
-        paddingBottom: 20
-    },
-    lableText: {
-        marginTop: 3
-    },
-    fullWidth: {
-        minWidth: '80%',
-        marginBottom: 20,
-    },
-    textInputStyle: {
-        width: '95%',
-        height: 48,
-        borderWidth: 2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    },
-    responseInputStyle: {
-        width: '95%',
-        height: 144,
-        borderWidth: 2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        textAlignVertical: 'top',
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    }
-})

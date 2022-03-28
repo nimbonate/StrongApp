@@ -2,7 +2,7 @@ import React, { useRef, useState} from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import SignatureScreen from 'react-native-signature-canvas'
 
-const Signatures = ({hasspouse, fname1, lname1,
+const Signatures = ({hasSpouse, firstName, lastName,
                 clisig, setclisig,
                 spousig, setspousig,
                 agentsig, setagentsig
@@ -74,7 +74,7 @@ const Signatures = ({hasspouse, fname1, lname1,
     return (
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Signatures</Text>
-            <Text style={styles.headerText}>{fname1} Signature:</Text>
+            <Text style={styles.headerText}>{firstName} Signature:</Text>
                 <View style={{width: '95%', height: 130}}>
                     <SignatureScreen ref={ref} onOK={handleCliOK} />
                     <View style={{flexDirection:'row',}}>
@@ -89,7 +89,7 @@ const Signatures = ({hasspouse, fname1, lname1,
                         </View>
                     </View>
                 </View>
-            { hasspouse ? <>
+            { hasSpouse ? <>
                 <Text style={styles.headerText}>Spouse Signature:</Text>
                 <View style={{width: '95%', height: 130}}>
                     <SignatureScreen ref={ref} onOK={handleSpoOK} />

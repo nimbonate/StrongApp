@@ -1,12 +1,14 @@
 import React from 'react'
-import { StyleSheet, Switch, Button, Text, TextInput, View } from 'react-native'
+import { Button, Text, TextInput, View } from 'react-native'
+
+import { styles } from '../styles'
 
 //Need to add an anchor phrase. Something that the agent can tell the referrals to establish a
 //connection to the client.
 
-const Referrals = ({hasspouse,
-                reffname1, setreffname1,
-                reflname1, setreflname1,
+const Referrals = ({hasSpouse,
+                reffirstName, setreffirstName,
+                reflastName, setreflastName,
                 refphone1, setrefphone1,
                 refaddy1, setrefaddy1,
                 reffname2, setreffname2,
@@ -55,351 +57,360 @@ const Referrals = ({hasspouse,
     return (
         <View style={styles.fullWidth}>
             <Text style={styles.titleText}>Referrals</Text>
-            <Text style={styles.lableText}>Referral #1</Text>
+            <Text style={styles.headingText}>Referral #1</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffirstName} 
+                        onChangeText={(value) => {setreffirstName(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflastName} 
+                        onChangeText={(value) => {setreflastName(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname1} onChangeText={(value) => {setreffname1(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone1.toString()} 
+                        onChangeText={(value) => {setrefphone1(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname1} onChangeText={(value) => {setreflname1(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone1.toString()} onChangeText={(value) => {setrefphone1(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy1} onChangeText={(value) => {setrefaddy1(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy1} 
+                        onChangeText={(value) => {setrefaddy1(value)}}/>
                 </View>
             </View>
             { refnumber > 1 ? <>
-            <Text style={styles.lableText}>Referral #2</Text>
+            <Text style={styles.headingText}>Referral #2</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname2} 
+                        onChangeText={(value) => {setreffname2(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname2} 
+                        onChangeText={(value) => {setreflname2(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname2} onChangeText={(value) => {setreffname2(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone2.toString()} 
+                        onChangeText={(value) => {setrefphone2(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname2} onChangeText={(value) => {setreflname2(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone2.toString()} onChangeText={(value) => {setrefphone2(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy2} onChangeText={(value) => {setrefaddy2(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy2} 
+                        onChangeText={(value) => {setrefaddy2(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 2 ? <>
-            <Text style={styles.lableText}>Referral #3</Text>
+            <Text style={styles.headingText}>Referral #3</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname3} 
+                        onChangeText={(value) => {setreffname3(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname3} 
+                        onChangeText={(value) => {setreflname3(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname3} onChangeText={(value) => {setreffname3(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone3.toString()} onChangeText={(value) => {setrefphone3(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname3} onChangeText={(value) => {setreflname3(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone3.toString()} onChangeText={(value) => {setrefphone3(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy3} onChangeText={(value) => {setrefaddy3(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy3} 
+                        onChangeText={(value) => {setrefaddy3(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 3 ? <>
-            <Text style={styles.lableText}>Referral #4</Text>
+            <Text style={styles.headingText}>Referral #4</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname4} 
+                        onChangeText={(value) => {setreffname4(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname4} 
+                        onChangeText={(value) => {setreflname4(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname4} onChangeText={(value) => {setreffname4(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone4.toString()} 
+                        onChangeText={(value) => {setrefphone4(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname4} onChangeText={(value) => {setreflname4(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone4.toString()} onChangeText={(value) => {setrefphone4(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy4} onChangeText={(value) => {setrefaddy4(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy4} 
+                        onChangeText={(value) => {setrefaddy4(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 4 ? <>
-            <Text style={styles.lableText}>Referral #5</Text>
+            <Text style={styles.headingText}>Referral #5</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname5} 
+                        onChangeText={(value) => {setreffname5(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname5} 
+                        onChangeText={(value) => {setreflname5(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname5} onChangeText={(value) => {setreffname5(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone5.toString()} 
+                        onChangeText={(value) => {setrefphone5(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname5} onChangeText={(value) => {setreflname5(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone5.toString()} onChangeText={(value) => {setrefphone5(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy5} onChangeText={(value) => {setrefaddy5(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy5} 
+                        onChangeText={(value) => {setrefaddy5(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 5 ? <>
-            <Text style={styles.lableText}>Referral #6</Text>
+            <Text style={styles.headingText}>Referral #6</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname6} 
+                        onChangeText={(value) => {setreffname6(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname6} 
+                        onChangeText={(value) => {setreflname6(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname6} onChangeText={(value) => {setreffname6(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} k
+                        eyboardType={'phone-pad'} 
+                        value={refphone6.toString()} 
+                        onChangeText={(value) => {setrefphone6(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname6} onChangeText={(value) => {setreflname6(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone6.toString()} onChangeText={(value) => {setrefphone6(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy6} onChangeText={(value) => {setrefaddy6(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy6} 
+                        onChangeText={(value) => {setrefaddy6(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 6 ? <>
-            <Text style={styles.lableText}>Referral #7</Text>
+            <Text style={styles.headingText}>Referral #7</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname7} 
+                        onChangeText={(value) => {setreffname7(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname7} 
+                        onChangeText={(value) => {setreflname7(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname7} onChangeText={(value) => {setreffname7(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone7.toString()} 
+                        onChangeText={(value) => {setrefphone7(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname7} onChangeText={(value) => {setreflname7(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone7.toString()} onChangeText={(value) => {setrefphone7(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy7} onChangeText={(value) => {setrefaddy7(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy7} 
+                        onChangeText={(value) => {setrefaddy7(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 7 ? <>
-            <Text style={styles.lableText}>Referral #8</Text>
+            <Text style={styles.headingText}>Referral #8</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname8} 
+                        onChangeText={(value) => {setreffname8(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname8} 
+                        onChangeText={(value) => {setreflname8(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname8} onChangeText={(value) => {setreffname8(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone8.toString()} 
+                        onChangeText={(value) => {setrefphone8(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname8} onChangeText={(value) => {setreflname8(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone8.toString()} onChangeText={(value) => {setrefphone8(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy8} onChangeText={(value) => {setrefaddy8(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy8} 
+                        onChangeText={(value) => {setrefaddy8(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 8 ? <>
-            <Text style={styles.lableText}>Referral #9</Text>
+            <Text style={styles.headingText}>Referral #9</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname9} 
+                        onChangeText={(value) => {setreffname9(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname9} 
+                        onChangeText={(value) => {setreflname9(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname9} onChangeText={(value) => {setreffname9(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone9.toString()} 
+                        onChangeText={(value) => {setrefphone9(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname9} onChangeText={(value) => {setreflname9(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone9.toString()} onChangeText={(value) => {setrefphone9(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy9} onChangeText={(value) => {setrefaddy9(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy9} 
+                        onChangeText={(value) => {setrefaddy9(value)}}/>
                 </View>
             </View>
             </> : null}
             { refnumber > 9 ? <>
-            <Text style={styles.lableText}>Referral #10</Text>
+            <Text style={styles.headingText}>Referral #10</Text>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>First Name</Text>
+                    <TextInput 
+                        placeholder='First Name'
+                        style={styles.textInputStyle} 
+                        value={reffname0} 
+                        onChangeText={(value) => {setreffname0(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Last Name</Text>
+                    <TextInput 
+                        placeholder='Last Name'
+                        style={styles.textInputStyle} 
+                        value={reflname0} 
+                        onChangeText={(value) => {setreflname0(value)}}/>
                 </View>
             </View>
             <View style={{flexDirection:'row'}}>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reffname0} onChangeText={(value) => {setreffname0(value)}}/>
+                    <TextInput 
+                        placeholder='Phone'
+                        style={styles.textInputStyle} 
+                        keyboardType={'phone-pad'} 
+                        value={refphone0.toString()} 
+                        onChangeText={(value) => {setrefphone0(value)}}/>
                 </View>
                 <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={reflname0} onChangeText={(value) => {setreflname0(value)}}/>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Phone</Text>
-                </View>
-                <View style={{flex:1}}>
-                    <Text style={styles.lableText}>Address</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row'}}>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} keyboardType={'phone-pad'} value={refphone0.toString()} onChangeText={(value) => {setrefphone0(value)}}/>
-                </View>
-                <View style={{flex:1}}>
-                    <TextInput style={styles.textInputStyle} value={refaddy0} onChangeText={(value) => {setrefaddy0(value)}}/>
+                    <TextInput 
+                        placeholder='Address'
+                        style={styles.textInputStyle} 
+                        value={refaddy0} 
+                        onChangeText={(value) => {setrefaddy0(value)}}/>
                 </View>
             </View>
             </> : null}
@@ -425,37 +436,3 @@ const Referrals = ({hasspouse,
 }
 
 export default Referrals
-
-const styles = StyleSheet.create({
-    titleText: {
-        fontSize: 20,
-        paddingBottom: 20,
-    },
-    lableText: {
-        marginTop: 3
-    },
-    fullWidth: {
-        minWidth: '80%',
-        marginBottom: 20,
-    },
-    textInputStyle: {
-        width: '95%',
-        height: 48,
-        borderWidth:2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    },
-    responseInputStyle: {
-        width: '95%',
-        height: 144,
-        borderWidth: 2,
-        borderColor: 'rgba(55, 55, 55, .5)',
-        paddingLeft: 10,
-        textAlignVertical: 'top',
-        borderRadius: 4,
-        backgroundColor: 'rgba(156,167,226,0.6)',
-    }
-})
-

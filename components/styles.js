@@ -1,15 +1,31 @@
 import { StyleSheet} from 'react-native'
 
-const AdminColor = '#E74212'
-const AgentColor = '#0782f9'
+const AlternateColor = '#E74212'
+const AdminColor = '#9400D3'
+const StrongColor = '#1f275b'
+
 
 export const styles = StyleSheet.create({
     titleText: {
         fontSize: 20,
-        paddingBottom: 20
+        paddingBottom: 20,
+        marginTop:10
+    },
+    headingText: {
+        fontSize: 18,
+        marginVertical: 6
+    },
+    reviewText:{
+        fontSize: 16,
+        textAlign: 'center'
     },
     lableText: {
-        marginTop: 3
+        marginTop: 4,
+    },
+    errorText: {
+        marginBottom: 2,
+        color: 'red',
+        justifyContent: 'space-between'
     },
     fullWidth: {
         minWidth: '80%',
@@ -21,7 +37,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     inputContainer: {
-        width: '80%'
+        width: '80%',
     },
     input: {
         backgroundColor: 'white',
@@ -37,12 +53,15 @@ export const styles = StyleSheet.create({
         marginTop: 40,
     },
     button: {  
-        backgroundColor: AgentColor,
+        backgroundColor: StrongColor,
         marginTop: 5,
         width: '100%',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 4,
         alignItems: 'center',
+    },
+    switch: {
+        marginBottom: 4
     },
     FFbuttonContainer: {
         color: 'rgba(0, 0, 255, 1)',
@@ -54,10 +73,10 @@ export const styles = StyleSheet.create({
     },
     FFbutton: {  
         flex: 1,
-        backgroundColor: AgentColor,
+        backgroundColor: StrongColor,
         width: '100%',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 4,
         marginTop:10,
         marginBottom:20,
         alignItems: 'center',
@@ -65,11 +84,11 @@ export const styles = StyleSheet.create({
     buttonOutline: {
         backgroundColor: 'white',
         marginTop: 5,
-        borderColor: AgentColor,
+        borderColor: StrongColor,
         borderWidth: 2,
         width: '100%',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 4,
         alignItems: 'center'
 
     },
@@ -79,7 +98,7 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
     buttonOutlineText: {
-        color: AgentColor,
+        color: StrongColor,
         fontWeight: '700',
         fontSize: 16,
     },
@@ -89,11 +108,12 @@ export const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(55, 55, 55, .5)',
         paddingLeft: 10,
+        marginBottom: 5,
         borderRadius: 4,
         backgroundColor: 'rgba(156,167,226,0.6)',
     },
     responseInputStyle: {
-        width: '95%',
+        width: '98%',
         height: 144,
         borderWidth: 2,
         borderColor: 'rgba(55, 55, 55, .5)',
@@ -101,6 +121,7 @@ export const styles = StyleSheet.create({
         textAlignVertical: 'top',
         borderRadius: 4,
         backgroundColor: 'rgba(156,167,226,0.6)',
+        marginBottom: 4,
     },
     modalView: {
         flex: 1,
