@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const FinalExpense = ({hasSpouse,
         haslife, sethaslife,
@@ -50,6 +50,7 @@ const FinalExpense = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Company' 
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={lifeco1} 
                             onChangeText={(value) => {setlifeco1(value)}}/>
@@ -57,6 +58,7 @@ const FinalExpense = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Beneficiary' 
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={lifeben1} 
                             onChangeText={(value) => {setlifeben1(value)}}/>
@@ -66,6 +68,7 @@ const FinalExpense = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Face Amount'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={lifeface1.toString()} 
@@ -74,6 +77,7 @@ const FinalExpense = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={lifeprem1.toString()} 
@@ -95,6 +99,7 @@ const FinalExpense = ({hasSpouse,
                         <View style={{flex:1}}>
                             <TextInput 
                                 placeholder='Spouse Company'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 style={styles.textInputStyle} 
                                 value={lifeco2} 
                                 onChangeText={(value) => {setlifeco2(value)}}/>
@@ -102,6 +107,7 @@ const FinalExpense = ({hasSpouse,
                         <View style={{flex:1}}>
                             <TextInput 
                                 placeholder='Beneficiary'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 style={styles.textInputStyle} 
                                 value={lifeben2} 
                                 onChangeText={(value) => {setlifeben2(value)}}/>
@@ -111,6 +117,7 @@ const FinalExpense = ({hasSpouse,
                         <View style={{flex:1}}>
                             <TextInput 
                                 placeholder='Face Amount'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 keyboardType='numeric' 
                                 style={styles.textInputStyle} 
                                 value={lifeface2.toString()} 
@@ -119,6 +126,7 @@ const FinalExpense = ({hasSpouse,
                         <View style={{flex:1}}>
                             <TextInput 
                                 placeholder='Premium'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 keyboardType='numeric' 
                                 style={styles.textInputStyle} 
                                 value={lifeprem2.toString()} 

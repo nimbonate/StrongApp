@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Text, View } from 'react-native'
-import { styles } from '../../components/styles'
+import { styles, PlaceholderTextColor } from '../../components/styles'
 
 const Appointments = ({ navigation }) => {
 

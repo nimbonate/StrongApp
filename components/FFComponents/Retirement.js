@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const Retirement = ({hasSpouse,
                 ssfeel, setssfeel,
@@ -42,6 +42,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='SS Monthly Income'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -51,6 +52,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Monthly Expenses'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -78,6 +80,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Savings'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -87,6 +90,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Real Estate'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -106,6 +110,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Mutual Funds'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -115,6 +120,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Life Insurance Cash'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -134,6 +140,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Annuities'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -143,6 +150,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Stocks'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -162,6 +170,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Bonds'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -171,6 +180,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Money Markets'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -190,6 +200,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='CDs'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -199,6 +210,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='IRAs'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -218,6 +230,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='401k'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 
@@ -227,6 +240,7 @@ const Retirement = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Other'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         maxLength={10} 
                         style={styles.textInputStyle} 

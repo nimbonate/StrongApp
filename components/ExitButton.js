@@ -15,7 +15,7 @@ const ExitButton = () => {
         [
             {
                 text: "Cancel",
-                onPress: () => console.log("Still Goin"),
+                onPress: () => {},
                 style: "cancel",
             },
             {

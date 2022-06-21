@@ -10,7 +10,7 @@ import Retirement from '../../components/FFComponents/Retirement'
 import Referrals from '../../components/FFComponents/Referrals'
 import Review from '../../components/FFComponents/Review'
 
-import { styles } from '../../components/styles'
+import { styles, PlaceholderTextColor } from '../../components/styles'
 
 import { db } from '../../firebase'
 import { authentication } from '../../firebase'

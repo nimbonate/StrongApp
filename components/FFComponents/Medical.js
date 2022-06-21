@@ -1,7 +1,7 @@
 import React from 'react'
 import {  Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const Medical = ({hasSpouse, hasadv, sethasadv,
             advdduct, setadvdduct,
@@ -38,12 +38,14 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                 <View style={{flexDirection:'row'}}>
                     <View style={{flex:1.4}}>
                         <TextInput placeholder='Company'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={hco1} 
                         onChangeText={(value) => {sethco1(value)}}/>
                     </View>
                     <View style={{flex:0.6}}>
                         <TextInput placeholder='Deductible' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         style={styles.textInputStyle} 
                         value={advdduct.toString()} 
@@ -56,6 +58,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                     <View style={{flex:1.4}}>
                         <TextInput 
                             placeholder='Health Plan' 
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={hplan1} 
                             onChangeText={(value) => {sethplan1(value)}}/>
@@ -63,6 +66,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                     <View style={{flex:0.6}}>
                         <TextInput 
                             placeholder='Premium' 
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={hprem1.toString()} 
@@ -71,10 +75,12 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                 </View>
                 <TextInput 
                     placeholder='Company' 
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={hco1} onChangeText={(value) => {sethco1(value)}}/>
                 <TextInput 
                     placeholder='Rx Coverage' 
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={rxco1} onChangeText={(value) => {setrxco1(value)}}/>
 
@@ -95,6 +101,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                         <View style={{flex:1.4}}>
                             <TextInput 
                                 placeholder='Spouse Advantage Co.'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 style={styles.textInputStyle} 
                                 value={hplan2} 
                                 onChangeText={(value) => {sethplan2(value)}}/>
@@ -102,6 +109,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                         <View style={{flex:0.6}}>
                             <TextInput 
                                 placeholder='Deductible'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 keyboardType='numeric' 
                                 style={styles.textInputStyle} 
                                 value={spouseadvdduct.toString()} 
@@ -114,6 +122,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                     <View style={{flex:1.4}}>
                         <TextInput 
                             placeholder='Spouse Health Plan'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={hplan2} 
                             onChangeText={(value) => {sethplan2(value)}}/>
@@ -121,6 +130,7 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                     <View style={{flex:0.6}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={hprem2.toString()} 
@@ -129,11 +139,13 @@ const Medical = ({hasSpouse, hasadv, sethasadv,
                 </View>
                 <TextInput 
                     placeholder='Spouse Company'
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={hco2} 
                     onChangeText={(value) => {sethco2(value)}}/> 
                 <TextInput 
                     placeholder='Spouse Rx Coverage'
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={rxco2} 
                     onChangeText={(value) => {setrxco2(value)}}/>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 //Need to add an anchor phrase. Something that the agent can tell the referrals to establish a
 //connection to the client.
@@ -62,6 +62,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffirstName} 
                         onChangeText={(value) => {setreffirstName(value)}}/>
@@ -69,6 +70,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflastName} 
                         onChangeText={(value) => {setreflastName(value)}}/>
@@ -78,6 +80,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone1.toString()} 
@@ -86,6 +89,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy1} 
                         onChangeText={(value) => {setrefaddy1(value)}}/>
@@ -97,6 +101,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname2} 
                         onChangeText={(value) => {setreffname2(value)}}/>
@@ -104,6 +109,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname2} 
                         onChangeText={(value) => {setreflname2(value)}}/>
@@ -113,6 +119,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone2.toString()} 
@@ -121,6 +128,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy2} 
                         onChangeText={(value) => {setrefaddy2(value)}}/>
@@ -133,6 +141,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname3} 
                         onChangeText={(value) => {setreffname3(value)}}/>
@@ -140,6 +149,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname3} 
                         onChangeText={(value) => {setreflname3(value)}}/>
@@ -149,6 +159,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone3.toString()} onChangeText={(value) => {setrefphone3(value)}}/>
@@ -156,6 +167,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy3} 
                         onChangeText={(value) => {setrefaddy3(value)}}/>
@@ -168,6 +180,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname4} 
                         onChangeText={(value) => {setreffname4(value)}}/>
@@ -175,6 +188,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname4} 
                         onChangeText={(value) => {setreflname4(value)}}/>
@@ -184,6 +198,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone4.toString()} 
@@ -192,6 +207,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy4} 
                         onChangeText={(value) => {setrefaddy4(value)}}/>
@@ -204,6 +220,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname5} 
                         onChangeText={(value) => {setreffname5(value)}}/>
@@ -211,6 +228,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname5} 
                         onChangeText={(value) => {setreflname5(value)}}/>
@@ -220,6 +238,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone5.toString()} 
@@ -228,6 +247,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy5} 
                         onChangeText={(value) => {setrefaddy5(value)}}/>
@@ -240,6 +260,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname6} 
                         onChangeText={(value) => {setreffname6(value)}}/>
@@ -247,6 +268,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname6} 
                         onChangeText={(value) => {setreflname6(value)}}/>
@@ -256,6 +278,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} k
                         eyboardType={'phone-pad'} 
                         value={refphone6.toString()} 
@@ -264,6 +287,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy6} 
                         onChangeText={(value) => {setrefaddy6(value)}}/>
@@ -276,6 +300,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname7} 
                         onChangeText={(value) => {setreffname7(value)}}/>
@@ -283,6 +308,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname7} 
                         onChangeText={(value) => {setreflname7(value)}}/>
@@ -292,6 +318,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone7.toString()} 
@@ -300,6 +327,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy7} 
                         onChangeText={(value) => {setrefaddy7(value)}}/>
@@ -312,6 +340,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname8} 
                         onChangeText={(value) => {setreffname8(value)}}/>
@@ -319,6 +348,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname8} 
                         onChangeText={(value) => {setreflname8(value)}}/>
@@ -328,6 +358,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone8.toString()} 
@@ -336,6 +367,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy8} 
                         onChangeText={(value) => {setrefaddy8(value)}}/>
@@ -348,6 +380,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname9} 
                         onChangeText={(value) => {setreffname9(value)}}/>
@@ -355,6 +388,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname9} 
                         onChangeText={(value) => {setreflname9(value)}}/>
@@ -364,6 +398,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone9.toString()} 
@@ -372,6 +407,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy9} 
                         onChangeText={(value) => {setrefaddy9(value)}}/>
@@ -384,6 +420,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reffname0} 
                         onChangeText={(value) => {setreffname0(value)}}/>
@@ -391,6 +428,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={reflname0} 
                         onChangeText={(value) => {setreflname0(value)}}/>
@@ -400,6 +438,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={refphone0.toString()} 
@@ -408,6 +447,7 @@ const Referrals = ({hasSpouse,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Address'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={refaddy0} 
                         onChangeText={(value) => {setrefaddy0(value)}}/>

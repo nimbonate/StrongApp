@@ -10,6 +10,7 @@ const FFList = () => {
     const [FactFinderList, setFactFinderList] = useState([]);
     const [modalVisible, setmodalVisible] = useState(false);
     const [docData, setdocData] = useState([]);
+    
     //gets the data from firestore and sets it as FactFinderList
     const getFFs = async() => {
         const FFCollection = query(collection(db, 'factFinders'), where("reviewed", "==", false));
@@ -20,6 +21,7 @@ const FFList = () => {
 
     useEffect(() => {
       getFFs();
+      console.log('FF List UseEffect Ran')
     }, []);
     
 
@@ -28,6 +30,7 @@ const FFList = () => {
             <View style={{height: 80}}/>
             <Text style={{textAlign:'center'}}>Submitted Fact Finders</Text>
             {FactFinderList.map((doc, index) => (
+            <View style={adminStyles.buttonHighlight}>
                 <TouchableOpacity
                     key={index}
                     style={adminStyles.button}
@@ -35,6 +38,7 @@ const FFList = () => {
                     >
                     <Text style={adminStyles.buttonText}>{doc.id}</Text>
                 </TouchableOpacity>
+            </View>
             ))}
             { modalVisible ? <Modal
                 style={{height:800}}

@@ -111,6 +111,13 @@ const AgentStackScreen = () => (
                     component={BusSubForm}
                     options = {{animationEnabled: false}}
                     />
+                {/*<AgentStack.Screen
+                    name="AppointmentStack"
+                    component={AppointmentStackScreen}
+                    options = {{
+                        animationEnabled: false, 
+                        headerShown: false}}
+                    />*/}
                 <AgentStack.Screen
                     name="AppointmentStack"
                     component={AppointmentStackScreen}

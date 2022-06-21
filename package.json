@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "predeploy": "expo build:web",
+    "deploy-hosting": "npm run predeploy && firebase deploy --only hosting"
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "^5.1.0",
@@ -24,7 +26,6 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
-    "react-native-signature-canvas": "^4.3.0",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
     "yup": "^0.32.11"

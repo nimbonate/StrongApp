@@ -17,24 +17,24 @@ const AdminDashboard = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={adminStyles.button}
-                onPress={() =>
+                /*onPress={() =>
                     navigation.navigate('Sweep List')
                     
-                }
+                }*/
                 >
                     <Text style={adminStyles.buttonText}>Sweep Appointments</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={adminStyles.button}
-                onPress={() =>
+                /*onPress={() =>
                     navigation.navigate('Appointment Overview')
                     
-                }
+                }*/
                 >
                     <Text style={adminStyles.buttonText}>Appointment Overview</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                style={[adminStyles.button, adminStyles.buttonOutline]}
+                style={[adminStyles.buttonOutline]}
                 onPress={() =>
                     navigation.replace('Admin Login')
                     }

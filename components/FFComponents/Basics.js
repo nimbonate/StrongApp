@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 import {Formik} from 'formik'
 
 const Basics = ({setfirstName, firstName,  
@@ -34,6 +34,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='First Name' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={firstName} 
                         onChangeText={(value) => {setfirstName(value)}}/>
@@ -41,6 +42,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Last Name' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={lastName} 
                         onChangeText={(value) => {setlasName(value)}}/>
@@ -59,6 +61,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Spouse First' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={spouseFirstName} 
                         onChangeText={(value) => {setspouseFirstName(value)}}/> 
@@ -66,6 +69,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Spouse Last' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={spouseLastName} 
                         onChangeText={(value) => {setspouseLastName(value)}}/> 
@@ -76,6 +80,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={Phone1} 
@@ -86,6 +91,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Phone 2' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType={'phone-pad'} 
                         value={Phone3} 
@@ -97,6 +103,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Occupation' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={occ1} 
                         onChangeText={(value) => {setocc1(value)}}/>
@@ -104,6 +111,7 @@ const Basics = ({setfirstName, firstName,
                 { hasSpouse ? <View style={{flex:1}}>
                     <TextInput 
                         placeholder='Spouse Occupation'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={occ2} 
                         onChangeText={(value) => {setocc2(value)}}/>
@@ -111,6 +119,7 @@ const Basics = ({setfirstName, firstName,
             </View>
             <TextInput 
                 placeholder='Address'
+                placeholderTextColor= {PlaceholderTextColor} 
                 style={styles.textInputStyle} 
                 value={address} 
                 onChangeText={(value) => {setaddress(value)}}/>
@@ -119,6 +128,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:1}}>
                     <TextInput 
                         placeholder='City' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={city} 
                         onChangeText={(value) => {setcity(value)}}/>
@@ -126,6 +136,7 @@ const Basics = ({setfirstName, firstName,
                 <View style={{flex:0.5}}>
                     <TextInput 
                         placeholder='State' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         value={state} 
                         onChangeText={(value) => {setstate(value)}}/>
@@ -134,6 +145,7 @@ const Basics = ({setfirstName, firstName,
                     <TextInput 
                         maxLength={5}
                         placeholder='Zip' 
+                        placeholderTextColor= {PlaceholderTextColor} 
                         style={styles.textInputStyle} 
                         keyboardType='numeric' 
                         value={zip.toString()} 

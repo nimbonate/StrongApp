@@ -6,7 +6,6 @@ import {
     TouchableOpacity, 
     TextInput, 
     Text, 
-    Alert,
     View, 
     Modal,
     ScrollView 
@@ -14,7 +13,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { db, authentication } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore/lite'
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 import {Formik} from 'formik'
 import { newApptSchema } from '../FormValidation'
@@ -68,10 +67,10 @@ const NewAppt = ({ navigation }) => {
             Zip:`${formRef.current.values.Zip}`,
             HouseMarking:`${formRef.current.values.houseMarking}`,
             HealthConcerns:`${formRef.current.values.healthConcerns}`,
-            DateTime:`${formatDate()}`,
+            DateTime:`${date}`,
             Swept: false,
             SweepNotes: '',
-            Split: Split
+            Split: `${Split}`
         }
         setDoc(NewAppointment, ApptData);
         return ApptData
@@ -84,22 +83,19 @@ const NewAppt = ({ navigation }) => {
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
   
-    const onChange = (event, selectedDate) => {
+    const onChange = (selectedDate) => {
       const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
       setDate(currentDate);
     };
     
     const showDatepicker = () => {
         setShow(true);
         setMode('date');
-        console.log(date)
     };
     
     const showTimepicker = () => {
         setShow(true);
         setMode('time');
-        console.log(date)
     };
 
     const twoWeeksFromNow = new Date();
@@ -165,8 +161,6 @@ const NewAppt = ({ navigation }) => {
    
     //Changing the State of toggled values
     const toggleSplit = () => {setSplit(previousState => !previousState), setShow(false)};
-
-
 
     //Adds space for the keyboard when it's up
     const [isKeyboardVisible, setKeyboardVisible] = useState(false)
@@ -274,7 +268,7 @@ const NewAppt = ({ navigation }) => {
                     </View>
                     { props.errors.spouseFirstName || props.errors.spouseLastName ? <View style={{flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <Text style={styles.errorText}>Test</Text>
+                            <Text style={styles.errorText}>{ props.errors.spouseFirstName}</Text>
                         </View>
                         <View style={{flex:1}}>
                             <Text style={styles.errorText}>{ props.errors.spouseLastName }</Text>
@@ -374,9 +368,9 @@ const NewAppt = ({ navigation }) => {
                     </View>
                     <View style={{flexDirection:'row'}}>
                         <View style={{flex:1}}>
-                            <TouchableOpacity style={styles.buttonOutline}>
+                            <View style={styles.infoOutline}>
                                 <Text style={styles.buttonOutlineText}>{formatDate()}</Text>
-                            </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                     <Modal 
@@ -384,6 +378,7 @@ const NewAppt = ({ navigation }) => {
                     style={{height:800}}
                     transparent='true'>
                         <View style={styles.modalView}>
+                            <View style={{height:150}}/>
                             <View style={{width:'100%'}}>
                                 <DateTimePicker
                                 textColor='black'

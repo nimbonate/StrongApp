@@ -12,7 +12,7 @@ import { authentication } from '../../firebase'
 import {Formik} from 'formik'
 import { adminLoginSchema } from '../../components/FormValidation'
 
-import { adminStyles, styles } from '../../components/styles'
+import { PlaceholderTextColor, adminStyles, styles } from '../../components/styles'
 
 const AdminLogin = ({ navigation }) => {
 
@@ -61,6 +61,7 @@ const AdminLogin = ({ navigation }) => {
         style={adminStyles.container}>
             <Formik
                 enableReinitialize
+                autoFocus={true}
                 validationSchema={adminLoginSchema}
                 initialValues={adminLoginForm}
                 validateOnChange={false}
@@ -75,6 +76,7 @@ const AdminLogin = ({ navigation }) => {
             <View style={adminStyles.inputContainer}>
                 <TextInput 
                     placeholder="Email"
+                    placeholderTextColor= {PlaceholderTextColor}
                     value={props.values.Email}
                     onChangeText={props.handleChange('Email')}
                     style={adminStyles.input}
@@ -86,6 +88,7 @@ const AdminLogin = ({ navigation }) => {
                 </View>: null }
                 <TextInput 
                     placeholder="Password"
+                    placeholderTextColor= {PlaceholderTextColor}
                     value={props.values.Password}
                     onChangeText={props.handleChange('Password')}
                     style={adminStyles.input}
@@ -110,7 +113,7 @@ const AdminLogin = ({ navigation }) => {
                     <Text style={adminStyles.buttonText}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={[adminStyles.button, adminStyles.buttonOutline]}
+                    style={adminStyles.button}
                     onPress={() =>
                     navigation.replace('agent')
                     }

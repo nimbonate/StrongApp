@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, TextInput, TouchableOpacity, Modal, ScrollView, Keyboard } from 'react-native'
 import { db } from '../../firebase'
-import { collection, where, query, getDocs, doc, document } from 'firebase/firestore/lite'
+import { collection, where, query, getDocs, doc, updateDoc } from 'firebase/firestore/lite'
 import { styles, adminStyles } from '../../components/styles'
 
 //Admin Page for Sweeping and marking current appointments
@@ -9,6 +9,7 @@ import { styles, adminStyles } from '../../components/styles'
 const AppointmentSweep = () => {
 
     const [sweepList, setSweepList] = useState([]);
+    const [sweepNotes, setSweepNotes] = useState('')
     const [modalVisible, setmodalVisible] = useState(false);
     const [docData, setdocData] = useState([]);
 
@@ -22,7 +23,14 @@ const AppointmentSweep = () => {
         setSweepList(SweepSnapshot.docs);
     }
 
-
+    //Update swept appointment
+    const Sweep = async() => {
+        const SweepRef = doc(db, 'Appointments', `${docData.FirstName} ${docData.LastName}`)
+        await updateDoc(SweepRef, {
+            Swept: true,
+            SweepNotes: sweepNotes
+        })
+    }
     useEffect(() => {
             const keyboardDidShowListener = Keyboard.addListener(
               'keyboardDidShow',
@@ -37,6 +45,7 @@ const AppointmentSweep = () => {
               }
             );
             getSweeps();
+            console.log('Sweep useEffect Used')
         
             return () => {
               keyboardDidHideListener.remove();
@@ -53,7 +62,11 @@ const AppointmentSweep = () => {
                 <TouchableOpacity
                     key={index}
                     style={adminStyles.button}
-                    onPress={() => {setdocData(doc.data()) + setmodalVisible(true)}}
+                    onPress={() => {
+                        setdocData(doc.data())
+                        setmodalVisible(true)
+                        setSweepNotes('')
+                        }}
                     >
                     <Text style={adminStyles.buttonText}>{doc.id} {doc.LastName}</Text>
                 </TouchableOpacity>
@@ -88,15 +101,19 @@ const AppointmentSweep = () => {
                     <TextInput
                         multiline
                         style={styles.responseInputStyle}
-                        value={docData.sweepNotes}
-                        //onChangeText={(value) => {setsweepNotes(value)}}
+                        value={sweepNotes}
+                        onChangeText={(value) => {setSweepNotes(value)}}
                         />
                     {isKeyboardVisible ? <View style={{height:260}}/>:null}
 
                 </ScrollView>
                     <TouchableOpacity
                     style={adminStyles.button}
-                    onPress={() => {}}>
+                    onPress={() => {
+                        Sweep()
+                        setmodalVisible(false)
+                        getSweeps()
+                            }}>
                         <Text style={adminStyles.buttonText}>Submit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity

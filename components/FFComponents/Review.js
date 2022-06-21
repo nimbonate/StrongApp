@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const Review = ({hasSpouse, reffirstName, refphone1, clisig,
             firstName, lastName,
@@ -34,10 +34,11 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
     
 
     return (
-        <View style={styles.fullWidth}>
+        <View style={styles.fullWidthCenter}>
             <Text style={styles.titleText}>Review</Text>
 
-
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
             <Text style={styles.headingText}>Basics</Text>
             { hasSpouse ?<>
                 { firstName ? <Text style={styles.lableText}>Name: {firstName} {lastName}</Text> 
@@ -64,8 +65,11 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
             : null }
             { !Phone1 && !Phone2 && !Phone3 ? <Text style={styles.errorText}>No Phone Entered</Text>
             : null}
+            </View>
+            </View>
 
-
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
             <Text style={styles.headingText}>Medical</Text>
             { hasadv ? <>
                 <Text style={styles.lableText}>Advantage Company: {hco1}</Text>
@@ -89,8 +93,11 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
                     : <Text style={styles.errorText}>Rx Coverage: None Entered</Text>}
                 </>}
             </>: null}
+            </View>
+            </View>
 
-            
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
             <Text style={styles.headingText}>Long Term Care</Text>
             { hasltc ? <>
                 { ecareco1 ? <Text style={styles.lableText}>Extended Care Company: {ecareco1} for {ecareprem1}</Text>
@@ -106,8 +113,11 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
                 </>    
                 : null}
             </> : null }
+            </View>
+            </View>
 
-
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
             <Text style={styles.headingText}>Auxilliary Insurance</Text>
             { hascanpol ? <> 
                 { canpolco1 ? <Text style={styles.lableText}>Cancer Policy: {canpolco1} for {canpolprem1}/Month </Text> 
@@ -131,8 +141,12 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
                 </>
                 : null}
             </> : null}
+            </View>
+            </View>
 
 
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
                 <Text style={styles.headingText}>Life Insurance</Text> 
             { haslife ? <>
                 { lifeco1 ? <Text style={styles.lableText}>Company: {lifeco1}</Text> 
@@ -159,8 +173,11 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
                 </>}
             </> 
             : null }
+            </View>
+            </View>
 
-            
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
             <Text style={styles.headingText}>Retirement</Text> 
             { haswilltrust ? <>
             <Text style={styles.lableText}>{firstName} has a Trust</Text>
@@ -168,9 +185,12 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
             :<>
                 <Text style={styles.errorText}>{firstName} does not have a Trust</Text>
             </> }
+            </View>
+            </View>
 
             { !reffirstName || !refphone1 ? <>
-                <View style={{marginTop: 20}}>
+            <View style={styles.neumorphismSection}>
+            <View style={styles.sectionHighlight}>
                     <View
                     style={{
                         borderBottomColor: 'red',
@@ -189,6 +209,7 @@ const Review = ({hasSpouse, reffirstName, refphone1, clisig,
                     }}
                     />
                 </View>
+            </View>
             </> : null}
         </View>
 

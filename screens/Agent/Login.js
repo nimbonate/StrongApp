@@ -8,7 +8,7 @@ import { TouchableOpacity,
     Keyboard } from 'react-native'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { authentication } from '../../firebase'
-import { styles } from '../../components/styles'
+import { styles, PlaceholderTextColor } from '../../components/styles'
 
 import {Formik} from 'formik'
 import { loginSchema } from '../../components/FormValidation'
@@ -73,6 +73,7 @@ const Login = ({ navigation }) => {
             <View style={styles.inputContainer}>
                 <TextInput 
                     placeholder="Email"
+                    placeholderTextColor= {PlaceholderTextColor}
                     value={props.values.Email.toLowerCase()}
                     onChangeText={props.handleChange('Email')}
                     style={styles.input}
@@ -84,6 +85,7 @@ const Login = ({ navigation }) => {
                 </View>: null }
                 <TextInput 
                     placeholder="Password"
+                    placeholderTextColor= {PlaceholderTextColor}
                     value={props.values.Password}
                     onChangeText={props.handleChange('Password')}
                     style={styles.input}

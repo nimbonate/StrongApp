@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 import { basicsForm } from '../../screens/Agent/FactFinder'
 
 //This Page needs to be improved to additionally fill in policy data and 
@@ -29,7 +29,6 @@ const Autofill = ({
         setspouseFirstName('')
         setspouseLastName('')
         setPhone1('')
-        console.log('Data Reset')
     }
 
 
@@ -38,7 +37,6 @@ const Autofill = ({
         setfirstName(data.firstName)
         setlasName(data.lastName)
         setPhone1(data.homePhone)
-        console.log(data.firstName + ' set as client') 
     }
 
     //useEffect runs this code on refresh so that the list is updated as the user types.
@@ -47,7 +45,6 @@ const Autofill = ({
         if (searchname) {
             //Calls AgencyBloc API for Client info
             const delayDebounceFn = setTimeout(() => {//creates a timer that reruns setEffect 
-            console.log(searchname)
             return fetch('https://app.agencybloc.com/api/v1/individuals/search', {
             method: 'POST',
             headers: new Headers({
@@ -67,20 +64,19 @@ const Autofill = ({
             }, 10)
             return () => clearTimeout(delayDebounceFn)//This is a part of that top thing.
         } else {
-            console.log('No Searchname')
+
         }
     }, [searchname])
 
     
 
-    //On this first TextInput, I really need to find a way to make the onChangeText trigger the getClients function so
-    //that the client list updates as the user type.
     return(
         <View style={styles.container}>
             <View style={{height:10}}/>
             <View style={styles.inputContainer}>
                 <TextInput style={styles.input} 
                     placeholder='Last Name' 
+                    placeholderTextColor= {PlaceholderTextColor} 
                     value={searchname} 
                     onChangeText={(value) => {
                         setsearchname(value)//sets our API call search name without setting lastName

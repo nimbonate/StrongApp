@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const LongTerm = ({hasSpouse,
         hasltc, sethasltc,
@@ -36,6 +36,7 @@ const LongTerm = ({hasSpouse,
             { hasltc ? <>
                 <TextInput 
                     placeholder='Extended Care Benefits'
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={ecareben1} 
                     onChangeText={(value) => {setecareben1(value)}}/>
@@ -43,6 +44,7 @@ const LongTerm = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Extended Care Co.'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={ecareco1} 
                             onChangeText={(value) => {setecareco1(value)}}/>
@@ -50,6 +52,7 @@ const LongTerm = ({hasSpouse,
                     <View style={{flex:.5}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={ecareprem1.toString()} 
@@ -59,6 +62,7 @@ const LongTerm = ({hasSpouse,
                 {hasSpouse ? <> 
                 <TextInput 
                     placeholder='Spouse Extended Care Benefits'
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={ecareben2} 
                     onChangeText={(value) => {setecareben2(value)}}/>
@@ -66,6 +70,7 @@ const LongTerm = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Spouse Extended Care Co.'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={ecareco2} 
                             onChangeText={(value) => {setecareco2(value)}}/>
@@ -73,6 +78,7 @@ const LongTerm = ({hasSpouse,
                     <View style={{flex:.5}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={ecareprem2.toString()} 

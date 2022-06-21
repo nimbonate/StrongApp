@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Text, TextInput, View } from 'react-native'
 
-import { styles } from '../styles'
+import { styles, PlaceholderTextColor } from '../styles'
 
 const Auxiliary = ({hasSpouse,
             hascanpol, sethascanpol,
@@ -49,6 +49,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Cash Payout'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={canpolcash1.toString()} 
@@ -57,6 +58,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:.5}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={canpolprem1.toString()} 
@@ -66,6 +68,7 @@ const Auxiliary = ({hasSpouse,
                 { hasSpouse ?<>
                 <TextInput 
                     placeholder='Spouse Cancer Policy Co.'
+                    placeholderTextColor= {PlaceholderTextColor} 
                     style={styles.textInputStyle} 
                     value={canpolco2} 
                     onChangeText={(value) => {setcanpolco2(value)}}/>
@@ -73,6 +76,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Spouse Cash Payout'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={canpolcash2.toString()} 
@@ -81,6 +85,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:.5}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={canpolprem2.toString()} 
@@ -110,6 +115,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:1}}>
                         <TextInput 
                             placeholder='Dental/Vision Co.'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             style={styles.textInputStyle} 
                             value={dentalco1} 
                             onChangeText={(value) => {setdentalco1(value)}}/>
@@ -117,6 +123,7 @@ const Auxiliary = ({hasSpouse,
                     <View style={{flex:.5}}>
                         <TextInput 
                             placeholder='Premium'
+                            placeholderTextColor= {PlaceholderTextColor} 
                             keyboardType='numeric' 
                             style={styles.textInputStyle} 
                             value={dentalprem1.toString()} 
@@ -128,6 +135,7 @@ const Auxiliary = ({hasSpouse,
                         <View style={{flex:1}}>
                             <TextInput 
                                 placeholder='Spouse Dental/Vision Co.'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 style={styles.textInputStyle} 
                                 value={dentalco2} 
                                 onChangeText={(value) => {setdentalco2(value)}}/>
@@ -135,6 +143,7 @@ const Auxiliary = ({hasSpouse,
                         <View style={{flex:.5}}>
                             <TextInput 
                                 placeholder='Premium'
+                                placeholderTextColor= {PlaceholderTextColor} 
                                 keyboardType='numeric' 
                                 style={styles.textInputStyle} 
                                 value={dentalprem2.toString()} 
@@ -149,6 +158,7 @@ const Auxiliary = ({hasSpouse,
                 { hasadv ? <>
                     <TextInput 
                         placeholder='Hospital Copay'
+                        placeholderTextColor= {PlaceholderTextColor} 
                         keyboardType='numeric' 
                         style={styles.textInputStyle} 
                         value={hicopay1.toString()} 
